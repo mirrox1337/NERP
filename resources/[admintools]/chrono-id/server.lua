@@ -1,0 +1,5 @@
+--TriggerEvent('es:addGroupCommand', 'id', "admin", function(source, args, user)
+--	TriggerClientEvent('esx_id:id', source)
+--end, function(source, args, user)
+--	TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insufficienct permissions!")
+--end)

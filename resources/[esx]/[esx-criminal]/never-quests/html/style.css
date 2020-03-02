@@ -1,0 +1,101 @@
+@font-face {
+	font-family: Bender;
+	src: url('Bender.woff'), url('Bender.woff') format('woff');
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	font-family: 'Roboto', sans-serif;
+}
+
+#blackbar-top {
+	width: 100%;
+	height: 70px;
+	background-color: #000;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#blackbar-bottom {
+	width: 100%;
+	height: 70px;
+	background-color: #000;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#container {
+	font-family: 'Bender';
+	font-size: 25px;
+}
+
+#container-overlay {
+	position: absolute;
+	left: 25%;
+	top: 15%;
+	width: 50%;
+	height: 75%;
+	border: 10px solid #222222;
+	border-radius: 15px;
+ 	background: url(background.jpg) no-repeat 0 0;
+ 	background-size: 150% 100%;
+}
+
+.help {
+	position: absolute;
+	left: 23%;
+	top: 9%;
+	font-size: 20px;
+}
+
+.container-number {
+	border: 2px solid #2d2d2d;
+}
+
+.container-selected-number {
+}
+
+.container-current-selected-number {
+}
+
+.container-current-selected-number:after {
+  	position: absolute;
+  	content: '';	
+  	border-bottom: 2px solid #6b75c4;
+  	width: 80%;
+  	transform: translateX(-50%);
+ 	bottom: 5px;
+  	left: 50%;
+}
+
+.container-generated-key {
+	position: absolute;
+	width: 42px;
+	height: 42px;
+	border: 2px solid #232323;
+	color: #a83030;
+	background-color: #333333;
+}
+
+.container-successful-generated-key {
+	position: absolute;
+	width: 42px;
+	height: 42px;
+	border: 2px solid #232323;
+	color: #30a853;
+	background-color: #333333;
+}
+
+.container-successful-generated-key p {
+	margin-top: 4px;
+	margin-left: 6px;
+}
+
+.container-generated-key p {
+	margin-top: 5px;
+	margin-left: 7px;
+}

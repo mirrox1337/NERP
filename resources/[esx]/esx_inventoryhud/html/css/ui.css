@@ -1,0 +1,255 @@
+* {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+
+.ui {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 0;
+}
+
+.inventory {
+    position: absolute;
+    font-family: 'Catamaran', sans-serif;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1550px;
+    height: 600px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #252525;
+}
+
+#playerInventory {
+    width: 625px;
+    height: 580px;
+    float: left;
+    overflow-y: scroll
+}
+
+#controls {
+    width: 300px;
+    height: 580px;
+    float: left;
+    position: relative;
+    background-color: rgba(24, 27, 32, 0.0);
+    left: 0px;
+    top: 0px;
+}
+
+#otherInventory {
+    width: 625px;
+    height: 580px;
+    float: left;
+    overflow-y: scroll
+}
+
+#count {
+    border: none;
+    outline: none;
+    font-size: 18px;
+    border: 2px solid #771282;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.slot {
+    float: left;
+    width: 117px;
+    height: 117px;
+    background-color: rgba(17, 5, 17, 0.6);
+    margin: 2px;
+    position: relative;
+    border: 1px solid #771282;
+}
+
+.slot:hover {
+    opacity: 0.8;
+    background-color: #771282;
+}
+
+.item,
+.item-other {
+    width: 117px;
+    height: 117px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.item-name {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 117px;
+    min-height: 12px;
+    z-index: 500;
+    font-size: 12px;
+    background-color: rgba(24, 27, 32, 0.6);
+    color: white;
+}
+
+.ui-draggable-dragging .item-name,
+.ui-draggable-dragging .item-count {
+    display: none;
+}
+
+.item-count {
+    position: absolute;
+    top: 0;
+    text-align: right;
+    width: 114px;
+    height: 20px;
+    z-index: 500;
+}
+
+.ammoIcon {
+    width: 10px;
+    height: 10px;
+}
+
+.info-div {
+    text-align: center;
+    padding: 5px;
+    background-color: rgba(17, 5, 17, 0.6);
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+}
+
+.controls-div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.control {
+    width: 150px;
+    height: 40px;
+    background-color: #252525;
+    margin: 10px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    border: 2px solid #771282;
+}
+
+.control.disabled {
+    background-color: rgba(17, 5, 17, 0.1);
+    border: 2px solid rgb(255, 0, 0);
+}
+
+.hoverControl {
+    background-color: #771282;;
+}
+
+.item-name-bg {
+    width: 100%;
+    width: 117px;
+    height: 20px;
+    position: absolute;
+    bottom: 0;
+}
+
+#playerInventory::-webkit-scrollbar,
+#otherInventory::-webkit-scrollbar {
+    width: 10px;
+    background-color: #555;
+    border-radius: 25px
+}
+
+.nearbyPlayerButton {
+    width: 100%;
+    margin-top: 5px;
+    display: block;
+    text-decoration: none;
+    padding: 2px;
+    color: #ffffff;
+    background-color: rgba(24, 27, 32, 0.9);
+    text-shadow: none;
+    font-size: 14px !important;
+    outline: none;
+    text-transform: none;
+    text-align: center;
+    line-height: 30px;
+    border: none;
+}
+
+.nearbyPlayerButton:hover {
+    background-color: #3d3d3d;
+}
+
+#noSecondInventoryMessage {
+    width: 615px;
+    height: 580px;
+    line-height: 580px;
+    text-align: center;
+}
+
+@media (max-width: 1500px) {
+    .inventory {
+        width: 1300px;
+    }
+
+    #playerInventory {
+        width: 550px;
+    }
+
+    #controls {
+        width: 200px;
+    }
+
+    #otherInventory {
+        width: 550px;
+    }
+
+    #noSecondInventoryMessage {
+        width: 540px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .inventory {
+        width: 1000px;
+    }
+
+    #playerInventory {
+        width: 425px;
+    }
+
+    #controls {
+        width: 150px;
+    }
+
+    #otherInventory {
+        width: 425px;
+    }
+
+    #noSecondInventoryMessage {
+        width: 420px;
+    }
+}

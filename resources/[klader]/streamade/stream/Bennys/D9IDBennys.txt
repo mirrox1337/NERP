@@ -1,0 +1,13 @@
+Male: 
+Piké: 235, 10 
+Byxor: 98, 17 
+Hatt1: 10, 0 
+Hatt2: 11, 0 
+
+Female: 
+Piké: 245, 10
+Byxor: 101, 17 
+
+
+
+

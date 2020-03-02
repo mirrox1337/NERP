@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/materialize.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div id="wrapper" class="center col s12">
+
+          <h1 class="server"><strong>NeverEnding</strong> Roleplay</h1>
+          <h1 class="under">Varmt välkommen till servern, fyll i allt med alla uppgifter för att skapa din karaktär. Var extra noga med att fylla i allting korrekt innan du skapar karaktären.</h1>
+
+          <div class="overcast"></div>
+          <div class="overcast_bg"></div>
+          <div class="sidebar"></div>
+          <div class="row">
+              <form>
+                <div class="input-field">
+                  <input id="firstname" name="firstname" placeholder = "Ola" type="text" autocomplete="off" required>
+                  <label for="firstname">Ange Förnamn</label>
+                </div>
+                <div class="input-field">
+                  <input id="lastname" placeholder="Conny" type="text" autocomplete="off" required>
+                  <label for="lastname">Ange Efternamn</label>
+                </div>
+                <div class="input-field">
+                    <label for="height" class="height_nr">Välj Längd</label>
+                    <input type="range" min="100" max="200" value="50" class="slider" id="height" autocomplete="off" required>
+                </div>
+                <div class="input-field">
+                  <input id="dateofbirth" placeholder = "" type="text" class="datepicker" autocomplete="off" required>
+                  <label for="dateofbirth">Ange Födelsedatum (ÅÅÅÅ-MM-DD)</label>
+                </div>
+                <div class="input-field" id="sex">
+                  <select data-beloworigin="true" required>
+                    <option value="none" disabled selected>Välj kön</option>
+                    <option value="M">Man</option>
+                    <option value="F">Kvinna</option>
+                  </select>
+                  <label>Kön</label>
+                </div>
+                <button id="register" class="btn btn-large waves-effect">Slutför karaktär</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="assets/js/jquery.js" type="text/javascript"></script>
+    <script src="assets/js/materialize.js" type="text/javascript"></script>
+    <script src="assets/js/init.js" type="text/javascript"></script>
+  </body>
+</html>

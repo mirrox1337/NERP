@@ -1,0 +1,168 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300,100italic,100);
+
+body, html {
+	overflow-y: hidden;
+}
+
+#admin {
+	font-family: 'calibri', sans-serif;
+	height: 800px;
+	background-color: rgb(0, 0, 0, 0.7);
+	color: #fff;
+	width: 840px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -350px;
+	margin-left: -400px;
+	padding-bottom: 20px;
+	border: solid #fff 2px;
+
+
+	
+
+}
+
+#main {
+	height: 640px;
+}
+
+#tabs {
+	height: 30px;
+}
+
+.tab {
+	width: 100px;
+	height: 30px;
+	padding-right: 5px;
+	float: left;
+	border: none;
+	font-weight: bold;
+	color: white;
+	background: #454545;
+}
+
+.tab.selected {
+	font-family: 'calibri', sans-serif;
+	background: #79007d;
+	
+}
+
+#list {
+	display: inline-block;
+	margin-bottom: 100px;
+	width: 200px;
+	height: 740px;
+	overflow-x: hidden;
+	-webkit-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+#selected h3 {
+	margin-left: 5px;
+}
+
+.quick {
+	font-family: 'calibri', sans-serif;
+	margin-left: 9px;
+	width: 31%;
+	background: rgb(0,0,0);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 5px;
+	color: #fff;
+	font-size: 15px;
+	background-color: #000;
+	border: 1px solid #fff;
+}
+
+.group_set {
+	display: inline-block;
+	float: left;
+	padding: 10px;
+	width: 278px;
+}
+
+.group_set button {
+	font-family: 'calibri', sans-serif;
+	padding-left: 30px;
+	padding-right: 30px;
+	border: none;
+	width: 100%;
+	margin-top: 4px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: rgb(151, 66, 66);
+	color: #fff;
+	font-weight: bold;
+	background-color: #000;
+	border: 1px solid #fff;
+}
+
+.group_set input {
+	width: 100%;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: grey
+}
+
+.group_set label {
+	display: block;
+}
+
+#selected {
+	position: absolute;
+	display: inline-block;
+	width: 600px;
+	height: 640px;
+	border: 1px solid transparent;
+}
+
+#selected h1 {
+	margin-left: 20px;
+	border: 1px solid transparent;
+}
+
+.player {
+	width: 95%;
+	text-weight: bold;
+	text-indent: 10px;
+	padding: 5px;
+	border-bottom: outset #fff 2px;
+	background: rgb(67, 21, 99, 0.3);
+}
+
+.player:nth-child(odd) {
+	background: rgb(121, 27, 150, 0.3);
+}
+
+.player.selected {
+	background: -webkit-linear-gradient(right, transparent 0%, rgb(0,0,0) 100%);
+}
+
+.topbar {
+	height: 50px;
+	font-weight: bold;
+	font-size: 26px;
+	background: rgb(0, 0, 0, 0.19);
+	border-bottom: 2px solid #000;
+}
+
+.body {
+	height: 650px;
+}
+
+.topbar p {
+	top: 0;
+	margin-top: 0;
+	padding: 10px;
+	display: inline-block;
+}
+
+#close {
+	font-family: 'calibri', sans-serif;
+	display: inline-block;
+	float: right;
+	padding: 10px;
+	padding-right: 10px;
+	color: #fff;
+}

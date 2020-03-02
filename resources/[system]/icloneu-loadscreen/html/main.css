@@ -1,0 +1,37 @@
+* {
+    color: #eee;
+    font-size: 30px
+}
+
+.bg {
+    background-color: #363636;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loadbar {
+    width: 20%;
+    background: #4F4F4F;
+    height: 12.5px;
+
+    overflow: hidden;
+
+    position: fixed;
+    left: 50%;
+    bottom: 4%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.progressBar {
+    width: 10%;
+    background-color: #5E5E5E;
+    height: 12.5px;
+    position: absolute;
+    left: 10%;
+}

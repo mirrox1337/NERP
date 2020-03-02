@@ -1,0 +1,2 @@
+INSERT INTO `items` (`id`, `name`, `label`, `limit`, `rare`, `can_remove`) VALUES (2011, 'handklovar', 'Handklovar', -1, 0, 1);
+INSERT INTO `items` (`id`, `name`, `label`, `limit`, `rare`, `can_remove`) VALUES (2010, 'nyckel', 'Nyckel', -1, 0, 1);

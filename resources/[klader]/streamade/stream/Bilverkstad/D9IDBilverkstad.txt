@@ -1,0 +1,11 @@
+Male: 
+Tröja: 245, 0  
+Piké:  235, 9
+Byxor: 98, 16 
+
+
+Female: 
+Tröja: 253, 0
+Piké: 245, 9 
+Byxor: 101, 16 
+

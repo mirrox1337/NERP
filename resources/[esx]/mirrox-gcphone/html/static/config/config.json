@@ -69,14 +69,14 @@
           "title": "Skicka ett meddelande",
           "eventName": "esx_addons_gcphone:call",
           "type": {
-            "number": "Polisen"
+            "number": "police"
           }
         },
         {
           "title": "Ring",
           "eventName": "gcphone:autoCallNumber",
           "type": {
-            "number": "Polisen"
+            "number": "police"
           }
         }
       ]
@@ -89,7 +89,18 @@
         "title": "Skicka ett meddelande",
         "eventName": "esx_addons_gcphone:call",
         "type": {
-          "number": "Akuten"
+          "number": "ambulance"
+        }
+      }]
+    },
+    {
+      "display": "Securitas",
+      "backgroundColor": "silver",
+      "subMenu": [{
+        "title": "Skicka ett meddelande",
+        "eventName": "esx_addons_chrono:call",
+        "type": {
+          "number": "Securitas"
         }
       }]
     },
@@ -101,7 +112,7 @@
               "title": "Skicka ett meddelande",
               "eventName": "esx_addons_gcphone:call",
               "type": {
-                "number": "Bennys"
+                "number": "bennys"
               }
             }
           ]
@@ -114,7 +125,7 @@
           "title": "Skicka ett meddelande",
           "eventName": "esx_addons_gcphone:call",
           "type": {
-            "number": "Mekonomen"
+            "number": "mecano"
           }
         }
       ]
@@ -127,7 +138,7 @@
           "title": "Skicka ett meddelande",
           "eventName": "esx_addons_gcphone:call",
           "type": {
-            "number": "Taxi"
+            "number": "taxi"
           }
         }
       ]
@@ -140,7 +151,7 @@
           "title": "Skicka ett meddelande",
           "eventName": "esx_addons_gcphone:call",
           "type": {
-            "number": "Bilhandlaren"
+            "number": "cardealer"
           }
         }
       ]

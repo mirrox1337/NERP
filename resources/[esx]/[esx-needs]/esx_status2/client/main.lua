@@ -1,12 +1,5 @@
-ESX = nil
-local Status, isPaused = {}, false
-
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
-end)
+local Status = {}
+local isPaused = false
 
 function GetStatusData(minimal)
 	local status = {}
@@ -38,15 +31,6 @@ AddEventHandler('esx_status:registerStatus', function(name, default, color, visi
 	table.insert(Status, status)
 end)
 
-AddEventHandler('esx_status:unregisterStatus', function(name)
-	for k,v in ipairs(Status) do
-		if v.name == name then
-			table.remove(Status, k)
-			break
-		end
-	end
-end)
-
 RegisterNetEvent('esx_status:load')
 AddEventHandler('esx_status:load', function(status)
 	for i=1, #Status, 1 do
@@ -67,8 +51,9 @@ AddEventHandler('esx_status:load', function(status)
 				update = true,
 				status = GetStatusData()
 			})
-                TriggerEvent('ui:updateStatus', GetStatusData(true))
+
 			TriggerEvent('esx_status:onTick', GetStatusData(true))
+			TriggerEvent('esx_ecologica:updateBasics', GetStatusData(true))
 			Citizen.Wait(Config.TickTime)
 		end
 	end)
@@ -142,7 +127,7 @@ AddEventHandler('esx_status:setDisplay', function(val)
 end)
 
 -- Pause menu disable hud display
-Citizen.CreateThread(function()
+--[[Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(300)
 
@@ -154,7 +139,7 @@ Citizen.CreateThread(function()
 			TriggerEvent('esx_status:setDisplay', 0.5)
 		end
 	end
-end)
+end)]]
 
 -- Loaded event
 Citizen.CreateThread(function()

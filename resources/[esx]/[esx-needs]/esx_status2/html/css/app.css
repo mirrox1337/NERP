@@ -1,0 +1,33 @@
+#status_list {
+    position: absolute;
+	margin: 1.12%;
+	margin-left: 2%;
+    left: -0.5%;
+    top:96.12%;
+    width: 14.05%;
+	display: flex;
+    height: 0.9%;
+    float:left;
+}
+
+.status {
+    padding: 0%;
+    flex: auto; 
+    border: 1px solid rgba(105,105,105); 
+	--background-color:#696969;
+    height: 100%;
+    opacity: 0.9;
+}
+
+.status_inner {
+    padding: 0%;
+    --background-color: #696969;;
+    height: 100%;
+}
+
+.status_val {
+    height: 100%;
+}
+body {
+    overflow:hidden;
+}

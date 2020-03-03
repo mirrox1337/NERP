@@ -2,45 +2,28 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-Citizen.CreateThread(function()
-	Citizen.Wait(1000)
-	local players = ESX.GetPlayers()
+AddEventHandler('esx:playerLoaded', function(source)
+	local _source        = source
+	local xPlayer        = ESX.GetPlayerFromId(_source)
 
-	for _,playerId in ipairs(players) do
-		local xPlayer = ESX.GetPlayerFromId(playerId)
-
-		MySQL.Async.fetchAll('SELECT status FROM users WHERE identifier = @identifier', {
-			['@identifier'] = xPlayer.identifier
-		}, function(result)
-			local data = {}
-
-			if result[1].status then
-				data = json.decode(result[1].status)
-			end
-
-			xPlayer.set('status', data)
-			TriggerClientEvent('esx_status:load', playerId, data)
-		end)
-	end
-end)
-
-AddEventHandler('esx:playerLoaded', function(playerId, xPlayer)
 	MySQL.Async.fetchAll('SELECT status FROM users WHERE identifier = @identifier', {
-		['@identifier'] = xPlayer.identifier
+			['@identifier'] = xPlayer.identifier
 	}, function(result)
 		local data = {}
 
-		if result[1].status then
+		if result[1].status ~= nil then
 			data = json.decode(result[1].status)
 		end
 
 		xPlayer.set('status', data)
-		TriggerClientEvent('esx_status:load', playerId, data)
+		TriggerClientEvent('esx_status:load', _source, data)
 	end)
 end)
 
-AddEventHandler('esx:playerDropped', function(playerId, reason)
-	local xPlayer = ESX.GetPlayerFromId(playerId)
+AddEventHandler('esx:playerDropped', function(source)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	local data   = {}
 	local status = xPlayer.get('status')
 
 	MySQL.Async.execute('UPDATE users SET status = @status WHERE identifier = @identifier', {
@@ -75,6 +58,7 @@ function SaveData()
 
 	for i=1, #xPlayers, 1 do
 		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		local data    = {}
 		local status  = xPlayer.get('status')
 
 		MySQL.Async.execute('UPDATE users SET status = @status WHERE identifier = @identifier', {

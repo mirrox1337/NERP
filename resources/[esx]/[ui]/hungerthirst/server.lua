@@ -1,0 +1,5 @@
+TriggerEvent('es:addGroupCommand', 'cinema', 'user', function(source, args, user)
+	TriggerClientEvent('revenge-cinemamode:show', source)
+end, function(source, args, user)
+  TriggerClientEvent('chatMessage', source, "Cinema", {255, 0, 0}, "Insufficienct permissions!")
+end, {help = "Turn on cinemamode."})

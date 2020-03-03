@@ -1,13 +1,15 @@
-function CreateStatus(name, default, color, visible, tickCallback)
+function CreateStatus(xPlayer, name, default, color, visible, tickCallback, clientAction)
 
 	local self = {}
 
 	self.val          = default
+	self.xPlayer      = xPlayer
 	self.name         = name
 	self.default      = default
 	self.color        = color
 	self.visible      = visible
 	self.tickCallback = tickCallback
+	self.clientAction = clientAction
 
 	self._set = function(k, v)
 		self[k] = v
@@ -43,6 +45,10 @@ function CreateStatus(name, default, color, visible, tickCallback)
 
 	self.getPercent = function()
 		return (self.val / Config.StatusMax) * 100
+	end
+
+	self.updateClient = function()
+		TriggerEvent('esx_status:updateClient', self.xPlayer.source)
 	end
 
 	return self

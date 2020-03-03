@@ -1,0 +1,153 @@
+.menu .header-top {
+  height: 3px;
+  color: #303030;
+  background-color: #303030;
+  border: none;
+  
+  position: relative;
+  top: 3px;
+  margin: 15px;
+}
+
+.menu .header-bottom {
+  height: 3px;
+  color: #303030;
+  background-color: #303030;
+  border: none;
+  
+  position: relative;
+  top: 5px;
+
+  margin: 15px;
+}
+
+.menu {
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+min-width: 350px;
+color: #fff;
+position: absolute;
+
+border: 3px solid #303030;
+
+box-shadow: 1px 1px 15px rgba(0, 0, 0, 1.5);
+}
+
+.menu.align-left {
+left: 40;
+top: 50%;
+transform: translate(0, -50%);
+}
+
+.menu.align-top-left {
+left: 40;
+top: 40;
+}
+
+.menu.align-top {
+left: 50%;
+top: 40;
+transform: translate(-50%, 0);
+}
+
+.menu.align-top-right {
+right: 10;
+top: 40;
+}
+
+.menu.align-right {
+right: 40;
+top: 50%;
+transform: translate(0, -50%);
+}
+
+.menu.align-bottom-right {
+right: 40;
+bottom: 40;
+}
+
+.menu.align-bottom {
+left: 50%;
+bottom: 40;
+transform: translate(-50%, 0);
+}
+
+.menu.align-bottom-left {
+left: 40;
+bottom: 40;
+}
+
+.menu.align-center {
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+}
+
+.menu .head {
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+background-color: #2b2b2b;
+text-align: center;
+height: 60px;
+line-height: 65px;
+font-size: 17px;
+text-transform: uppercase;
+color: #ffffff;
+font-weight: 600;
+letter-spacing: 5px;
+}
+
+.menu .menu-items {
+max-height: 567px;
+background-color: #2b2b2b;
+overflow-y: auto;
+}
+
+.menu .menu-items .menu-item {
+display: block;
+background-color: #2b2b2b;
+height: 42px;
+line-height: 42px;
+border-radius: 3px;
+color: #ffffff;
+text-align: left;
+text-indent: 15px;
+border: 2.5px solid #303030;
+border-radius: 5px;
+box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+margin: 10px;
+
+margin-left: 30px;
+margin-right: 30px;
+
+transition: all 0.25s;
+transition: border 0.25s, box-shadow 0.25s, background-color 0.25s;
+-webkit-transition: border 0.25s, box-shadow 0.25s, background-color 0.25s;
+}
+
+.menu {
+  transition: all 0.25s;
+  transition: border 0.25s, box-shadow 0.25s, background-color 0.25s;
+  -webkit-transition: border 0.25s, box-shadow 0.25s, background-color 0.25s;
+}
+.menu-items {
+  transition: all 0.25s;
+  transition: border 0.25s, box-shadow 0.25s, background-color 0.25s;
+  -webkit-transition: border 0.25s, box-shadow 0.25s, background-color 0.25s;
+}
+
+.menu .menu-items .menu-item.selected {
+background-color: #2b2b2b;
+border-radius: 5px;
+
+border: 2.5px solid #00f2ff;
+box-shadow: 0px 0px 3px #00f2ff;
+
+}
+
+.menu-item.selected {
+border: 2.5px solid #00f2ff;
+box-shadow: 0px 0px 3px #00f2ff;
+}
+
+::-webkit-scrollbar {
+width: 0px;
+}

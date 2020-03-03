@@ -19,12 +19,8 @@ $(document).ready(function(){
   function updateStatus(status){
     var hunger = status[0]
     var thirst = status[1]
-    var drunk = status[2]
-    var drug = status[3]
     setProgress(hunger.percent,'.progress-hunger');
     setProgress(thirst.percent,'.progress-thirst');
-    setProgress(drunk.percent,'.progress-drunk');
-    setProgress(drug.percent,'.progress-drug');
   }
   function updateImage(mugshotStr){
    $('#profileimage img').attr('src', mugshotStr);

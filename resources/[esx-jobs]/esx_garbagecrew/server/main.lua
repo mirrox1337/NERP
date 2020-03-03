@@ -11,7 +11,7 @@ AddEventHandler('esx_garbagejob:pay', function(amount)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local payamount = math.ceil(amount)
 	xPlayer.addMoney(tonumber(payamount))
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Received '..payamount..' from this stop!', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Received '..payamount..' from this stop!' })
 end)
 
 RegisterServerEvent('esx_garbagejob:binselect')

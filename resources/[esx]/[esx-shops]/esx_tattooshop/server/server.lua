@@ -29,10 +29,10 @@ AddEventHandler("esx_tattooshop:save", function(tattoosList, price, value)
 			['@identifier'] = xPlayer.identifier
 		})
 		TriggerClientEvent("esx_tattooshop:buySuccess", _source, value)
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('bought_tattoo', price), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('bought_tattoo', price) })
 	else
 		local missingMoney = price - xPlayer.getMoney()
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('not_enough_money', missingMoney), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('not_enough_money', missingMoney) })
 	end
 end)
 
@@ -48,9 +48,9 @@ AddEventHandler("esx_tattooshop:laser", function(price)
 			['@tattoos'] = '{}',
 			['@identifier'] = xPlayer.identifier
 		})
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du köpte för '..price..'SEK', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du köpte för '..price..'SEK' })
 	else
 		local missingMoney = price - xPlayer.getMoney()
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du har ej råd', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = 'Du har ej råd' })
 	end
 end)

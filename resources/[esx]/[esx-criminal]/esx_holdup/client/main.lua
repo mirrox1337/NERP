@@ -59,13 +59,13 @@ end)
 RegisterNetEvent('esx_holdup:tooFar')
 AddEventHandler('esx_holdup:tooFar', function()
 	holdingUp, store = false, ''
-	exports['mythic_notify']:DoHudText('inform', _U('robbery_cancelled'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('warning', _U('robbery_cancelled'))
 end)
 
 RegisterNetEvent('esx_holdup:robberyComplete')
 AddEventHandler('esx_holdup:robberyComplete', function(award)
 	holdingUp, store = false, ''
-	exports['mythic_notify']:DoHudText('inform', _U('robbery_complete', award), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('success', _U('robbery_complete', award))
 end)
 
 RegisterNetEvent('esx_holdup:startTimer')
@@ -125,7 +125,7 @@ Citizen.CreateThread(function()
 									if IsPedArmed(PlayerPedId(), 7) then
 										TriggerServerEvent('esx_holdup:robberyStarted', k)
 									else
-										exports['mythic_notify']:DoHudText('inform', _U('no_threat'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										exports['mythic_notify']:SendAlert('error', _U('no_threat'))
 									end
 								else
 									ESX.ShowNotification("Not enough cops")

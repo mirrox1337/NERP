@@ -39,7 +39,7 @@ Citizen.CreateThread(function()
                         startExercise(Config.Exercises[pos["exercise"]], pos)
                     elseif membership == false then
                         --ESX.ShowNotification("Du behöver ett ~p~Gym medlemskap~s~ för att träna")
-                        exports['mythic_notify']:DoHudText('error', "Du behöver ett Gym medlemskap för att träna")
+                        exports['mythic_notify']:SendAlert('error', "Du behöver ett Gym medlemskap för att träna")
                     end
                     end
                     else if dist <= 3.0 and not exercising then
@@ -131,7 +131,7 @@ RegisterCommand("motion", function()
             if motionProcent >= 100000 then
                 doingMotion = false
                 motionProcent = 0
-                exports['mythic_notify']:DoHudText('inform', 'Du är färdig med din konditionträning', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+                exports['mythic_notify']:SendAlert('success', 'Du är färdig med din konditionträning')
                 exports["gamz-skillsystem"]:UpdateSkill("Kondition", 1)
             end
         end
@@ -140,14 +140,14 @@ RegisterCommand("motion", function()
     if doingMotion then
         motionTimesDone = motionTimesDone + 1
         if motionTimesDone <= 2 then
-            exports['mythic_notify']:DoHudText('inform', 'Du startade din träning.', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+            exports['mythic_notify']:SendAlert('inform', 'Du startade din träning.')
             print(motionTimesDone)
         else
-            exports['mythic_notify']:DoHudText('inform', 'Du är för trött', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+            exports['mythic_notify']:SendAlert('error', 'Du är för trött')
             doingMotion = false
         end
     else
-        exports['mythic_notify']:DoHudText('inform', 'Du har avbrutit din träning', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+        exports['mythic_notify']:SendAlert('error', 'Du har avbrutit din träning')
     end
 end)
 

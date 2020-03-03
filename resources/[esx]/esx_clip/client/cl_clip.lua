@@ -15,11 +15,11 @@ AddEventHandler('esx_clip:clipcli', function()
     if hash~=nil then
       TriggerServerEvent('esx_clip:remove')
       AddAmmoToPed(GetPlayerPed(-1), hash,25)
-      exports['mythic_notify']:DoHudText('inform', 'Du använde ammuniation.', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+      exports['mythic_notify']:SendAlert('inform', 'Du använde ammuniation.')
     else
-      exports['mythic_notify']:DoHudText('inform', 'Du har inte ett vapen i handen.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+      exports['mythic_notify']:SendAlert('error', 'Du har inte ett vapen i handen.')
     end
   else
-    exports['mythic_notify']:DoHudText('inform', 'Denna typ av ammunation är inte kompatibel.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+    exports['mythic_notify']:SendAlert('error', 'Denna typ av ammunation är inte kompatibel.')
   end
 end)

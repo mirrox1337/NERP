@@ -90,7 +90,7 @@ function JailPlayer(player)
     local jailTime = tonumber(data2.value)
     if jailTime == nil then
       --ESX.ShowNotification(_U('invalid_amount'))
-      exports['mythic_notify']:DoHudText('inform', (_U('invalid_amount')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+      exports['mythic_notify']:SendAlert('error', (_U('invalid_amount')))
       
     else
       TriggerServerEvent("esx_mirrox_jailer:PutInJail", player, jailTime * 60)
@@ -1559,7 +1559,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
 
         else
           --ESX.ShowNotification(_U('vehicle_out'))
-          exports['mythic_notify']:DoHudText('inform', (_U('vehicle_out')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+          exports['mythic_notify']:SendAlert('inform', (_U('vehicle_out')))
         end
 
       end,
@@ -1734,7 +1734,7 @@ function OpenPoliceActionsMenu()
 
 				if closestPlayer == -1 or closestDistance > 3.0 then
           --ESX.ShowNotification(_U('no_players'))
-          exports['mythic_notify']:DoHudText('inform', (_U('no_players')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+          exports['mythic_notify']:SendAlert('error', (_U('no_players')))
           
           
 				else
@@ -1752,7 +1752,7 @@ function OpenPoliceActionsMenu()
 						Citizen.CreateThread(function()
 
               --ESX.ShowNotification(_U('revive_inprogress'))
-              exports['mythic_notify']:DoHudText('inform', (_U('revive_inprogress')), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+              exports['mythic_notify']:SendAlert('inform', (_U('revive_inprogress')))
 
 							TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
 							Citizen.Wait(10000)
@@ -1775,7 +1775,7 @@ function OpenPoliceActionsMenu()
 
             else
               --ESX.ShowNotification(_U('no_players_nearby'))
-              exports['mythic_notify']:DoHudText('inform', (_U('no_players_nearby')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+              exports['mythic_notify']:SendAlert('error', (_U('no_players_nearby')))
             end
 
           end,
@@ -2009,7 +2009,7 @@ function OpenPoliceActionsMenu()
                       SetVehicleDoorsLockedForAllPlayers(vehicle, false)
 
                       --TriggerEvent('esx:showNotification', _U('vehicle_unlocked'))
-                      exports['mythic_notify']:DoHudText('inform', (_U('vehicle_unlocked')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+                      exports['mythic_notify']:SendAlert('success', (_U('vehicle_unlocked')))
 
                     end)
 
@@ -2021,7 +2021,7 @@ function OpenPoliceActionsMenu()
 
             else
               --ESX.ShowNotification(_U('no_vehicles_nearby'))
-              exports['mythic_notify']:DoHudText('inform', (_U('no_vehicles_nearby')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+              exports['mythic_notify']:SendAlert('error', (_U('no_vehicles_nearby')))
             end
 
           end,
@@ -2561,7 +2561,7 @@ function OpenBuyWeaponsMenu(station)
             end, data.current.value)
           else
             --ESX.ShowNotification(_U('not_enough_money'))
-            exports['mythic_notify']:DoHudText('inform', (_U('not_enough_money')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+            exports['mythic_notify']:SendAlert('error', (_U('not_enough_money')))
           end
 
         end, data.current.price)
@@ -2609,7 +2609,7 @@ function OpenGetStocksMenu()
 
             if count == nil then
               --ESX.ShowNotification(_U('quantity_invalid'))
-              exports['mythic_notify']:DoHudText('inform', (_U('quantity_invalid')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+              exports['mythic_notify']:SendAlert('error', (_U('quantity_invalid')))
             else
               menu2.close()
               menu.close()
@@ -2671,7 +2671,7 @@ function OpenPutStocksMenu()
 
             if count == nil then
               --ESX.ShowNotification(_U('quantity_invalid'))
-              exports['mythic_notify']:DoHudText('inform', (_U('quantity_invalid')), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+              exports['mythic_notify']:SendAlert('error', (_U('quantity_invalid')))
             else
               menu2.close()
               menu.close()
@@ -3351,7 +3351,7 @@ function openJailMenu(playerid)
 			  AddTextEntry('FMMC_KEY_TIP8', "Antal timmar i fängelse")
 			  DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", maxLength)
         --ESX.ShowNotification("~p~Ange antalet timmar du vill sätta personen i fängelse.")
-        exports['mythic_notify']:DoHudText('inform', "Ange antalet timmar du vill sätta personen i fängelse.")
+        exports['mythic_notify']:SendAlert('inform', "Ange antalet timmar du vill sätta personen i fängelse.")
 			  blockinput = true
   
 			  while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do

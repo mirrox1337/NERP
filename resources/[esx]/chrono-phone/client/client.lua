@@ -89,7 +89,7 @@ function hasPhone (cb)
 end
 function ShowNoPhoneWarning () 
   if (ESX == nil) then return end
-  exports['mythic_notify']:DoHudText('inform', 'Du har ingen telefon.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+  exports['mythic_notify']:SendAlert('error', 'Du har ingen telefon.')
 end
 
 

@@ -52,7 +52,7 @@ end)
 function ProcessWeed()
 	isProcessing = true
 
-	exports['mythic_notify']:DoHudText('inform', _U('weed_processingstarted'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('inform', _U('weed_processingstarted'))
 	TriggerServerEvent('esx_drugs:processCannabis')
 	local timeLeft = Config.Delays.WeedProcessing / 1000
 	local playerPed = PlayerPedId()
@@ -62,7 +62,7 @@ function ProcessWeed()
 		timeLeft = timeLeft - 1
 
 		if GetDistanceBetweenCoords(GetEntityCoords(playerPed), Config.CircleZones.WeedProcessing.coords, false) > 4 then
-			exports['mythic_notify']:DoHudText('inform', _U('weed_processingtoofar'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+			exports['mythic_notify']:SendAlert('error', _U('weed_processingtoofar'))
 			TriggerServerEvent('esx_drugs:cancelProcessing')
 			break
 		end

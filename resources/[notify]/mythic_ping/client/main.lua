@@ -20,7 +20,7 @@ function TimeoutPingRequest()
         while isPending do
             count = count + 1
             if count >= Config.Timeout and isPending then
-                exports['mythic_notify']:DoHudText('inform', 'Ping från ' .. pendingPing.name .. ' avbröts.')
+                exports['mythic_notify']:SendAlert('inform', 'Ping från ' .. pendingPing.name .. ' avbröts.')
                 TriggerServerEvent('mythic_ping:server:SendPingResult', pendingPing.id, 'timeout')
                 pendingPing = nil
                 isPending = false
@@ -80,7 +80,7 @@ AddEventHandler('mythic_ping:client:SendPing', function(sender, senderId)
         end
 
     else
-        exports['mythic_notify']:DoHudText('inform', sender .. ' försökte pinga dig.')
+        exports['mythic_notify']:SendAlert('inform', sender .. ' försökte pinga dig.')
         TriggerServerEvent('mythic_ping:server:SendPingResult', senderId, 'unable')
     end
 end)
@@ -103,23 +103,23 @@ AddEventHandler('mythic_ping:client:AcceptPing', function()
             RemoveBlipDistance()
         end
 
-        exports['mythic_notify']:DoHudText('inform', pendingPing.name .. '\'s GPS uppdaterad med plats.')
+        exports['mythic_notify']:SendAlert('inform', pendingPing.name .. '\'s GPS uppdaterad med plats.')
         TriggerServerEvent('mythic_ping:server:SendPingResult', pendingPing.id, 'accept')
         isPending = false
     else
-        exports['mythic_notify']:DoHudText('inform', 'Du har inga aktiva pings.')
+        exports['mythic_notify']:SendAlert('inform', 'Du har inga aktiva pings.')
     end
 end)
 
 RegisterNetEvent('mythic_ping:client:RejectPing')
 AddEventHandler('mythic_ping:client:RejectPing', function()
     if pendingPing ~= nil then
-        exports['mythic_notify']:DoHudText('inform', 'Ping nekad från ' .. pendingPing.name)
+        exports['mythic_notify']:SendAlert('inform', 'Ping nekad från ' .. pendingPing.name)
         TriggerServerEvent('mythic_ping:server:SendPingResult', pendingPing.id, 'reject')
         pendingPing = nil
         isPending = false
     else
-        exports['mythic_notify']:DoHudText('inform', 'Du har inga pågående pings.')
+        exports['mythic_notify']:SendAlert('inform', 'Du har inga pågående pings.')
     end
 end)
 
@@ -128,8 +128,8 @@ AddEventHandler('mythic_ping:client:RemovePing', function()
     if pendingPing ~= nil then
         RemoveBlip(pendingPing.blip)
         pendingPing = nil
-        exports['mythic_notify']:DoHudText('inform', 'Ping borttagen.')
+        exports['mythic_notify']:SendAlert('inform', 'Ping borttagen.')
     else
-        exports['mythic_notify']:DoHudText('inform', 'Du har ingen aktiv ping.')
+        exports['mythic_notify']:SendAlert('inform', 'Du har ingen aktiv ping.')
     end
 end)

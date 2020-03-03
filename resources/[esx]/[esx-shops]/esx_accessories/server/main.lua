@@ -7,7 +7,7 @@ AddEventHandler('esx_accessories:pay', function(price)
     local _source = source
     local xPlayer = ESX.GetPlayerFromId(_source)
     xPlayer.removeMoney(price)
-    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('you_paid') .. price .. ' SEK', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('you_paid') .. price .. ' SEK' })
 
 end)
 

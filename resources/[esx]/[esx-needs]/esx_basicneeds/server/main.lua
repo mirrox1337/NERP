@@ -9,7 +9,7 @@ ESX.RegisterUsableItem('bread', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'hunger', 200000)
 	TriggerClientEvent('esx_basicneeds:onEat', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_bread'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_bread') })
 end)
 
 ESX.RegisterUsableItem('water', function(source)
@@ -19,7 +19,7 @@ ESX.RegisterUsableItem('water', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'thirst', 200000)
 	TriggerClientEvent('esx_basicneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_water'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_water') })
 end)
 
 TriggerEvent('es:addGroupCommand', 'heal', 'admin', function(source, args, user)

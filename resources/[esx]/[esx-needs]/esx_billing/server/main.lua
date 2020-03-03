@@ -25,7 +25,7 @@ AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, la
 					['@label']       = label,
 					['@amount']      = amount
 				}, function(rowsChanged)
-					TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('received_invoice'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+					TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('received_invoice') })
 				end)
 			end
 
@@ -41,7 +41,7 @@ AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, la
 					['@label']       = label,
 					['@amount']      = amount
 				}, function(rowsChanged)
-					TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('received_invoice'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+					TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('received_invoice') })
 				end)
 			end
 
@@ -123,8 +123,8 @@ ESX.RegisterServerCallback('esx_billing:payBill', function(source, cb, id)
 						xPlayer.removeMoney(amount)
 						xTarget.addMoney(amount)
 
-						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('paid_invoice', ESX.Math.GroupDigits(amount)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
-						TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('received_payment', ESX.Math.GroupDigits(amount)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'success', text = _U('paid_invoice', ESX.Math.GroupDigits(amount)) })
+						TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'success', text = _U('received_payment', ESX.Math.GroupDigits(amount)) })
 
 						cb()
 					end)
@@ -137,21 +137,21 @@ ESX.RegisterServerCallback('esx_billing:payBill', function(source, cb, id)
 						xPlayer.removeAccountMoney('bank', amount)
 						xTarget.addAccountMoney('bank', amount)
 
-						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('paid_invoice', ESX.Math.GroupDigits(amount)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
-						TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('received_payment', ESX.Math.GroupDigits(amount)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'success', text = _U('paid_invoice', ESX.Math.GroupDigits(amount)) })
+						TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'success', text = _U('received_payment', ESX.Math.GroupDigits(amount)) })
 
 						cb()
 					end)
 
 				else
-					TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('target_no_money'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
-					TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('no_money'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+					TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'error', text = _U('target_no_money') })
+					TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'error', text = _U('no_money') })
 
 					cb()
 				end
 
 			else
-				TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('player_not_online'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'error', text = _U('player_not_online') })
 				cb()
 			end
 
@@ -167,9 +167,9 @@ ESX.RegisterServerCallback('esx_billing:payBill', function(source, cb, id)
 						xPlayer.removeMoney(amount)
 						account.addMoney(amount)
 
-						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('paid_invoice', ESX.Math.GroupDigits(amount)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'success', text = _U('paid_invoice', ESX.Math.GroupDigits(amount)) })
 						if xTarget ~= nil then
-							TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('received_payment', ESX.Math.GroupDigits(amount)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+							TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'success', text = _U('received_payment', ESX.Math.GroupDigits(amount)) })
 						end
 
 						cb()
@@ -183,19 +183,19 @@ ESX.RegisterServerCallback('esx_billing:payBill', function(source, cb, id)
 						xPlayer.removeAccountMoney('bank', amount)
 						account.addMoney(amount)
 
-						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('paid_invoice', ESX.Math.GroupDigits(amount)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'success', text = _U('paid_invoice', ESX.Math.GroupDigits(amount)) })
 						if xTarget ~= nil then
-							TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('received_payment', ESX.Math.GroupDigits(amount)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+							TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'success', text = _U('received_payment', ESX.Math.GroupDigits(amount)) })
 						end
 
 						cb()
 					end)
 
 				else
-					TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('no_money'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+					TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'error', text = _U('no_money') })
 
 					if xTarget ~= nil then
-						TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'inform', text = _U('target_no_money'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+						TriggerClientEvent('mythic_notify:client:SendAlert', xTarget.source, { type = 'error', text = _U('target_no_money') })
 					end
 
 					cb()

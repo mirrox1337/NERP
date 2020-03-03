@@ -15,7 +15,7 @@ AddEventHandler('esx_drugs:sellDrug', function(itemName, amount)
 	end
 
 	if xItem.count < amount then
-		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('dealer_notenough'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('dealer_notenough') })
 		return
 	end
 
@@ -29,7 +29,7 @@ AddEventHandler('esx_drugs:sellDrug', function(itemName, amount)
 
 	xPlayer.removeInventoryItem(xItem.name, amount)
 
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('dealer_sold', amount, xItem.label, ESX.Math.GroupDigits(price)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = _U('dealer_sold', amount, xItem.label, ESX.Math.GroupDigits(price)) })
 end)
 
 ESX.RegisterServerCallback('esx_drugs:buyLicense', function(source, cb, licenseName)
@@ -109,9 +109,9 @@ AddEventHandler('esx_drugs:processCannabis', function()
 			
 				xPlayer.removeInventoryItem('weed', 3)
 				xPlayer.addInventoryItem('weed_pooch', 1)
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('weed_processed'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('weed_processed') })
 			else
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du har inga fler blad', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = 'Du har inga fler blad' })
 			end
 
 

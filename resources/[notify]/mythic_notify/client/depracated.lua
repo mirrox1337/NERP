@@ -7,7 +7,7 @@ function DoShortHudText(type, text, style)
     SendAlert(type, text, 1000, style)
 end
 
-function DoHudText(type, text, style)
+function SendAlert(type, text, style)
     SendAlert(type, text, 2500, style)
 end
 

@@ -17,10 +17,10 @@ AddEventHandler("chrono-jewlery:retrieveItem", function()
     local randomItem = 1
 
     if luck >= 0 and luck <= 50 then
-        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du hittade inget av värde.', length = 8500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du hittade inget av värde.' })
     else
         player.addInventoryItem("busshammare", randomItem)
-        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du hittade en busshammare', length = 8500, style = { ['background-color'] = '#007ecc', ['color'] = '#fff' } })
+        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'Du hittade en busshammare' })
     end
 end)
 
@@ -59,14 +59,14 @@ AddEventHandler('chrono-jewelry:toofar', function(robb)
  		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
  		print('[chrono-jewelry]' .. ' Player: ' .. xPlayer.getName() .. ' cancelled robbing the jewelry store.')
  		if xPlayer.job.name == 'police' then
-			TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'error', text = _U( 'robbery_cancelled_at'), length = 8500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'warning', text = _U( 'robbery_cancelled_at') })
 			TriggerClientEvent('chrono-jewelry:killblip', xPlayers[i]) 
 		end
 	end
 	if(robbers[source])then
 		TriggerClientEvent('chrono-jewelry:toofarlocal', source)
 		robbers[source] = nil
-		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U( 'robbery_has_cancelled'), length = 8500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U( 'robbery_has_cancelled') })
 	end
 end)
 
@@ -80,14 +80,14 @@ AddEventHandler('chrono-jewelry:endrob', function(robb)
 	for i=1, #xPlayers, 1 do
  		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
  		if xPlayer.job.name == 'police' then
-			TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'error', text = _U( 'end'), length = 8500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'warning', text = _U( 'end') })
 			TriggerClientEvent('chrono-jewelry:killblip', xPlayers[i])
 		end
 	end
 	if(robbers[source])then
 		TriggerClientEvent('chrono-jewelry:robberycomplete', source)
 		robbers[source] = nil
-		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U( 'robbery_has_ended'), length = 8500, style = { ['background-color'] = '#007ecc', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = _U( 'robbery_has_ended') })
 	end
 end)
 
@@ -106,7 +106,7 @@ AddEventHandler('chrono-jewelry:rob', function(robb)
 	end
 
 	if xPlayer.job.name == 'police' then
-		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Poliser får inte råna, duh!', length = 8500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Poliser får inte råna, duh!' })
 	end
 	--if Stores[robb] and xPlayer.job.name ~= 'police' then
 	if Stores[robb] then
@@ -118,7 +118,7 @@ AddEventHandler('chrono-jewelry:rob', function(robb)
 			timer = (Config.SecBetwNextRob - (os.time() - store.lastrobbed))/60
 			print('[chrono-jewelry]' .. ' Player: ' .. xPlayer.getName() .. ' attempted to rob the jewelry store (cooldown).')
             TriggerClientEvent('chrono-jewelry:togliblip', source)
-			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('already_robbed') .. math.floor(timer + 0.5) .. _U('minutes'), length = 8500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('already_robbed') .. math.floor(timer + 0.5) .. _U('minutes') })
 			return
 		end
 
@@ -129,21 +129,21 @@ AddEventHandler('chrono-jewelry:rob', function(robb)
 			for i=1, #xPlayers, 1 do
 				local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 				if xPlayer.job.name == 'police' then
-					TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'error', text = _U( 'rob_in_prog'), length = 8500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+					TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'warning', text = _U( 'rob_in_prog') })
 					TriggerClientEvent('chrono-jewelry:setblip', xPlayers[i], Stores[robb].position)
 				end
 			end
 
 			local xPlayer = ESX.GetPlayerFromId(source)
 			xPlayer.removeInventoryItem('busshammare', 1)
-			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Startar rånet..', length = 10000, style = { ['background-color'] = '#007ecc', ['color'] = '#fff' } })
-			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U( 'alarm_triggered'), length = 8500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Startar rånet..' })
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'warning', text = _U( 'alarm_triggered') })
 			TriggerClientEvent('chrono-jewelry:currentlyrobbing', source, robb)
 			CancelEvent()
 			Stores[robb].lastrobbed = os.time()
 		else
 			print("Du saknar något..")
-			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U( 'robbery_already'), length = 3500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U( 'robbery_already') })
 		end
 	end
 end)

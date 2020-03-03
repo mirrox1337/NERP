@@ -64,7 +64,7 @@ function jailing(Station, JailTime)
 				if JailTime % 10 == 0 then
 					if JailTime % 30 == 0 then
 						ESX.ShowNotification("Du har ~p~"..math.floor(jaildays).."~s~ Dagar ~p~"..math.floor(jailhours).."~s~ Timmar ~p~"..math.floor(jailminutes).."~s~ Minuter ~p~"..math.floor(jailseconds).."~s~ sekunder kvar i fängelse!.")
-						--exports['mythic_notify']:DoHudText('inform', "Du har"..math.floor(jaildays).." Dagar"..math.floor(jailhours).." Timmar"..math.floor(jailminutes).." Minuter"..math.floor(jailseconds).." sekunder kvar i fängelse!.")
+						--exports['mythic_notify']:SendAlert('inform', "Du har"..math.floor(jaildays).." Dagar"..math.floor(jailhours).." Timmar"..math.floor(jailminutes).." Minuter"..math.floor(jailseconds).." sekunder kvar i fängelse!.")
 					end
 				end
 				Citizen.Wait(1000)
@@ -77,7 +77,7 @@ function jailing(Station, JailTime)
 				JailTime = JailTime - 1.0
 			end
 			--ESX.ShowNotification("Du släpps, håll dig lugn ute! Lycka till!")
-			exports['mythic_notify']:DoHudText('inform', "Du släpps, håll dig lugn ute! Lycka till!")
+			exports['mythic_notify']:SendAlert('inform', "Du släpps, håll dig lugn ute! Lycka till!")
 			GetBackOriginalClothes()
 			TriggerServerEvent('esx_mirrox_jailer:UnJailplayer2')
 			local outsidecoords = {}
@@ -116,14 +116,14 @@ local playerPed = GetPlayerPed(-1)
         TriggerEvent('skinchanger:loadClothes', skin, Config.Clothes.police.prison_wear.male)
       else
 		--ESX.ShowNotification('no_outfit')
-		exports['mythic_notify']:DoHudText('error', 'Ingen outfit')
+		exports['mythic_notify']:SendAlert('error', 'Ingen outfit')
       end
     else
       if Config.Clothes.police.prison_wear.female ~= nil then
         TriggerEvent('skinchanger:loadClothes', skin, Config.Clothes.police.prison_wear.female)
       else
 		ESX.ShowNotification('no_outfit')
-		exports['mythic_notify']:DoHudText('error', 'Ingen outfit')
+		exports['mythic_notify']:SendAlert('error', 'Ingen outfit')
       end
     end
   end)

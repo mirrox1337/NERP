@@ -22,7 +22,7 @@ ESX.RegisterServerCallback('esx-Zeaqy-ER:money', function(source, cb)
     else
      cb(false)
      TriggerClientEvent("pNotify:SetQueueMax", -1, hej, 4)
-     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Du har inte tillräckligt med pengar', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du har inte tillräckligt med pengar' })
     end
 end)
                 
@@ -52,6 +52,6 @@ AddEventHandler('esx-Zeaqy-ER:check', function()
         if ambulance == 0 then
             TriggerClientEvent('esx-Zeaqy-ER:Last', _source)
     else
-        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Det finns andra sjukvårdare i tjänst!', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Det finns andra sjukvårdare i tjänst!' })
     end
 end)

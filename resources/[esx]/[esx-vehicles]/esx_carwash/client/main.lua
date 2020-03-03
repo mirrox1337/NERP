@@ -66,7 +66,7 @@ Citizen.CreateThread(function()
 						if GetVehicleDirtLevel(vehicle) > 2 then
 							WashVehicle()
 						else
-							exports['mythic_notify']:DoHudText('inform', _U('wash_failed_clean'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('error', _U('wash_failed_clean'))
 						end
 					end
 				end
@@ -103,13 +103,13 @@ function WashVehicle()
 			SetVehicleDirtLevel(vehicle, 0.1)
 
 			if Config.EnablePrice then
-				exports['mythic_notify']:DoHudText('inform', _U('wash_successful_paid'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('inform', _U('wash_successful_paid'))
 			else
-				exports['mythic_notify']:DoHudText('inform', _U('wash_successful'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('success', _U('wash_successful'))
 			end
 			Citizen.Wait(5000)
 		else
-			exports['mythic_notify']:DoHudText('inform', _U('wash_failed'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+			exports['mythic_notify']:SendAlert('error', _U('wash_failed'))
 			Citizen.Wait(5000)
 		end
 	end)

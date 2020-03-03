@@ -178,7 +178,7 @@ end)
 
 
 function sendNotification(message)
-    exports['mythic_notify']:DoHudText('inform', message, { ['background-color'] = '#b00000', ['color'] = '#fff' })
+    exports['mythic_notify']:SendAlert('warning', message)
 end
 
 

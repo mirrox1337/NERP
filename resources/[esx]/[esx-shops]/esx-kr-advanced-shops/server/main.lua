@@ -32,7 +32,7 @@ AddEventHandler('esx_kr_shops:RemoveItemFromShop', function(number, count, item)
 
             if count > data[1].count then
 
-                TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = 'You can\' t take out more than you own', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+                TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'error', text = 'You can\' t take out more than you own' })
                 else
 
                 if data[1].count ~= count then

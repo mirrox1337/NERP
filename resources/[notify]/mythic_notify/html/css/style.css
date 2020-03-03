@@ -20,22 +20,28 @@ body {
     width: fit-content;
     border-radius: 5px;
     margin: 5px;
-    font: caption;
-    font-size: 12px;
+    font-family: 'Catamaran', sans-serif;
+    font-size: 13px;
     font-weight: bold;
 }
 
+/* https://getbootstrap.com/docs/4.0/utilities/colors/ */
 .success {
-    background: rgb(114, 204, 114);
+    background: #28a745;
     color: #fff;
 }
 
 .inform {
-    background-color: rgb(47, 92, 115);
-    color: #ffffff;
+    background-color: #17a2b8;
+    color: #fff;
 }
 
 .error {
-    background: rgb(224, 50, 50);
+    background: #dc3545;
     color: #fff;
+}
+
+.warning {
+    background: #ffc107;
+    color: #343a40;
 }

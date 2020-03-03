@@ -53,9 +53,9 @@ RegisterCommand('radiotest', function(source, args)
   print(tonumber(data))
 
   if data == "nil" then
-    exports['mythic_notify']:DoHudText('inform', playerName .. ' är för närvarande inte på någon radiofrekvens')
+    exports['mythic_notify']:SendAlert('inform', playerName .. ' är för närvarande inte på någon radiofrekvens')
   else
-    exports['mythic_notify']:DoHudText('inform', playerName .. ' är för närvarande på radiofrekvens: ' .. data .. ' MHz')
+    exports['mythic_notify']:SendAlert('inform', playerName .. ' är för närvarande på radiofrekvens: ' .. data .. ' MHz')
  end
 
 end, false)
@@ -74,21 +74,21 @@ RegisterNUICallback('joinRadio', function(data, cb)
             exports.tokovoip_script:removePlayerFromRadio(getPlayerRadioChannel)
             exports.tokovoip_script:setPlayerData(playerName, "radio:channel", tonumber(data.channel), true);
             exports.tokovoip_script:addPlayerToRadio(tonumber(data.channel))
-            exports['mythic_notify']:DoHudText('inform', 'Du är ansluten till radiofrekvens:  ' .. data.channel .. ' MHz')
+            exports['mythic_notify']:SendAlert('inform', 'Du är ansluten till radiofrekvens:  ' .. data.channel .. ' MHz')
           elseif not (PlayerData.job.name == 'police' or PlayerData.job.name == 'ambulance' or PlayerData.job.name == 'Securitas' or PlayerData.job.name == 'gang') then
             --- info że nie możesz dołączyć bo nie jesteś policjantem
-            exports['mythic_notify']:DoHudText('error', 'Du kan inte gå med i krypterade kanaler!')
+            exports['mythic_notify']:SendAlert('error', 'Du kan inte gå med i krypterade kanaler!')
           end
         end
         if tonumber(data.channel) > Config.RestrictedChannels then
           exports.tokovoip_script:removePlayerFromRadio(getPlayerRadioChannel)
           exports.tokovoip_script:setPlayerData(playerName, "radio:channel", tonumber(data.channel), true);
           exports.tokovoip_script:addPlayerToRadio(tonumber(data.channel))
-          exports['mythic_notify']:DoHudText('inform', 'Du är ansluten till radiofrekvens:  ' .. data.channel .. ' MHz')
+          exports['mythic_notify']:SendAlert('inform', 'Du är ansluten till radiofrekvens:  ' .. data.channel .. ' MHz')
           
         end
       else
-        exports['mythic_notify']:DoHudText('inform', 'Du är redan ansluten till radiofrekvens:  ' .. data.channel .. ' MHz')
+        exports['mythic_notify']:SendAlert('inform', 'Du är redan ansluten till radiofrekvens:  ' .. data.channel .. ' MHz')
       end
     cb('ok')
 end)
@@ -100,11 +100,11 @@ RegisterNUICallback('leaveRadio', function(data, cb)
    local getPlayerRadioChannel = exports.tokovoip_script:getPlayerData(playerName, "radio:channel")
 
     if getPlayerRadioChannel == "nil" then
-      exports['mythic_notify']:DoHudText('inform', 'Du är för närvarande inte på någon radiofrekvens')
+      exports['mythic_notify']:SendAlert('inform', 'Du är för närvarande inte på någon radiofrekvens')
         else
           exports.tokovoip_script:removePlayerFromRadio(getPlayerRadioChannel)
           exports.tokovoip_script:setPlayerData(playerName, "radio:channel", "nil", true)
-          exports['mythic_notify']:DoHudText('inform', 'Du lämnade radiofrekvens: ' .. getPlayerRadioChannel .. ' MHz')
+          exports['mythic_notify']:SendAlert('inform', 'Du lämnade radiofrekvens: ' .. getPlayerRadioChannel .. ' MHz')
     end
 
    cb('ok')
@@ -161,7 +161,7 @@ AddEventHandler('ls-radio:onRadioDrop', function(source)
 
     exports.tokovoip_script:removePlayerFromRadio(getPlayerRadioChannel)
     exports.tokovoip_script:setPlayerData(playerName, "radio:channel", "nil", true)
-    exports['mythic_notify']:DoHudText('inform', 'Du lämnade radiofrekvens: ' .. getPlayerRadioChannel .. ' MHz')
+    exports['mythic_notify']:SendAlert('inform', 'Du lämnade radiofrekvens: ' .. getPlayerRadioChannel .. ' MHz')
     
 end
 end)

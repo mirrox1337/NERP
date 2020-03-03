@@ -118,7 +118,7 @@ function OpenShopMenu()
 															TriggerServerEvent('esx_eden_clotheshop:saveOutfit', data3.value, skin)
 														end)
 
-														exports['mythic_notify']:DoHudText('inform', _U('saved_outfit'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+														exports['mythic_notify']:SendAlert('success', _U('saved_outfit'))
 
 													end,
 													function(data3, menu3)
@@ -141,7 +141,7 @@ function OpenShopMenu()
 								TriggerEvent('skinchanger:loadSkin', skin)
 							end)
 
-							exports['mythic_notify']:DoHudText('inform', _U('not_enough_money'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('error', _U('not_enough_money'))
 
 						end
 
@@ -241,7 +241,7 @@ function OpenShopMenu()
                     TriggerServerEvent('esx_skin:save', skin)
                   end)
 				  
-				  exports['mythic_notify']:DoHudText('inform', _U('loaded_outfit'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+				  exports['mythic_notify']:SendAlert('inform', _U('loaded_outfit'))
 				  HasLoadCloth = true
 
                 end, data.current.value)
@@ -281,7 +281,7 @@ function OpenShopMenu()
 			menu.close()
 				TriggerServerEvent('esx_eden_clotheshop:deleteOutfit', data.current.value)
 				  
-				exports['mythic_notify']:DoHudText('inform', _U('supprimed_cloth'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('error', _U('supprimed_cloth'))
 
             end,
             function(data, menu)

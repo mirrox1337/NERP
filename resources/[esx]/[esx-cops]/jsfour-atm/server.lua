@@ -65,7 +65,7 @@ AddEventHandler('jsfour-atm:insert', function(amount)
 	else
 		xPlayer.removeMoney(amount)
 		xPlayer.addAccountMoney('bank', amount)
-    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du satte in ' .. amount .. ' kr', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du satte in ' .. amount .. ' kr' })
 	end
 end)
 
@@ -82,7 +82,7 @@ AddEventHandler('jsfour-atm:take', function(amount)
 	else
 		xPlayer.removeAccountMoney('bank', amount)
 		xPlayer.addMoney(amount)
-    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du tog ut ' .. amount .. ' kr', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du tog ut ' .. amount .. ' kr' })
 	end
 end)
 
@@ -107,11 +107,11 @@ AddEventHandler('jsfour-atm:transfer', function(amount, receiver)
         MySQL.Async.fetchAll('SELECT firstname, lastname FROM users WHERE identifier = @identifier', {['@identifier'] = result[1].identifier},
         function (result)
           if (result[1] ~= nil) then
-            TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du skickade ' .. amount .. ' kr till ' .. result[1].firstname .. ' ' .. result[1].lastname, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+            TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du skickade ' .. amount .. ' kr till ' .. result[1].firstname .. ' ' .. result[1].lastname })
            
 	MySQL.Async.fetchAll('SELECT firstname, lastname FROM users WHERE identifier = @identifier', {['@identifier'] = ESX.GetPlayerFromId(_source).getIdentifier()},
             function (result)
-              TriggerClientEvent('mythic_notify:client:SendAlert', recPlayer.source, { type = 'inform', text = 'Du fick ' .. amount .. ' kr skickade till dig från ' .. result[1].firstname .. ' ' .. result[1].lastname, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+              TriggerClientEvent('mythic_notify:client:SendAlert', recPlayer.source, { type = 'inform', text = 'Du fick ' .. amount .. ' kr skickade till dig från ' .. result[1].firstname .. ' ' .. result[1].lastname })
             end)
           end
         end)

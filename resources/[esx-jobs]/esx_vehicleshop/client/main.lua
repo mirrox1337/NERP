@@ -221,9 +221,9 @@ function OpenShopMenu()
 							menu2.close()
 							menu.close()
 
-							exports['mythic_notify']:DoHudText('inform', _U('vehicle_purchased'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('success', _U('vehicle_purchased'))
 						else
-							exports['mythic_notify']:DoHudText('inform', _U('broke_company'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('error', _U('broke_company'))
 						end
 					end, 'cardealer', vehicleData.model)
 				else
@@ -261,13 +261,13 @@ function OpenShopMenu()
 												TriggerServerEvent('esx_vehicleshop:setVehicleOwned', vehicleProps)
 											end
 
-											exports['mythic_notify']:DoHudText('inform', _U('vehicle_purchased'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+											exports['mythic_notify']:SendAlert('success', _U('vehicle_purchased'))
 										end)
 
 										FreezeEntityPosition(playerPed, false)
 										SetEntityVisible(playerPed, true)
 									else
-										exports['mythic_notify']:DoHudText('inform', _U('not_enough_money'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										exports['mythic_notify']:SendAlert('error', _U('not_enough_money'))
 									end
 								end, vehicleData.model)
 
@@ -291,13 +291,13 @@ function OpenShopMenu()
 											vehicleProps.plate = newPlate
 											SetVehicleNumberPlateText(vehicle, newPlate)
 											TriggerServerEvent('esx_vehicleshop:setVehicleOwnedSociety', playerData.job.name, vehicleProps)
-											exports['mythic_notify']:DoHudText('inform', _U('vehicle_purchased'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+											exports['mythic_notify']:SendAlert('success', _U('vehicle_purchased'))
 										end)
 
 										FreezeEntityPosition(playerPed, false)
 										SetEntityVisible(playerPed, true)
 									else
-										exports['mythic_notify']:DoHudText('inform', _U('broke_company'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										exports['mythic_notify']:SendAlert('error', _U('broke_company'))
 									end
 								end, playerData.job.name, vehicleData.model)
 
@@ -325,13 +325,13 @@ function OpenShopMenu()
 										TriggerServerEvent('esx_vehicleshop:setVehicleOwned', vehicleProps)
 									end
 
-									exports['mythic_notify']:DoHudText('inform', _U('vehicle_purchased'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+									exports['mythic_notify']:SendAlert('success', _U('vehicle_purchased'))
 								end)
 
 								FreezeEntityPosition(playerPed, false)
 								SetEntityVisible(playerPed, true)
 							else
-								exports['mythic_notify']:DoHudText('inform', _U('not_enough_money'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+								exports['mythic_notify']:SendAlert('error', _U('not_enough_money'))
 							end
 						end, vehicleData.model)
 					end
@@ -438,7 +438,7 @@ function OpenResellerMenu()
 
 			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 			if closestPlayer == -1 or closestDistance > 3.0 then
-				exports['mythic_notify']:DoHudText('inform', _U('no_players'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('error', _U('no_players'))
 				return
 			end
 
@@ -448,13 +448,13 @@ function OpenResellerMenu()
 				local amount = tonumber(data2.value)
 
 				if amount == nil then
-					exports['mythic_notify']:DoHudText('inform', _U('invalid_amount'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('error', _U('invalid_amount'))
 				else
 					menu2.close()
 					local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
 					if closestPlayer == -1 or closestDistance > 3.0 then
-						exports['mythic_notify']:DoHudText('inform', _U('no_players'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('error', _U('no_players'))
 					else
 						TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_cardealer', _U('car_dealer'), tonumber(data2.value))
 					end
@@ -470,7 +470,7 @@ function OpenResellerMenu()
 			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
 			if closestPlayer == -1 or closestDistance > 3.0 then
-				exports['mythic_notify']:DoHudText('inform', _U('no_players'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('error', _U('no_players'))
 			else
 				local newPlate     = GeneratePlate()
 				local vehicleProps = ESX.Game.GetVehicleProperties(LastVehicles[#LastVehicles])
@@ -483,9 +483,9 @@ function OpenResellerMenu()
 
 				if Config.EnableOwnedVehicles then
 					TriggerServerEvent('esx_vehicleshop:setVehicleOwnedPlayerId', GetPlayerServerId(closestPlayer), vehicleProps)
-					exports['mythic_notify']:DoHudText('inform', _U('vehicle_set_owned', vehicleProps.plate, GetPlayerName(closestPlayer)), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('inform', _U('vehicle_set_owned', vehicleProps.plate, GetPlayerName(closestPlayer)))
 				else
-					exports['mythic_notify']:DoHudText('inform', _U('vehicle_sold_to', vehicleProps.plate, GetPlayerName(closestPlayer)), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('inform', _U('vehicle_sold_to', vehicleProps.plate, GetPlayerName(closestPlayer)))
 				end
 			end
 
@@ -494,7 +494,7 @@ function OpenResellerMenu()
 			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
 			if closestPlayer == -1 or closestDistance > 3.0 then
-				exports['mythic_notify']:DoHudText('inform', _U('no_players'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('error', _U('no_players'))
 			else
 				ESX.TriggerServerCallback('esx:getOtherPlayerData', function (xPlayer)
 
@@ -508,9 +508,9 @@ function OpenResellerMenu()
 
 					if Config.EnableSocietyOwnedVehicles then
 						TriggerServerEvent('esx_vehicleshop:setVehicleOwnedSociety', xPlayer.job.name, vehicleProps)
-						exports['mythic_notify']:DoHudText('inform', _U('vehicle_set_owned', vehicleProps.plate, GetPlayerName(closestPlayer)), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('inform', _U('vehicle_set_owned', vehicleProps.plate, GetPlayerName(closestPlayer)))
 					else
-						exports['mythic_notify']:DoHudText('inform', _U('vehicle_sold_to', vehicleProps.plate, GetPlayerName(closestPlayer)), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('inform', _U('vehicle_sold_to', vehicleProps.plate, GetPlayerName(closestPlayer)))
 					end
 
 				end, GetPlayerServerId(closestPlayer))
@@ -524,14 +524,14 @@ function OpenResellerMenu()
 				local amount = tonumber(data2.value)
 
 				if amount == nil then
-					exports['mythic_notify']:DoHudText('inform', _U('invalid_amount'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('error', _U('invalid_amount'))
 				else
 					menu2.close()
 
 					local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
 					if closestPlayer == -1 or closestDistance > 5.0 then
-						exports['mythic_notify']:DoHudText('inform', _U('no_players'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('error', _U('no_players'))
 					else
 						local newPlate     = 'RENT' .. string.upper(ESX.GetRandomString(4))
 						local vehicleProps = ESX.Game.GetVehicleProperties(LastVehicles[#LastVehicles])
@@ -544,7 +544,7 @@ function OpenResellerMenu()
 							TriggerServerEvent('esx_vehicleshop:setVehicleOwnedPlayerId', GetPlayerServerId(closestPlayer), vehicleProps)
 						end
 
-						exports['mythic_notify']:DoHudText('inform', _U('vehicle_set_rented', vehicleProps.plate, GetPlayerName(closestPlayer)), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('inform', _U('vehicle_set_rented', vehicleProps.plate, GetPlayerName(closestPlayer)))
 						TriggerServerEvent('esx_vehicleshop:setVehicleForAllPlayers', vehicleProps, Config.Zones.ShopInside.Pos.x, Config.Zones.ShopInside.Pos.y, Config.Zones.ShopInside.Pos.z, 5.0)
 					end
 				end
@@ -694,7 +694,7 @@ function OpenGetStocksMenu()
 				local count = tonumber(data2.value)
 
 				if count == nil then
-					exports['mythic_notify']:DoHudText('inform', _U('quantity_invalid'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('error', _U('quantity_invalid'))
 				else
 					TriggerServerEvent('esx_vehicleshop:getStockItem', itemName, count)
 					menu2.close()
@@ -740,7 +740,7 @@ function OpenPutStocksMenu()
 				local count = tonumber(data2.value)
 
 				if count == nil then
-					exports['mythic_notify']:DoHudText('inform', _U('quantity_invalid'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('error', _U('quantity_invalid'))
 				else
 					TriggerServerEvent('esx_vehicleshop:putStockItems', itemName, count)
 					menu2.close()
@@ -956,7 +956,7 @@ Citizen.CreateThread(function()
 							if hasDriversLicense then
 								OpenShopMenu()
 							else
-								exports['mythic_notify']:DoHudText('inform', _U('license_missing'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+								exports['mythic_notify']:SendAlert('warning', _U('license_missing'))
 							end
 						end, GetPlayerServerId(PlayerId()), 'drive')
 					else
@@ -968,18 +968,18 @@ Citizen.CreateThread(function()
 					ESX.TriggerServerCallback('esx_vehicleshop:giveBackVehicle', function(isRentedVehicle)
 						if isRentedVehicle then
 							ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
-							exports['mythic_notify']:DoHudText('inform', _U('delivered'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('success', _U('delivered'))
 						else
-							exports['mythic_notify']:DoHudText('inform', _U('not_rental'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('error', _U('not_rental'))
 						end
 					end, ESX.Math.Trim(GetVehicleNumberPlateText(CurrentActionData.vehicle)))
 				elseif CurrentAction == 'resell_vehicle' then
 					ESX.TriggerServerCallback('esx_vehicleshop:resellVehicle', function(vehicleSold)
 						if vehicleSold then
 							ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
-							exports['mythic_notify']:DoHudText('inform', _U('vehicle_sold_for', CurrentActionData.label, ESX.Math.GroupDigits(CurrentActionData.price)), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('inform', _U('vehicle_sold_for', CurrentActionData.label, ESX.Math.GroupDigits(CurrentActionData.price)))
 						else
-							exports['mythic_notify']:DoHudText('inform', _U('not_yours'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('error', _U('not_yours'))
 						end
 					end, CurrentActionData.plate, CurrentActionData.model)
 				elseif CurrentAction == 'boss_actions_menu' then

@@ -68,9 +68,9 @@ function StopTheoryTest(success)
 
   if success then
     TriggerServerEvent('esx_dmvschool:addLicense', 'dmv')
-    exports['mythic_notify']:DoHudText('inform', _U('passed_test'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+    exports['mythic_notify']:SendAlert('success', _U('passed_test'))
   else
-    exports['mythic_notify']:DoHudText('inform', _U('failed_test'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+    exports['mythic_notify']:SendAlert('error', _U('failed_test'))
   end
 
 end
@@ -100,9 +100,9 @@ function StopDriveTest(success)
 
   if success then
     TriggerServerEvent('esx_dmvschool:addLicense', CurrentTestType)
-    exports['mythic_notify']:DoHudText('inform', _U('passed_test'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+    exports['mythic_notify']:SendAlert('success', _U('passed_test'))
   else
-    exports['mythic_notify']:DoHudText('inform', _U('failed_test'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+    exports['mythic_notify']:SendAlert('error', _U('failed_test'))
   end
 
   CurrentTest     = nil
@@ -351,7 +351,7 @@ Citizen.CreateThread(function()
 
         CurrentTest = nil
 
-        exports['mythic_notify']:DoHudText('inform', _U('driving_test_complete'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+        exports['mythic_notify']:SendAlert('success', _U('driving_test_complete'))
 
         if DriveErrors < Config.MaxErrors then
           StopDriveTest(true)
@@ -417,8 +417,8 @@ Citizen.CreateThread(function()
               DriveErrors       = DriveErrors + 1
               IsAboveSpeedLimit = true
 
-              exports['mythic_notify']:DoHudText('inform', _U('driving_too_fast') .. v .. 'km/h', { ['background-color'] = '#b00000', ['color'] = '#fff' })
-              exports['mythic_notify']:DoHudText('inform', _U('errors') .. DriveErrors .. '~s~/' .. Config.MaxErrors, { ['background-color'] = '#b00000', ['color'] = '#fff' })
+              exports['mythic_notify']:SendAlert('error', _U('driving_too_fast') .. v .. 'km/h')
+              exports['mythic_notify']:SendAlert('error', _U('errors') .. DriveErrors .. '~s~/' .. Config.MaxErrors)
 
             end
 
@@ -435,8 +435,8 @@ Citizen.CreateThread(function()
 
           DriveErrors = DriveErrors + 1
 
-          exports['mythic_notify']:DoHudText('inform', _U('you_damaged_veh'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
-          exports['mythic_notify']:DoHudText('inform', _U('errors') .. DriveErrors .. '~s~/' .. Config.MaxErrors, { ['background-color'] = '#b00000', ['color'] = '#fff' })
+          exports['mythic_notify']:SendAlert('error', _U('you_damaged_veh'))
+          exports['mythic_notify']:SendAlert('error', _U('errors') .. DriveErrors .. '~s~/' .. Config.MaxErrors)
                     LastVehicleHealth = health
 
         end

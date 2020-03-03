@@ -15,7 +15,7 @@ AddEventHandler('chatMessage', function(source, n, msg)
 		if checkAllowed(identifier) then
 			TriggerClientEvent('nerp-pedmenu:ped', source)
 		else
-			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Du har inte tillgång till detta kommando', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du har inte tillgång till detta kommando' })
 		end
 	end
 end)

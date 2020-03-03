@@ -15,21 +15,21 @@ AddEventHandler('esx_lscustom:buyMod', function(price)
 		end)
 		if price < societyAccount.money then
 			TriggerClientEvent('esx_lscustom:installMod', _source)
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('purchased'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('purchased') })
 			societyAccount.removeMoney(price)
 		else
 			TriggerClientEvent('esx_lscustom:cancelInstallMod', _source)
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('not_enough_money'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('not_enough_money') })
 		end
 
 	else
 		if price < xPlayer.getMoney() then
 			TriggerClientEvent('esx_lscustom:installMod', _source)
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('purchased'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('purchased') })
 			xPlayer.removeMoney(price)
 		else
 			TriggerClientEvent('esx_lscustom:cancelInstallMod', _source)
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('not_enough_money'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('not_enough_money') })
 		end
 	end
 end)

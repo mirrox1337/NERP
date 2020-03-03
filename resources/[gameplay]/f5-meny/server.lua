@@ -134,20 +134,12 @@ AddEventHandler("esx_qalle:removeMoney", function(money)
 
   TriggerClientEvent('mythic_notify:client:SendAlert', source, {
     type = 'inform', 
-    text = 'Du köpte en skottsäkervest för ' .. money .. ' SEK', 
-    style = { 
-        ['background-color'] = '#009c10', 
-        ['color'] = '#fff' 
-      } 
+    text = 'Du köpte en skottsäkervest för ' .. money .. ' SEK'
   })  
 else
   TriggerClientEvent('mythic_notify:client:SendAlert', source, {
-    type = 'inform', 
-    text = 'Du har inte tillräckligt med cash du behöver ' .. money - hasCash .. ' SEK', 
-    style = { 
-        ['background-color'] = '#b00000', 
-        ['color'] = '#fff' 
-      } 
+    type = 'error', 
+    text = 'Du har inte tillräckligt med cash du behöver ' .. money - hasCash .. ' SEK' 
   })  
 end
 
@@ -173,20 +165,12 @@ AddEventHandler("esx_qalle:removeMoney2", function(money)
   xPlayer.removeMoney(money)
   TriggerClientEvent('mythic_notify:client:SendAlert', source, {
     type = 'inform', 
-    text = 'Du handlade för ' .. money .. ' SEK', 
-    style = { 
-        ['background-color'] = '#009c10', 
-        ['color'] = '#fff' 
-      } 
+    text = 'Du handlade för ' .. money .. ' SEK' 
   })  
 else
   TriggerClientEvent('mythic_notify:client:SendAlert', source, {
-    type = 'inform', 
-    text = 'Du har inte tillräckligt med pengar du behöver ' .. money - hasCash .. ' SEK', 
-    style = { 
-        ['background-color'] = '#b00000', 
-        ['color'] = '#fff' 
-      } 
+    type = 'error', 
+    text = 'Du har inte tillräckligt med pengar du behöver ' .. money - hasCash .. ' SEK'
   })  
 end
 
@@ -202,20 +186,12 @@ AddEventHandler('esx_qalle:removeVest', function()
   xPlayer.removeInventoryItem('bulletproof', 1)
   TriggerClientEvent('mythic_notify:client:SendAlert', source, {
     type = 'inform', 
-    text = 'Du satte på dig din skottsäkraväst', 
-    style = { 
-        ['background-color'] = '#009c10', 
-        ['color'] = '#fff' 
-      } 
+    text = 'Du satte på dig din skottsäkraväst' 
   })  
 else
   TriggerClientEvent('mythic_notify:client:SendAlert', source, {
-    type = 'inform', 
-    text = 'Du har inte tillräckligt med västar', 
-    style = { 
-        ['background-color'] = '#b00000', 
-        ['color'] = '#fff' 
-      } 
+    type = 'error', 
+    text = 'Du har inte tillräckligt med västar' 
   })  
 end
 
@@ -306,20 +282,12 @@ AddEventHandler('esx_qalle:confiscatePlayerItem', function(target, itemType, ite
 
     TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
         type = 'inform', 
-        text = 'Du konfiskerade ' .. amount .. 'st ' .. label .. ' från ' .. targetXPlayer.name, 'success', 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du konfiskerade ' .. amount .. 'st ' .. label .. ' från ' .. targetXPlayer.name
       }) 
 
       TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, {
-        type = 'inform', 
-        text = 'Någon stal ' .. amount .. 'st ' .. label, 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        type = 'warning', 
+        text = 'Någon stal ' .. amount .. 'st ' .. label 
       }) 
 
   end
@@ -331,20 +299,12 @@ AddEventHandler('esx_qalle:confiscatePlayerItem', function(target, itemType, ite
 
     TriggerClientEvent('mythic_notify:client:SendAlert', source, {
         type = 'inform', 
-        text = 'Du konfiskerade ' .. amount .. ' från ' .. targetXPlayer.name, 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du konfiskerade ' .. amount .. ' från ' .. targetXPlayer.name
       }) 
 
       TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, {
-        type = 'inform', 
-        text = 'Någon stal ' .. amount .. ' från dig', 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        type = 'warning', 
+        text = 'Någon stal ' .. amount .. ' från dig' 
       }) 
 
   end
@@ -358,29 +318,17 @@ AddEventHandler('esx_qalle:confiscatePlayerItem', function(target, itemType, ite
     
       TriggerClientEvent('mythic_notify:client:SendAlert', source, {
         type = 'inform', 
-        text = 'Du stal ' .. amount .. ' SEK från personen', 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du stal ' .. amount .. ' SEK från personen'
       }) 
 
       TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, {
-        type = 'inform', 
-        text = 'Någon stal '  .. amount .. ' SEK från dig', 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        type = 'warning', 
+        text = 'Någon stal '  .. amount .. ' SEK från dig'
       }) 
     else
       TriggerClientEvent('mythic_notify:client:SendAlert', source, {
-        type = 'inform', 
-        text = 'Omöjligt', 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        type = 'error', 
+        text = 'Omöjligt'
       }) 
     end
 
@@ -393,20 +341,12 @@ AddEventHandler('esx_qalle:confiscatePlayerItem', function(target, itemType, ite
 
     TriggerClientEvent('mythic_notify:client:SendAlert', source, {
         type = 'inform', 
-        text = 'Du konfiskerade ' .. ESX.GetWeaponLabel(itemName) .. ' från ' .. source.name, 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du konfiskerade ' .. ESX.GetWeaponLabel(itemName) .. ' från ' .. source.name 
       }) 
 
       TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, {
-        type = 'inform', 
-        text = sourceXPlayer.name .. ' konfiskerade ' .. ESX.GetWeaponLabel(itemName) .. ' från dig', 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        type = 'warning', 
+        text = sourceXPlayer.name .. ' konfiskerade ' .. ESX.GetWeaponLabel(itemName) .. ' från dig'
       }) 
 
   end
@@ -428,11 +368,7 @@ ESX.RegisterUsableItem('bulletproof', function(source)
     xPlayer.removeInventoryItem('bulletproof', 1)
     TriggerClientEvent('mythic_notify:client:SendAlert', source, {
         type = 'inform', 
-        text = 'Du satte på dig en skottsäkervest!', 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du satte på dig en skottsäkervest!'
       }) 
 end)
 
@@ -456,21 +392,13 @@ AddEventHandler('esx_qalle:recruit_player', function(target, job, grade)
 
     TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
         type = 'inform', 
-        text = 'Du har rekryterat '..targetXPlayer.name.. ' till jobbet '..sourceXPlayer.job.label, 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du har rekryterat '..targetXPlayer.name.. ' till jobbet '..sourceXPlayer.job.label
       }) 
 
 
       TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, {
         type = 'inform', 
-        text = 'Du har blivit rekryterad av ' .. sourceXPlayer.name.. ' till jobbet '..sourceXPlayer.job.label, 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du har blivit rekryterad av ' .. sourceXPlayer.name.. ' till jobbet '..sourceXPlayer.job.label
       }) 
 end)
 
@@ -489,31 +417,19 @@ AddEventHandler('esx_qalle:kick_player', function(target)
 
     TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
         type = 'inform', 
-        text = 'Du har sparkat '..targetXPlayer.name, 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du har sparkat '..targetXPlayer.name
       }) 
 
 
       TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, {
-        type = 'inform', 
-        text = 'Du har blivit sparkad av '.. sourceXPlayer.name, 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        type = 'error', 
+        text = 'Du har blivit sparkad av '.. sourceXPlayer.name 
       }) 
   else
 
     TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
-        type = 'inform', 
-        text = 'Du har inte behörighet.', 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        type = 'error', 
+        text = 'Du har inte behörighet.'
       }) 
   end
 
@@ -531,11 +447,7 @@ AddEventHandler('esx_qalle:promote_player', function(target)
   if(targetXPlayer.job.grade == maximumgrade)then
     TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
         type = 'inform', 
-        text = 'Personen är redan högsta ranken', 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Personen är redan högsta ranken' 
       }) 
   else
     if(sourceXPlayer.job.name == targetXPlayer.job.name)then
@@ -547,30 +459,18 @@ AddEventHandler('esx_qalle:promote_player', function(target)
 
       TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
         type = 'inform', 
-        text = 'Du gav '.. targetXPlayer.name ..' en befodran.', 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du gav '.. targetXPlayer.name ..' en befodran.'
       }) 
 
 
       TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, {
         type = 'inform', 
-        text = 'Du har blivid befodrad av '.. sourceXPlayer.name..'.', 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du har blivid befodrad av '.. sourceXPlayer.name..'.'
       }) 
     else
       TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
-        type = 'inform', 
-        text = 'Du har inte behörighet.', 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        type = 'error', 
+        text = 'Du har inte behörighet.'
       }) 
 
     end
@@ -599,12 +499,8 @@ AddEventHandler('esx_qalle:demote_player', function(target)
 
   if(targetXPlayer.job.grade == 0)then
     TriggerClientEvent('mythic_notify:client:SendAlert', targetXplayer.source, {
-        type = 'inform', 
-        text = 'Du kan inte sänka mer.', 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        type = 'error', 
+        text = 'Du kan inte sänka mer.'
       })  
   else
     if(sourceXPlayer.job.name == targetXPlayer.job.name)then
@@ -615,30 +511,18 @@ AddEventHandler('esx_qalle:demote_player', function(target)
       targetXPlayer.setJob(job, grade)
       TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
         type = 'inform', 
-        text = 'Du har sänkt '.. targetXPlayer.name, 
-        style = { 
-            ['background-color'] = '#009c10', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du har sänkt '.. targetXPlayer.name 
       })  
       
       TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, {
         type = 'inform', 
-        text = 'Du har blivit sänkt av '.. sourceXPlayer.name, 
-        style = { 
-            ['background-color'] = '#b00000', 
-            ['color'] = '#fff' 
-          } 
+        text = 'Du har blivit sänkt av '.. sourceXPlayer.name
       })  
 
     else
   TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, {
       type = 'inform', 
-      text = 'Du har inte behörighet.', 
-      style = { 
-          ['background-color'] = '#b00000', 
-          ['color'] = '#fff' 
-        } 
+      text = 'Du har inte behörighet.'
     })
 
     end

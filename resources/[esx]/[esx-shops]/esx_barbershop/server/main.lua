@@ -8,7 +8,7 @@ AddEventHandler('esx_barbershop:pay', function()
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
 	xPlayer.removeMoney(Config.Price)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('you_paid', ESX.Math.GroupDigits(Config.Price)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('you_paid', ESX.Math.GroupDigits(Config.Price)) })
 end)
 
 ESX.RegisterServerCallback('esx_barbershop:checkMoney', function(source, cb)

@@ -69,7 +69,7 @@ function OpenLSMenu(elems, menuname, menutitle, parent)
 			for k,v in pairs(Config.Menus) do
 				if k == data.current.modType or isRimMod then
 					if data.current.label == _U('by_default') or string.match(data.current.label, _U('installed')) then
-						exports['mythic_notify']:DoHudText('inform', _U('already_own') .. data.current.label, { ['background-color'] = '#b00000', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('warning', _U('already_own') .. data.current.label)
 						TriggerEvent('esx_lscustom:installMod')
 					else
 						local vehiclePrice = 100

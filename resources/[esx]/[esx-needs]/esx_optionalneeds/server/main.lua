@@ -12,7 +12,7 @@ ESX.RegisterUsableItem('ol', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 250000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_ol'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_ol') })
 
 end)
 
@@ -24,7 +24,7 @@ ESX.RegisterUsableItem('hembränt', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 500000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_hembränt'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_hembränt') })
 
 end)
 
@@ -36,7 +36,7 @@ ESX.RegisterUsableItem('champagne', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 250000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_champagne'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_champagne') })
 
 end)
 
@@ -48,7 +48,7 @@ ESX.RegisterUsableItem('redbullvodka', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 250000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_redbullvodka'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_redbullvodka') })
 
 end)
 
@@ -60,7 +60,7 @@ ESX.RegisterUsableItem('vittvin', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 250000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_vittvin'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_vittvin') })
 
 end)
 
@@ -72,7 +72,7 @@ ESX.RegisterUsableItem('rottvin', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 250000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_rottvin'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_rottvin') })
 
 end)
 
@@ -84,7 +84,7 @@ ESX.RegisterUsableItem('whisky', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 500000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_whisky'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_whisky') })
 
 end)
 
@@ -96,7 +96,7 @@ ESX.RegisterUsableItem('jager', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 500000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_jager'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_jager') })
 
 end)
 
@@ -108,7 +108,7 @@ ESX.RegisterUsableItem('vodka', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 500000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_vodka'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_vodka') })
 
 end)
 
@@ -120,6 +120,6 @@ ESX.RegisterUsableItem('redbullvodka', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'drunk', 250000)
 	TriggerClientEvent('esx_optionalneeds:onDrink', source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_redbullvodka'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_redbullvodka') })
 
 end)

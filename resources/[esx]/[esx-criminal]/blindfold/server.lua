@@ -13,7 +13,7 @@ end)
 -- Notis skickas om spelaren inte har en ögonbindel
 RegisterServerEvent('blindfold:notis')
 AddEventHandler('blindfold:notis', function( src )
-  TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Du har ingen ögonbindel på dig', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+  TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'error', text = 'Du har ingen ögonbindel på dig' })
 end)
 
 -- Ger spelaren en ögonbindel

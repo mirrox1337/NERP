@@ -187,7 +187,7 @@ function PlayerDressings()
 				}, function(data2, menu2)
 					menu2.close()
 					TriggerServerEvent('lsrp-motels:removeOutfit', data2.current.value)
-                    exports['mythic_notify']:DoHudText('inform', _U('removed_cloth'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+                    exports['mythic_notify']:SendAlert('error', _U('removed_cloth'))
 				end, function(data2, menu2)
 					menu2.close()
 				end)
@@ -369,7 +369,7 @@ AddEventHandler('lsrp-motels:roomMenu', function(room, motel)
                     OpenPropertyInventoryMenu('motels', owner)
                 end
         else
-            exports['mythic_notify']:DoHudText('inform', 'Enbart tillgänglig av rum Ägaren', { ['background-color'] = '#b00000', ['color'] = '#fff' })  
+            exports['mythic_notify']:SendAlert('error', 'Enbart tillgänglig av rum Ägaren')  
         end
         elseif value == 'inviteplayer' then
             local myInstance = nil
@@ -407,7 +407,7 @@ AddEventHandler('lsrp-motels:roomMenu', function(room, motel)
                     end, room)
                 myInstance = 'motel'..roomID..''..roomIdent
 				TriggerEvent('instance:invite', 'motelroom', GetPlayerServerId(data2.current.value), {property = myInstance, owner = ESX.GetPlayerData().identifier, motel = reqmotel, room = roomIdent, vid = roomID})
-                exports['mythic_notify']:DoHudText('inform', _U('you_invited', GetPlayerName(data2.current.value)), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+                exports['mythic_notify']:SendAlert('inform', _U('you_invited', GetPlayerName(data2.current.value)))
 			end, function(data2, menu2)
 				menu2.close()
 			end)
@@ -635,7 +635,7 @@ function OpenStash()
                             OpenPropertyInventoryMenuBed('motelsbed', owner)
                         end  
         else
-            exports['mythic_notify']:DoHudText('inform', 'Enbart tillgänglig av rum Ägaren', { ['background-color'] = '#b00000', ['color'] = '#fff' })  
+            exports['mythic_notify']:SendAlert('error', 'Enbart tillgänglig av rum Ägaren')  
         end
     end, curRoom, owner)
 end

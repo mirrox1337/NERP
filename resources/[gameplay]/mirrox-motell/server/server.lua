@@ -92,11 +92,11 @@ AddEventHandler('lsrp-motels:getItem', function(owner, type, item, count)
 				--else
 					inventory.removeItem(item, count)
 					xPlayer.addInventoryItem(item, count)
-					TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('have_withdrawn', count, inventoryItem.label), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+					TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('have_withdrawn', count, inventoryItem.label) })
 					
 				--end
 			else
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('not_enough_in_property'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('not_enough_in_property') })
 			end
 		end)
 
@@ -109,7 +109,7 @@ AddEventHandler('lsrp-motels:getItem', function(owner, type, item, count)
 				account.removeMoney(count)
 				xPlayer.addAccountMoney(item, count)
 			else
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('amount_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('amount_invalid') })
 			end
 		end)
 
@@ -152,10 +152,10 @@ AddEventHandler('lsrp-motels:putItem', function(owner, type, item, count)
 			TriggerEvent('esx_addoninventory:getInventory', 'property', xPlayerOwner.identifier, function(inventory)
 				xPlayer.removeInventoryItem(item, count)
 				inventory.addItem(item, count)
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('have_deposited', count, inventory.getItem(item).label), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('have_deposited', count, inventory.getItem(item).label) })
 			end)
 		else
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('invalid_quantity'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('invalid_quantity') })
 		end
 
 	elseif type == 'item_account' then
@@ -169,7 +169,7 @@ AddEventHandler('lsrp-motels:putItem', function(owner, type, item, count)
 				account.addMoney(count)
 			end)
 		else
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('amount_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('amount_invalid') })
 		end
 
 	elseif type == 'item_weapon' then
@@ -252,10 +252,10 @@ AddEventHandler('lsrp-motels:getItemBed', function(owner, type, item, count)
 				--else
 					inventory.removeItem(item, count)
 					xPlayer.addInventoryItem(item, count)
-					TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('have_withdrawn', count, inventoryItem.label), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+					TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('have_withdrawn', count, inventoryItem.label) })
 				--end
 			else
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('not_enough_in_property'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('not_enough_in_property') })
 			end
 		end)
 
@@ -268,7 +268,7 @@ AddEventHandler('lsrp-motels:getItemBed', function(owner, type, item, count)
 				account.removeMoney(count)
 				xPlayer.addAccountMoney(item, count)
 			else
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('amount_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('amount_invalid') })
 			end
 		end)
 
@@ -311,10 +311,10 @@ AddEventHandler('lsrp-motels:putItemBed', function(owner, type, item, count)
 			TriggerEvent('esx_addoninventory:getInventory', 'motels_bed', xPlayerOwner.identifier, function(inventory)
 				xPlayer.removeInventoryItem(item, count)
 				inventory.addItem(item, count)
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('have_deposited', count, inventory.getItem(item).label), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('have_deposited', count, inventory.getItem(item).label) })
 			end)
 		else
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('invalid_quantity'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('invalid_quantity') })
 		end
 
 	elseif type == 'item_account' then
@@ -328,7 +328,7 @@ AddEventHandler('lsrp-motels:putItemBed', function(owner, type, item, count)
 				account.addMoney(count)
 			end)
 		else
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('amount_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('amount_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
 		end
 
 	elseif type == 'item_weapon' then

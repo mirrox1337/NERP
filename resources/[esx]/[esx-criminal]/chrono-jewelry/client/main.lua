@@ -227,20 +227,20 @@ Citizen.CreateThread(function()
 					if(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) < 1.0)then
 						if (incircle == false) and Config.NeedBag == true then
 							if borsa == 40 or borsa == 41 or borsa == 44 or borsa == 45 then
-								exports['mythic_notify']:DoHudText('inform', ('Du har en väska.'))
-								exports['mythic_notify']:DoHudText('inform', _U('press_to_rob'))
+								exports['mythic_notify']:SendAlert('inform', ('Du har en väska.'))
+								exports['mythic_notify']:SendAlert('inform', _U('press_to_rob'))
 							else
-								exports['mythic_notify']:DoHudText('inform', _U('need_bag'))
+								exports['mythic_notify']:SendAlert('error', _U('need_bag'))
 							end
 
 								
 							ESX.TriggerServerCallback('chrono-jewelry:itemState', function(itemState)
 
 								if itemState == 1 then
-									exports['mythic_notify']:DoHudText('inform', 'Du har en busshammare.')
+									exports['mythic_notify']:SendAlert('error', 'Du har en busshammare.')
 									print(itemState)
 								else
-									exports['mythic_notify']:DoHudText('inform', 'Du saknar ett föremål.')
+									exports['mythic_notify']:SendAlert('error', 'Du saknar ett föremål.')
 									print(itemState)
 								end
 							end)

@@ -29,6 +29,6 @@ AddEventHandler('esx_dmvschool:pay', function(price)
 
   xPlayer.removeMoney(price)
 
-  TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('you_paid') .. price, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+  TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('you_paid') .. price })
 
 end)

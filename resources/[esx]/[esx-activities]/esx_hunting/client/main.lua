@@ -267,7 +267,7 @@ function StartHuntingSession()
 											SlaughterAnimal(value.id)
 										end
 									else
-										exports['mythic_notify']:DoHudText('inform', 'Du måste använda din kniv!', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										exports['mythic_notify']:SendAlert('error', 'Du måste använda din kniv!')
 									end
 								end
 
@@ -295,7 +295,7 @@ function SlaughterAnimal(AnimalId)
 
 	local AnimalWeight = math.random(10, 160) / 10
 
-	exports['mythic_notify']:DoHudText('inform', 'Du har slaktat djuret och fått en köttmängd på ' ..AnimalWeight.. 'kg', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('success', 'Du har slaktat djuret och fått en köttmängd på ' ..AnimalWeight.. 'kg')
 
 	TriggerServerEvent('esx-qalle-hunting:reward', AnimalWeight)
 

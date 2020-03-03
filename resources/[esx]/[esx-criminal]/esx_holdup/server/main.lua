@@ -14,7 +14,7 @@ AddEventHandler('esx_holdup:tooFar', function(currentStore)
 		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 		
 		if xPlayer.job.name == 'police' then
-			TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'inform', text = _U('robbery_cancelled_at', Stores[currentStore].nameOfStore), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'warning', text = _U('robbery_cancelled_at', Stores[currentStore].nameOfStore) })
 			TriggerClientEvent('esx_holdup:killBlip', xPlayers[i])
 		end
 	end
@@ -22,7 +22,7 @@ AddEventHandler('esx_holdup:tooFar', function(currentStore)
 	if robbers[_source] then
 		TriggerClientEvent('esx_holdup:tooFar', _source)
 		robbers[_source] = nil
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('robbery_cancelled_at', Stores[currentStore].nameOfStore), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('robbery_cancelled_at', Stores[currentStore].nameOfStore) })
 	end
 end)
 
@@ -50,7 +50,7 @@ AddEventHandler('esx_holdup:robberyStarted', function(currentStore)
 		local store = Stores[currentStore]
 
 		if (os.time() - store.lastRobbed) < Config.TimerBeforeNewRob and store.lastRobbed ~= 0 then
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('recently_robbed', Config.TimerBeforeNewRob - (os.time() - store.lastRobbed)), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('recently_robbed', Config.TimerBeforeNewRob - (os.time() - store.lastRobbed)) })
 			return
 		end
 
@@ -69,13 +69,13 @@ AddEventHandler('esx_holdup:robberyStarted', function(currentStore)
 				for i=1, #xPlayers, 1 do
 					local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 					if xPlayer.job.name == 'police' then
-						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'inform', text = _U('rob_in_prog', store.nameOfStore), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+						TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'warning', text = _U('rob_in_prog', store.nameOfStore) })
 						TriggerClientEvent('esx_holdup:setBlip', xPlayers[i], Stores[currentStore].position)
 					end
 				end
 
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('started_to_rob', store.nameOfStore), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('alarm_triggered'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'warning', text = _U('started_to_rob', store.nameOfStore) })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'warning', text = _U('alarm_triggered') })
 				
 				TriggerClientEvent('esx_holdup:currentlyRobbing', _source, currentStore)
 				TriggerClientEvent('esx_holdup:startTimer', _source)
@@ -100,7 +100,7 @@ AddEventHandler('esx_holdup:robberyStarted', function(currentStore)
 								xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 
 								if xPlayer.job.name == 'police' then
-									TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'inform', text = _U('robbery_complete_at', store.nameOfStore), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+									TriggerClientEvent('mythic_notify:client:SendAlert', xPlayers[i], { type = 'warning', text = _U('robbery_complete_at', store.nameOfStore) })
 									TriggerClientEvent('esx_holdup:killBlip', xPlayers[i])
 								end
 							end
@@ -108,10 +108,10 @@ AddEventHandler('esx_holdup:robberyStarted', function(currentStore)
 					end
 				end)
 			else
-				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('min_police', Config.PoliceNumberRequired), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+				TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('min_police', Config.PoliceNumberRequired) })
 			end
 		else
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('robbery_already'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('robbery_already') })
 		end
 	end
 end)

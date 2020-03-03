@@ -63,7 +63,7 @@ UpdateSkill = function(skill, amount)
     if Config.Notifications then
         if tonumber(amount) > 0 then
             --Notification("~p~+" .. amount .. "% ~s~" .. skill)
-            exports['mythic_notify']:DoHudText('inform', skill .. ' ökades med ' .. amount .. "%", { ['background-color'] = 'rgba(0, 0, 0, 0.2)', ['color'] = '#fff' }, 5500)
+            exports['mythic_notify']:SendAlert('inform', skill .. ' ökades med ' .. amount .. "%", { ['background-color'] = 'rgba(0, 0, 0, 0.2)', ['color'] = '#fff' }, 5500)
         end
     end
 	TriggerServerEvent("gamz-skillsystem:update", json.encode(Config.Skills))

@@ -108,7 +108,7 @@ function DoAction(action)
                     createdCamera = 0
                     ClearTimecycleModifier("scanline_cam_cheap")
                     Reception = false
-                    exports['mythic_notify']:DoHudText('inform', 'Du kommer bli påverkad av medicinen...', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+                    exports['mythic_notify']:SendAlert('warning', 'Du kommer bli påverkad av medicinen...')
                     StartScreenEffect('HeistCelebPass', 0, true)
                     Citizen.Wait(30000)
                     StopAllScreenEffects(GetPlayerPed(-1))

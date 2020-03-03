@@ -37,7 +37,7 @@ Citizen.CreateThread(function()
 		if IsPedInMeleeCombat(myPed) then
 			if GetEntityHealth(myPed) < 115 then
 				SetPedToRagdoll(myPed, 1000, 1000, 0, 0, 0, 0)
-				exports['mythic_notify']:DoHudText('inform', 'Du blev knockad', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('error', 'Du blev knockad')
 				wait = 15
 				knockedOut = true
 				SetEntityHealth(myPed, 116)

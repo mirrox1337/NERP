@@ -76,9 +76,9 @@ AddEventHandler('esx_ambulancejob:removeItem', function(item)
   local xPlayer = ESX.GetPlayerFromId(_source)
   xPlayer.removeInventoryItem(item, 1)
   if item == 'bandage' then
-    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_bandage'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text =  'du har använt 1x Bandage'})
   elseif item == 'medikit' then
-    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_medikit'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text =  'du har använt 1x Medecinkit'})
   end
 end)
 
@@ -95,7 +95,7 @@ AddEventHandler('esx_ambulancejob:giveItem', function(item)
   if qtty < limit then
     xPlayer.addInventoryItem(item, delta)
   else
-    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('max_item'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text =  'du har redan tillräckligt mycket på dig.'})
   end
 end)
 
@@ -184,13 +184,13 @@ AddEventHandler('esx_ambulancejob:success', function()
     xPlayer.addMoney(playerMoney)
     societyAccount.addMoney(societyMoney)
 
-    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('have_earned') .. playerMoney, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
-    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('comp_earned') .. societyMoney, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = _U('have_earned') .. playerMoney })
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('comp_earned') .. societyMoney })
 
   else
 
     xPlayer.addMoney(total)
-    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('have_earned') .. total, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = _U('have_earned') .. total })
 
   end
 
@@ -200,14 +200,14 @@ ESX.RegisterUsableItem('medikit', function(source)
   local xPlayer = ESX.GetPlayerFromId(source)
   xPlayer.removeInventoryItem('medikit', 1)
   TriggerClientEvent('esx_ambulancejob:heal', source, 'big')
-  TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_medikit'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+  TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_medikit') })
 end)
 
 ESX.RegisterUsableItem('pills', function(source)
   local xPlayer  = ESX.GetPlayerFromId(source)
   xPlayer.removeInventoryItem('pills', 1)
   TriggerClientEvent('shakeCam', _source, false)
-  TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_pills'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+  TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('used_pills') })
 end)
 
 function RemoveLicense(xPlayer)
@@ -241,7 +241,7 @@ AddEventHandler('esx_ambulancejob:getStockItem', function(itemName, count)
       inventory.removeItem(itemName, count)
       xPlayer.addInventoryItem(itemName, count)
     else
-      TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('quantity_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+      TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('quantity_invalid') })
     end
 
         --TriggerClientEvent('esx:showNotification', _source, _U('have_withdrawn', count, inventoryItem.label))
@@ -264,9 +264,9 @@ local inventoryItem = inventory.getItem(itemName)
    if sourceItem.count >= count and count > 0 then
      xPlayer.removeInventoryItem(itemName, count)
      inventory.addItem(itemName, count)
-     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('have_deposited', count, inventoryItem.label), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('have_deposited', count, inventoryItem.label) })
    else
-     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('quantity_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('quantity_invalid') })
    end
 
   end)

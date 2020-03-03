@@ -36,10 +36,10 @@ AddEventHandler('esx_bennysjob:getStockItem', function(itemName, count)
       inventory.removeItem(itemName, count)
       xPlayer.addInventoryItem(itemName, count)
     else
-      TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('invalid_quantity'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+      TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('invalid_quantity') })
     end
 
-    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('you_removed') .. count .. ' ' .. item.label, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('you_removed') .. count .. ' ' .. item.label })
 
   end)
 
@@ -66,10 +66,10 @@ AddEventHandler('esx_bennysjob:putStockItems', function(itemName, count)
       xPlayer.removeInventoryItem(itemName, count)
       inventory.addItem(itemName, count)
     else
-      TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('invalid_quantity'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+      TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('invalid_quantity') })
     end
 
-    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('you_added') .. count .. ' ' .. item.label, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('you_added') .. count .. ' ' .. item.label })
 
   end)
 

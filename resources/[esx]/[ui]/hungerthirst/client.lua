@@ -160,7 +160,7 @@ Citizen.CreateThread(function()
             DisplayRadar(false) -- Deactivates minimap
             drawRct(UI.Left_x, UI.Bottom_y - 0.088 , UI.Width, 0.073, 0, 0, 0, 55) -- Background
             drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.09 , 0.55, Hours .. ":" .. Minutes .. " ", 255, 255, 255, 255, 8) -- Clock
-            drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.058 , 0.58, heading, 51, 171, 249, 255, 8) -- Heading
+            drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.058 , 0.58, heading, 119, 18, 130, 255, 8) -- Heading
             drawTxt(UI.Left_x + 0.023 , UI.Bottom_y - 0.057 , 0.3, GetStreetNameFromHashKey(rua), 255, 255, 255, 255, 8) -- Street
             drawTxt(UI.Left_x + 0.023 , UI.Bottom_y - 0.04 , 0.25, Zone, 255, 255, 255, 255, 8) -- Area
 		end

@@ -134,7 +134,7 @@ function OpenBennysActionsMenu()
                           TaskWarpPedIntoVehicle(playerPed,  vehicle, -1)
                         end)
                       else
-                        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('service_full') .. inServiceCount .. '/' .. maxInService, style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+                        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('service_full') .. inServiceCount .. '/' .. maxInService })
                       end
                     end, 'bennys')
                     break
@@ -238,7 +238,7 @@ function OpenMobileBennysActionsMenu()
       if data.current.value == 'fine' then
         local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
         if closestPlayer == -1 or closestDistance > 3.0 then
-          TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Ingen nära', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+          TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ingen nära' })
         else
           OpenFineMenu(closestPlayer)
         end
@@ -256,14 +256,14 @@ function OpenMobileBennysActionsMenu()
             local amount = tonumber(data2.value)
 
             if amount == nil then
-              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('invoice_amount'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('invoice_amount') })
             else
               menu.close()
 
               local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
               if closestPlayer == -1 or closestDistance > 3.0 then
-                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('invoice_amount'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('invoice_amount') })
               else
                 TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_bennys', 'Bennys', tonumber(data2.value))
               end
@@ -434,7 +434,7 @@ function OpenGetStocksMenu()
             local count = tonumber(data2.value)
 
             if count == nil then
-              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('invalid_quantity'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('invalid_quantity') })
             else
               menu2.close()
               menu.close()
@@ -495,7 +495,7 @@ ESX.TriggerServerCallback('esx_bennysjob:getPlayerInventory', function(inventory
             local count = tonumber(data2.value)
 
             if count == nil then
-              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('invalid_quantity'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('invalid_quantity') })
             else
               menu2.close()
               menu.close()
@@ -745,7 +745,7 @@ Citizen.CreateThread(function()
               StopNPCJob(true)
               NPCLastCancel = GetGameTimer()
             else
-              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('wait_five'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'warning', text = _U('wait_five') })
             end
 
           else
@@ -755,7 +755,7 @@ Citizen.CreateThread(function()
             if IsPedInAnyVehicle(playerPed,  false) and IsVehicleModel(GetVehiclePedIsIn(playerPed,  false), GetHashKey("flatbed")) then
               StartNPCJob()
             else
-              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('must_in_flatbed'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('must_in_flatbed') })
             end
 
           end
@@ -821,7 +821,7 @@ function cleanVehicle()
         Citizen.Wait(10000)
         SetVehicleDirtLevel(vehicle, 0)
         ClearPedTasksImmediately(playerPed)
-        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('vehicle_cleaned'), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = _U('vehicle_cleaned') })
       end)
     end
   end

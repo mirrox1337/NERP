@@ -657,7 +657,7 @@ AddEventHandler('houseRobberies:attempt', function(lockpicks)
    end
   end
  elseif lockpicks == 0 and not isRobbing then
-  exports['mythic_notify']:DoHudText('error', 'Inget dyrkset')
+  exports['mythic_notify']:SendAlert('error', 'Inget dyrkset')
  else
   --TriggerEvent('notification', "House isn't robbable", 2)
  end
@@ -742,7 +742,7 @@ function isEnoughCops()
     if anycops >= 1 then
       return true
     else
-      exports['mythic_notify']:DoHudText('error', 'Det är inte tillräckligt med blåbär i staden')
+      exports['mythic_notify']:SendAlert('error', 'Det är inte tillräckligt med blåbär i staden')
       return false
     end
   end)

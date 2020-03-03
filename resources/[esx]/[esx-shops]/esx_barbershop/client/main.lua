@@ -64,7 +64,7 @@ function OpenShopMenu()
 								TriggerEvent('skinchanger:loadSkin', skin) 
 							end)
 
-							exports['mythic_notify']:DoHudText('inform', _U('not_enough_money'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('error', _U('not_enough_money'))
 						end
 					end)
 

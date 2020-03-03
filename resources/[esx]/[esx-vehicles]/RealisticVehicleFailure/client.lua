@@ -178,7 +178,7 @@ AddEventHandler('iens:repair', function()
 			healthEngineLast=1000.0
 			healthPetrolTankLast=1000.0
 			SetVehicleEngineOn(vehicle, true, false )
-			exports['mythic_notify']:DoHudText('inform', 'The mechanic repaired your car!', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+			exports['mythic_notify']:SendAlert('inform', 'The mechanic repaired your car!', { ['background-color'] = '#b00000', ['color'] = '#fff' })
 			return
 		end
 		if GetVehicleEngineHealth(vehicle) < cfg.cascadingFailureThreshold + 5 then
@@ -190,25 +190,25 @@ AddEventHandler('iens:repair', function()
 				healthPetrolTankLast=750.0
 					SetVehicleEngineOn(vehicle, true, false )
 				SetVehicleOilLevel(vehicle,(GetVehicleOilLevel(vehicle)/3)-0.5)
-				exports['mythic_notify']:DoHudText('inform', repairCfg.fixMessages[fixMessagePos] .. ", now get to a mechanic!", { ['background-color'] = '#b00000', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('inform', repairCfg.fixMessages[fixMessagePos] .. ", now get to a mechanic!", { ['background-color'] = '#b00000', ['color'] = '#fff' })
 				fixMessagePos = fixMessagePos + 1
 				if fixMessagePos > repairCfg.fixMessageCount then fixMessagePos = 1 end
 			else
-				exports['mythic_notify']:DoHudText('inform', "Your vehicle was too badly damaged. Unable to repair!", { ['background-color'] = '#b00000', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('inform', "Your vehicle was too badly damaged. Unable to repair!", { ['background-color'] = '#b00000', ['color'] = '#fff' })
 			end
 		else
-			exports['mythic_notify']:DoHudText('inform', repairCfg.noFixMessages[noFixMessagePos].."", { ['background-color'] = '#b00000', ['color'] = '#fff' })
+			exports['mythic_notify']:SendAlert('inform', repairCfg.noFixMessages[noFixMessagePos].."", { ['background-color'] = '#b00000', ['color'] = '#fff' })
 			noFixMessagePos = noFixMessagePos + 1
 			if noFixMessagePos > repairCfg.noFixMessageCount then noFixMessagePos = 1 end
 		end
 	else
-		exports['mythic_notify']:DoHudText('inform', "You must be in a vehicle to be able to repair it", { ['background-color'] = '#b00000', ['color'] = '#fff' })
+		exports['mythic_notify']:SendAlert('inform', "You must be in a vehicle to be able to repair it", { ['background-color'] = '#b00000', ['color'] = '#fff' })
 	end
 end)
 
 RegisterNetEvent('iens:notAllowed')
 AddEventHandler('iens:notAllowed', function()
-	exports['mythic_notify']:DoHudText('inform', "You don't have permission to repair vehicles", { ['background-color'] = '#b00000', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('inform', "You don't have permission to repair vehicles", { ['background-color'] = '#b00000', ['color'] = '#fff' })
 end)
 
 if cfg.torqueMultiplierEnabled or cfg.preventVehicleFlip or cfg.limpMode then

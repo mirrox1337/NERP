@@ -9,7 +9,7 @@ AddEventHandler('esx_loffe_fangelse:Pay', function()
     local xPlayer = ESX.GetPlayerFromId(_source)
 
 	xPlayer.addMoney(Config.Payment)
-    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du fick ' .. Config.Payment ..' SEK', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'success', text = 'Du fick ' .. Config.Payment ..' SEK' })
 end)
 
 --notification

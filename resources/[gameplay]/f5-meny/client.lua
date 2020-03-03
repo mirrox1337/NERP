@@ -178,7 +178,7 @@ local Keys = {
 												end
 											else
 												--ESX.ShowNotification('Ingen i närheten')
-												exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+												exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 												
 											end                         
   
@@ -211,7 +211,7 @@ local Keys = {
 								  if data3.current.value == 'yes' then
 									  TriggerServerEvent('esx_qalle_jobs:unemployed', source)
 									  --sendNotification('Du sa upp dig!', 'success', 5000)
-									  exports['mythic_notify']:DoHudText('inform', 'Du har sagt upp dig.', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+									  exports['mythic_notify']:SendAlert('warning', 'Du har sagt upp dig.')
 									  ESX.UI.Menu.CloseAll()
 									  openMenu()
 									else
@@ -234,7 +234,7 @@ local Keys = {
 													  TriggerServerEvent('korkort:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(player))
 											  else
 													  --ESX.ShowNotification('Ingen i närheten')
-													  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+													  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 											  end
 									  end
 							  end,
@@ -308,7 +308,7 @@ local Keys = {
 								  hasEquipped = false
 							  else
 								  --sendNotification('Du har ingen Skottsäkervest', 'error', 2500)
-								  exports['mythic_notify']:DoHudText('inform', 'Du har ingen skottsäkervest.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+								  exports['mythic_notify']:SendAlert('error', 'Du har ingen skottsäkervest.')
 							  end
 						  end
   
@@ -359,7 +359,7 @@ local Keys = {
 															  TriggerServerEvent('lift:tryLift', GetPlayerServerId(closestPlayer))
 														  else
 															  --ESX.ShowNotification('Ingen i närheten')
-															  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+															  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 														  end
 													  end
   
@@ -371,7 +371,7 @@ local Keys = {
 									end)
 								else
 								   --sendNotification('Ingen i närheten', 'error', 2500)
-								   exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+								   exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 								end    
 							  elseif data2.current.value == "helmet" then
 								  local player, distance = ESX.Game.GetClosestPlayer()
@@ -381,7 +381,7 @@ local Keys = {
 									  end
 								  else
 									  --sendNotification('Ingen i närheten', 'error', 2500)
-									  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+									  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 								  end
 
 								elseif data2.current.value == 'search' then
@@ -395,11 +395,11 @@ local Keys = {
 									   end
 										--- kollar ifall spelaren inte håller upp händerna
                                    if not IsEntityPlayingAnim(GetPlayerPed(player), "random@mugging3", "handsup_standing_base", 3) then
-                                       exports['mythic_notify']:DoHudText('inform', 'Personen håller inte upp händerna', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+                                       exports['mythic_notify']:SendAlert('error', 'Personen håller inte upp händerna')
 								   end
 							   else
 								  --sendNotification('Ingen person nära', 'error', 2500)
-								  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+								  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 							   end							                                       
 	
 								elseif data2.current.value == 'handcuff' then
@@ -411,11 +411,11 @@ local Keys = {
 											TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(player))
 										   else
 											   --sendNotification('Du har inga buntband', 'error', 2500)
-											   exports['mythic_notify']:DoHudText('inform', 'Du har inga buntband.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+											   exports['mythic_notify']:SendAlert('error', 'Du har inga buntband.')
 										   end
 									   else
 										   --sendNotification('Ingen person nära', 'error', 2500)
-										   exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										   exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 									   end
   
 								elseif data2.current.value == 'unhandcuff' then
@@ -426,11 +426,11 @@ local Keys = {
 											TriggerServerEvent('esx_policejob:unhandcuff', GetPlayerServerId(player))
 										else
 											  --sendNotification('Personen har inte buntband på sig', 'error', 2500)
-											  exports['mythic_notify']:DoHudText('inform', 'Personen har inte buntband på sig.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+											  exports['mythic_notify']:SendAlert('warning', 'Personen har inte buntband på sig.')
 										end
 									   else
 										   --sendNotification('Ingen person nära', 'error', 2500)
-										   exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										   exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 									   end
 								elseif data2.current.value == 'drag' then
 									local player, distance = ESX.Game.GetClosestPlayer()
@@ -546,7 +546,7 @@ local Keys = {
 							  if data2.current.value == 'society_money' then
 							  money = nil
                               ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
-                                exports['mythic_notify']:DoHudText('inform', 'Ditt företag ligger just nu på ' .. money .. ' SEK', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+                                exports['mythic_notify']:SendAlert('inform', 'Ditt företag ligger just nu på ' .. money .. ' SEK')
 							   end, PlayerData.job.name)
 							  end
   
@@ -557,13 +557,13 @@ local Keys = {
 										  local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 									  if closestPlayer == -1 or closestDistance > 3.0 then
 										  --sendNotification('Ingen person nära', 'error', 2500)
-										  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 									  else
 										  TriggerServerEvent('esx_qalle:recruit_player', GetPlayerServerId(closestPlayer), job,grade)
 									  end
 								  else
 									  --sendNotification('Du har inte rättigheterna', 'error', 2500)
-									  exports['mythic_notify']:DoHudText('inform', 'Du har inte rättigheterna.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+									  exports['mythic_notify']:SendAlert('error', 'Du har inte rättigheterna.')
 								  end								
 							  end
   
@@ -574,13 +574,13 @@ local Keys = {
 										  local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 									  if closestPlayer == -1 or closestDistance > 3.0 then
 										  --sendNotification('Ingen person nära', 'error', 2500)
-										  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 									  else
 										  TriggerServerEvent('esx_qalle:kick_player', GetPlayerServerId(closestPlayer))
 									  end
 								  else
 									  --sendNotification('Du har inte rättigheterna', 'error', 2500)
-									  exports['mythic_notify']:DoHudText('inform', 'Du har inte rättigheterna.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+									  exports['mythic_notify']:SendAlert('error', 'Du har inte rättigheterna.')
 								  end								
 							  end
   
@@ -590,13 +590,13 @@ local Keys = {
 										  local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 									  if closestPlayer == -1 or closestDistance > 3.0 then
 										  --sendNotification('Ingen person nära', 'error', 2500)
-										  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 									  else
 										  TriggerServerEvent('esx_qalle:promote_player', GetPlayerServerId(closestPlayer))
 									  end
 								  else
 									  --sendNotification('Du har inte rättigheterna', 'error', 2500)
-									  exports['mythic_notify']:DoHudText('inform', 'Du har inte rättigheterna.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+									  exports['mythic_notify']:SendAlert('error', 'Du har inte rättigheterna.')
 								  end																
 							  end
   
@@ -605,13 +605,13 @@ local Keys = {
 										  local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 									  if closestPlayer == -1 or closestDistance > 3.0 then
 										  --sendNotification('Ingen person nära', 'error', 2500)
-										  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+										  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 									  else
 										  TriggerServerEvent('esx_qalle:demote_player', GetPlayerServerId(closestPlayer))
 									  end
 								  else
 									  --sendNotification('Du har inte rättigheterna', 'error', 2500)
-									  exports['mythic_notify']:DoHudText('inform', 'Du har inte rättigheterna.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+									  exports['mythic_notify']:SendAlert('error', 'Du har inte rättigheterna.')
 								  end
 							  end
 							  
@@ -755,7 +755,7 @@ local Keys = {
 				  else
 					  menu.close()
 					  --sendNotification('Personen är för långt bort', 'error', 2500)
-					  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+					  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 				  end 
 				  if IsEntityPlayingAnim(GetPlayerPed(-1), "amb@medic@standing@kneel@base" ,"base", 3) then
 					  TaskPlayAnim(GetPlayerPed(-1), "amb@medic@standing@kneel@exit" ,"exit" ,8.0, -8.0, -1, 0, 0, false, false, false )
@@ -793,7 +793,7 @@ local Keys = {
 				  else
 					  menu.close()
 					  --sendNotification('Personen är för långt bort', 'error', 2500)
-					  exports['mythic_notify']:DoHudText('inform', 'Ingen person nära.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+					  exports['mythic_notify']:SendAlert('error', 'Ingen person nära.')
 				  end 
 				  if IsEntityPlayingAnim(GetPlayerPed(-1), "amb@medic@standing@kneel@base" ,"base", 3) then
 					  TaskPlayAnim(GetPlayerPed(-1), "amb@medic@standing@kneel@exit" ,"exit" ,8.0, -8.0, -1, 0, 0, false, false, false )
@@ -1027,7 +1027,7 @@ local Keys = {
 				  TriggerEvent('skinchanger:loadClothes', skin, accessorySkin)
 			  end)
           else
-              exports['mythic_notify']:DoHudText('inform', 'Du har inte denna accessoaren', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+              exports['mythic_notify']:SendAlert('error', 'Du har inte denna accessoaren')
 		  end
   
 	  end, accessory)
@@ -1219,7 +1219,7 @@ local Keys = {
 						while not HasAnimDictLoaded(dict) do
 						  Citizen.Wait(0)
 						end		  
-						exports['mythic_notify']:DoHudText('inform', 'Du har låst fordonet.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('error', 'Du har LÅST fordonet.')
 						--ESX.ShowNotification('Du har ~r~låst~w~ ditt fordon')
 					if not IsPedInAnyVehicle(PlayerPedId(), true) then
 						TaskPlayAnim(PlayerPedId(), dict, "fob_click_fp", 8.0, 8.0, -1, 48, 1, false, false, false)
@@ -1249,7 +1249,7 @@ local Keys = {
 			if not IsPedInAnyVehicle(PlayerPedId(), true) then
 				TaskPlayAnim(PlayerPedId(), dict, "fob_click_fp", 8.0, 8.0, -1, 48, 1, false, false, false)
 			end	
-			exports['mythic_notify']:DoHudText('inform', 'Du har låst upp fordonet.', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+			exports['mythic_notify']:SendAlert('success', 'Du har LÅST UPP fordonet.')
 			  --ESX.ShowNotification('Du har ~g~låst upp~w~ ditt fordon')
 			if not IsPedInAnyVehicle(playerPed,  false) then
 			  SetPedIntoVehicle(playerPed, vehicle, -1)
@@ -1275,7 +1275,7 @@ local Keys = {
 		  end
 		else
 			--sendNotification('Du har inga NYCKLAR till denna bil', 'error', 3500)
-			exports['mythic_notify']:DoHudText('inform', 'Du har inga nycklar till fordonet.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+			exports['mythic_notify']:SendAlert('error', 'Du har inga nycklar till fordonet.')
 			--ESX.ShowNotification('~r~Du har inga nycklar till fordonet.')
 			
 		end

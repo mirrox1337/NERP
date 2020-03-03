@@ -705,7 +705,7 @@ Citizen.CreateThread(function()
 								msg = string.format(_U('take_me_to', GetStreetNameFromHashKey(street[1])))
 							end
 
-							exports['mythic_notify']:DoHudText('inform', msg, { ['background-color'] = '#009c10', ['color'] = '#fff' })
+							exports['mythic_notify']:SendAlert('inform', msg)
 
 							DestinationBlip = AddBlipForCoord(TargetCoords.x, TargetCoords.y, TargetCoords.z)
 

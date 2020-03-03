@@ -11,11 +11,11 @@ AddEventHandler('loffe-fishing:sellFish', function()
 	local randomMoney = math.random(15, 35)
 	
 	if fishQuantity == 0 then
-	TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du har inga fiskar', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = 'Du har inga fiskar' })
 	else
 	xPlayer.removeInventoryItem('fish', fishQuantity)
 	xPlayer.addAccountMoney('bank', fishQuantity * 50)
-	TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du sålde ' .. fishQuantity .. ' fiskar för ' .. fishQuantity * randomMoney .. ' SEK', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du sålde ' .. fishQuantity .. ' fiskar för ' .. fishQuantity * randomMoney .. ' SEK' })
 	end
 
 end)
@@ -31,7 +31,7 @@ AddEventHandler('loffe-fishing:giveFish', function()
 	if fishQuantity <= 200 then
 
 		xPlayer.addInventoryItem('fish', 1)
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du fångade en fisk som vägde ' .. randomWeight .. ' gram.', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'success', text = 'Du fångade en fisk som vägde ' .. randomWeight .. ' gram.' })
 	end
 
 end)
@@ -47,15 +47,15 @@ AddEventHandler('loffe-fishing:buy', function(item, price, amount)
 		if item == 'fishingrod' and itemAmount < 1 then 
 			xPlayer.removeMoney(price)
 			xPlayer.addInventoryItem(item, amount)
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du köpte ' .. amount .. ' ' .. label  .. ' för ' .. price .. ' SEK', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du köpte ' .. amount .. ' ' .. label  .. ' för ' .. price .. ' SEK' })
 		elseif item ~= 'fishingrod' and itemAmount < 200 then
 			xPlayer.removeMoney(price)
 			xPlayer.addInventoryItem(item, amount)
 		else
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du har för många ' .. label .. 'n på dig.', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = 'Du har för många ' .. label .. 'n på dig.' })
 		end
 	else
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Du har inte tillräckligt med pengar', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = 'Du har inte tillräckligt med pengar' })
 	end
 end)
 

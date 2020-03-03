@@ -60,12 +60,12 @@ AddEventHandler('esx_shops:buyItem', function(itemName, amount, zone)
 		--if xPlayer.canCarryItem(itemName, amount) then
 			xPlayer.removeMoney(price)
 			xPlayer.addInventoryItem(itemName, amount)
-			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('bought', amount, itemLabel, ESX.Math.GroupDigits(price)), style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('bought', amount, itemLabel, ESX.Math.GroupDigits(price)) })
 		--else
 			--xPlayer.showNotification(_U('player_cannot_hold'))
 		--end
 	else
 		local missingMoney = price - xPlayer.getMoney()
-		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('not_enough', ESX.Math.GroupDigits(missingMoney)), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = _U('not_enough', ESX.Math.GroupDigits(missingMoney)) })
 	end
 end)

@@ -68,7 +68,7 @@ function OpenShopMenu(accessory)
                                 TriggerEvent('skinchanger:loadSkin', skin)
                                 
                                 end)
-                                exports['mythic_notify']:DoHudText('inform', 'Du har ej råd', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+                                exports['mythic_notify']:SendAlert('error', 'Du har ej råd')
                             end
                         end, 15000)
                     else
@@ -82,7 +82,7 @@ function OpenShopMenu(accessory)
                                 TriggerEvent('esx_skin:getLastSkin', function(skin)
                                     TriggerEvent('skinchanger:loadSkin', skin)
                                 end)
-                                exports['mythic_notify']:DoHudText('inform', _U('not_enough_money'), { ['background-color'] = '#b00000', ['color'] = '#fff' })
+                                exports['mythic_notify']:SendAlert('error', _U('not_enough_money'))
                             end
                         end, 100)
                     end

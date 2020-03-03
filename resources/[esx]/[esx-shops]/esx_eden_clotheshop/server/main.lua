@@ -9,7 +9,7 @@ AddEventHandler('esx_eden_clotheshop:pay', function()
 
 	xPlayer.removeMoney(Config.Price)
 
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('you_paid') .. Config.Price, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = _U('you_paid') .. Config.Price })
 
 end)
 

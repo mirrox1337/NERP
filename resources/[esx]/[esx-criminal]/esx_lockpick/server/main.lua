@@ -34,7 +34,7 @@ ESX.RegisterUsableItem('advancedlockpick', function(source)
 		if anycops >= 2 then
 			TriggerClientEvent('houseRobberies:attempt', source, xPlayer.getInventoryItem('advancedlockpick').count)
 		else
-		  TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Det är inte tillräckligt med blåbär i staden', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		  TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Det är inte tillräckligt med poliser i staden' })
 		end
 end)
 

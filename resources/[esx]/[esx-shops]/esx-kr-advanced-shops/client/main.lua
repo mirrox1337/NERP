@@ -593,7 +593,7 @@ function PutItem(number)
 			local count = tonumber(data2.value)
 		
 			if count > invcount then
-				exports['mythic_notify']:DoHudText('inform', 'Du kan inte sälja mer än vad du äger!', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('error', 'Du kan inte sälja mer än vad du äger!')
 				menu2.close()
 				menu.close()
 			else
@@ -864,10 +864,10 @@ function Robbery(id)
 						Name = result.name
 						end)
                 else
-					exports['mythic_notify']:DoHudText('inform', "Det är inte tillräckligt med poliser i tjänst " .. results .. '/' .. Config.RequiredPolices, { ['background-color'] = '#b00000', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('error', "Det är inte tillräckligt med poliser i tjänst " .. results .. '/' .. Config.RequiredPolices)
 				end
 			else
-				exports['mythic_notify']:DoHudText('inform', "Denna butik har nyligen blivit rånad vänta " ..  math.floor((Config.TimeBetweenRobberies - result.time)  / 60) .. ' minuter', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+				exports['mythic_notify']:SendAlert('error', "Denna butik har nyligen blivit rånad vänta " ..  math.floor((Config.TimeBetweenRobberies - result.time)  / 60) .. ' minuter')
 			end
 		end)
 	end, id)
@@ -896,7 +896,7 @@ Citizen.CreateThread(function()
 					OnRobbery = false
 					DeleteEntity(Var)
 					TriggerServerEvent('esx_kr_shops-robbery:NotifyOwner', "Rånet på din butik (" .. Name .. ') var inte framgångsrikt!', Id)
-					exports['mythic_notify']:DoHudText('inform', _U("robbery_cancel"), { ['background-color'] = '#b00000', ['color'] = '#fff' })	
+					exports['mythic_notify']:SendAlert('warning', _U("robbery_cancel"))	
 				end
 	end
 end)

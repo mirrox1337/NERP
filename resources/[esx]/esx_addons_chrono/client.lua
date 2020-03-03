@@ -102,7 +102,7 @@ end)
 
 RegisterNUICallback('setGPS', function(data)
   SetNewWaypoint(data.x,  data.y)
-  exports['mythic_notify']:DoHudText('inform', _U('gps_position'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+  exports['mythic_notify']:SendAlert('inform', _U('gps_position'))
 end)
 
 RegisterNUICallback('send', function(data)
@@ -124,7 +124,7 @@ RegisterNUICallback('send', function(data)
     showMessageEditor = false
   })
 
-  exports['mythic_notify']:DoHudText('inform', _U('message_sent'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+  exports['mythic_notify']:SendAlert('inform', _U('message_sent'))
 end)
 
 

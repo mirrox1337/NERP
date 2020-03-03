@@ -39,8 +39,8 @@ AddEventHandler('esx_Securitas:confiscatePlayerItem', function(target, itemType,
 		targetXPlayer.removeInventoryItem(itemName, amount)
 		 sourceXPlayer.addInventoryItem(itemName, amount)
   
-     TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confinv') .. amount .. ' ' .. label .. _U('from') .. targetXPlayer.name, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
-     TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, { type = 'inform', text = sourceXPlayer.name .. _U('confinv') .. amount .. ' ' .. label, style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })  
+     TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confinv') .. amount .. ' ' .. label .. _U('from') .. targetXPlayer.name })
+     TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, { type = 'inform', text = sourceXPlayer.name .. _U('confinv') .. amount .. ' ' .. label })  
 	end
   end
 
@@ -49,8 +49,8 @@ AddEventHandler('esx_Securitas:confiscatePlayerItem', function(target, itemType,
     targetXPlayer.removeAccountMoney(itemName, amount)
      sourceXPlayer.addAccountMoney(itemName, amount)
 
-    TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confdm') .. amount .. ' ' .. label .. _U('from') .. targetXPlayer.name, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
-    TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, { type = 'inform', text = sourceXPlayer.name .. _U('confdm') .. amount .. ' ' .. label, style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confdm') .. amount .. ' ' .. label .. _U('from') .. targetXPlayer.name })
+    TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, { type = 'inform', text = sourceXPlayer.name .. _U('confdm') .. amount .. ' ' .. label })
 
   end
 
@@ -59,8 +59,8 @@ AddEventHandler('esx_Securitas:confiscatePlayerItem', function(target, itemType,
     targetXPlayer.removeWeapon(itemName)
     sourceXPlayer.addWeapon(itemName, amount)
 
-    TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confweapon') .. amount .. ' ' .. label .. _U('from') .. targetXPlayer.name, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
-    TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, { type = 'inform', text = sourceXPlayer.name .. _U('confweapon') .. amount .. ' ' .. label, style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confweapon') .. amount .. ' ' .. label .. _U('from') .. targetXPlayer.name })
+    TriggerClientEvent('mythic_notify:client:SendAlert', targetXPlayer.source, { type = 'inform', text = sourceXPlayer.name .. _U('confweapon') .. amount .. ' ' .. label })
 
   end
 
@@ -97,7 +97,7 @@ ESX.RegisterServerCallback('esx_Securitas:buylockpick', function(source, cb)
     else
       cb(false)
       local xPlayer = ESX.GetPlayerFromId(source)
-      TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Du köpte ett dyrksett', style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+      TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'Du köpte ett dyrksett' })
     end
   end)
 end)
@@ -115,10 +115,10 @@ AddEventHandler('esx_Securitas:getStockItem', function(itemName, count)
       inventory.removeItem(itemName, count)
       xPlayer.addInventoryItem(itemName, count)
     else
-      TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('quantity_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+      TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'error', text = _U('quantity_invalid') })
     end
 
-    TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('have_withdrawn') .. count .. ' ' .. item.label, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('have_withdrawn') .. count .. ' ' .. item.label })
 
   end)
 
@@ -137,10 +137,10 @@ AddEventHandler('esx_Securitas:putStockItems', function(itemName, count)
       xPlayer.removeInventoryItem(itemName, count)
       inventory.addItem(itemName, count)
     else
-      TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('quantity_invalid'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+      TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'error', text = _U('quantity_invalid') })
     end
 
-    TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('added') .. count .. ' ' .. item.label, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+    TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = _U('added') .. count .. ' ' .. item.label })
 
   end)
 
@@ -502,7 +502,7 @@ MySQL.Async.execute(
 			['@identifier'] = xPlayer.identifier;
 		}
 	)
-TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confdm') .. _U('dmv') .. _U('from') .. xPlayer.name, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'warning', text = _U('you_have_confdm') .. _U('dmv') .. _U('from') .. xPlayer.name })
 else
 TriggerClientEvent('esx:showNotification', sourceXPlayer.source, "Il n'a pas de" .. _U('dmv'))
 end
@@ -530,7 +530,7 @@ MySQL.Async.execute(
 			['@identifier'] = xPlayer.identifier;
 		}
 	)
-TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confdm') .. _U('drive') .. _U('from') .. xPlayer.name, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'warning', text = _U('you_have_confdm') .. _U('drive') .. _U('from') .. xPlayer.name })
 else
 TriggerClientEvent('esx:showNotification', sourceXPlayer.source, "Han har inget " .. _U('drive'))
 end
@@ -558,7 +558,7 @@ MySQL.Async.execute(
 			['@identifier'] = xPlayer.identifier;
 		}
 	)
-TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confdm') .. _U('drive_bike') .. _U('from') .. xPlayer.name, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'warning', text = _U('you_have_confdm') .. _U('drive_bike') .. _U('from') .. xPlayer.name })
 else
 TriggerClientEvent('esx:showNotification', sourceXPlayer.source, "Han har inget " .. _U('drive_bike'))
 end
@@ -586,9 +586,9 @@ MySQL.Async.execute(
 			['@identifier'] = xPlayer.identifier;
 		}
 	)
-TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confdm') .. _U('drive_truck') .. _U('from') .. xPlayer.name, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'warning', text = _U('you_have_confdm') .. _U('drive_truck') .. _U('from') .. xPlayer.name })
 else
-TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = 'Personen har inget ' .. _U('drive_truck'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'warning', text = 'Personen har inget ' .. _U('drive_truck') })
 end
 end)
 
@@ -614,9 +614,9 @@ MySQL.Async.execute(
 			['@identifier'] = xPlayer.identifier;
 		}
 	)
-TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = _U('you_have_confdm') .. _U('weapon') .. _U('from') .. xPlayer.name, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'warning', text = _U('you_have_confdm') .. _U('weapon') .. _U('from') .. xPlayer.name })
 else
-TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'inform', text = "Personen har inget " .. _U('weapon'), style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+TriggerClientEvent('mythic_notify:client:SendAlert', sourceXPlayer.source, { type = 'warning', text = "Personen har inget " .. _U('weapon') })
 end
 end)
 

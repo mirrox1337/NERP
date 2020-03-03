@@ -416,5 +416,5 @@ end)
 
 
 function notification(textString)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = textString, style = { ['background-color'] = '#009c10', ['color'] = '#fff' } })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = textString })
 end

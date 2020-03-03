@@ -58,7 +58,7 @@ function FoodMeny()
                         TriggerServerEvent("wille-food:removeMoney", Config.EatPrice)
                         eat(data.current.prop)
                     else
-                        exports['mythic_notify']:DoHudText('inform', 'Du har inte tillräckligt med pengar.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+                        exports['mythic_notify']:SendAlert('error', 'Du har inte tillräckligt med pengar.')
                     end
                 end)
             elseif selected == 'drink' then
@@ -68,7 +68,7 @@ function FoodMeny()
                         TriggerServerEvent("wille-food:removeMoney", Config.DrinkPrice)
                         drink(data.current.prop) 
                     else
-                        exports['mythic_notify']:DoHudText('inform', 'Du har inte tillräckligt med pengar.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+                        exports['mythic_notify']:SendAlert('error', 'Du har inte tillräckligt med pengar.')
                     end
                 end)
             end

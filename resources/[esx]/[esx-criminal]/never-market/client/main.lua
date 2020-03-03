@@ -109,7 +109,7 @@ function OpenShopMenu(title, values)
 			if data.current.value == 'bulletproof_vest' then
 				ESX.TriggerServerCallback('wille-specialshop:buyBulletproofVest', function(success)
 					if success == false then
-						exports['mythic_notify']:DoHudText('inform', 'Du har inte tillräkligt med pengar!', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('error', 'Du har inte tillräkligt med pengar!')
 					else
 						SetPedArmour(GetPlayerPed(-1), 100)
 
@@ -126,9 +126,9 @@ function OpenShopMenu(title, values)
 			elseif data.current.value == 'weapon_switchblade' then
 				ESX.TriggerServerCallback('kulan-specialshop:switchblade', function(success)
 					if success == false then
-						exports['mythic_notify']:DoHudText('inform', 'Du har inte tillräckligt med Svarta pengar på dig', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('error', 'Du har inte tillräckligt med Svarta pengar på dig')
 					else
-						exports['mythic_notify']:DoHudText('inform', 'Du köpte en Switchblade', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('success', 'Du köpte en Switchblade')
 
 					end
 				
@@ -137,7 +137,7 @@ function OpenShopMenu(title, values)
 		    else
 				ESX.TriggerServerCallback('wille-specialshop:buyItem', function(success)
 					if success == false then
-						exports['mythic_notify']:DoHudText('inform', 'Du har inte tillräkligt med pengar!', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+						exports['mythic_notify']:SendAlert('error', 'Du har inte tillräkligt med pengar!')
 					end
 				end, data.current.value, data.current.amount, data.current.cost)
 			end

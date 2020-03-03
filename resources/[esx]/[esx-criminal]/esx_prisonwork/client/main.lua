@@ -92,7 +92,7 @@ Citizen.CreateThread(function()
 		TriggerEvent('esx_loffe_fangelse:hasExitedMarker', LeaveBox)
         HasAlreadyEnteredMarker = false
 		CurrentAction = nil
-    exports['mythic_notify']:DoHudText('inform', 'Du har ingen låda, Gå och hämta en i inhägnaden', { ['background-color'] = '#b00000', ['color'] = '#fff' })  
+    exports['mythic_notify']:SendAlert('error', 'Du har ingen låda, Gå och hämta en i inhägnaden')  
 		Citizen.Wait(5000) -- Gör så att man inte blir spammad med notifikationer
         end 
 		end

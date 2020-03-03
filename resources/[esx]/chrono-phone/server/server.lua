@@ -48,7 +48,7 @@ ESX.RegisterUsableItem('phone', function(source)
     local phoneQ = xPlayer.getInventoryItem('phone').count
     local phoneOffQ = xPlayer.getInventoryItem('phoneoff').count
     if phoneQ > 0 then
-        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du stängde av telefonen.', length = 3500, style = { ['background-color'] = '#ad0000', ['color'] = '#fff' } })
+        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du stängde av telefonen.' })
         xPlayer.addInventoryItem('phoneoff', phoneQ)
         xPlayer.removeInventoryItem('phone', phoneQ)
     elseif phoneOffQ > 0 then
@@ -66,7 +66,7 @@ ESX.RegisterUsableItem('phoneoff', function(source)
     local phoneQ = xPlayer.getInventoryItem('phoneoff').count
     local phoneOffQ = xPlayer.getInventoryItem('phone').count
     if phoneQ > 0 then
-        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du startade telefonen.', length = 3500, style = { ['background-color'] = '#007ecc', ['color'] = '#fff' } })
+        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'Du startade telefonen.' })
         xPlayer.addInventoryItem('phone', phoneQ)
         xPlayer.removeInventoryItem('phoneoff', phoneQ)
         end

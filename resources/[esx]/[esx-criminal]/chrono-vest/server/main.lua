@@ -10,6 +10,6 @@ ESX.RegisterUsableItem('bulletproof_vest', function(source)
 			xPlayer.removeInventoryItem('bulletproof_vest', 1)
 			TriggerClientEvent('chrono:startVest', source)
 		else
-			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Du har ingen skottsäkerväst!', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Du har ingen skottsäkerväst!' })
 		end
 end)

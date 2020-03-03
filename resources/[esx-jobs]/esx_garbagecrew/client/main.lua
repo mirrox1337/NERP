@@ -458,9 +458,9 @@ end
 function retourcamion_non()
 	
 	if livraisonnombre >= Config.MaxDelivery then
-		exports['mythic_notify']:DoHudText('inform', _U('need_it'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+		exports['mythic_notify']:SendAlert('inform', _U('need_it'))
 	else
-		exports['mythic_notify']:DoHudText('inform', _U('ok_work'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+		exports['mythic_notify']:SendAlert('inform', _U('ok_work'))
 		nouvelledestination()
 	end
 end
@@ -484,7 +484,7 @@ function retourcamionperdu_oui()
 end
 
 function retourcamionperdu_non()
-	exports['mythic_notify']:DoHudText('inform', _U('scared_me'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('inform', _U('scared_me'))
 end
 
 function retourcamionannulermission_oui()
@@ -507,7 +507,7 @@ function retourcamionannulermission_oui()
 end
 
 function retourcamionannulermission_non()	
-	exports['mythic_notify']:DoHudText('inform', _U('resume_delivery'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('inform', _U('resume_delivery'))
 end
 
 function retourcamionperduannulermission_oui()
@@ -530,7 +530,7 @@ function retourcamionperduannulermission_oui()
 end
 
 function retourcamionperduannulermission_non()	
-	exports['mythic_notify']:DoHudText('inform', _U('resume_delivery'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('inform', _U('resume_delivery'))
 end
 
 function round(num, numDecimalPlaces)
@@ -673,7 +673,7 @@ Citizen.CreateThread(function()
 								CurrentAction = nil
 								trashcollection = false
 								truckdeposit = false
-								exports['mythic_notify']:DoHudText('inform', "Collection finished return to truck!", { ['background-color'] = '#009c10', ['color'] = '#fff' })
+								exports['mythic_notify']:SendAlert('inform', "Collection finished return to truck!")
 								while not IsPedInVehicle(GetPlayerPed(-1), work_truck, false) do
 									Citizen.Wait(0)
 								end
@@ -940,11 +940,11 @@ function MissionLivraisonLetsGo()
 	EndTextCommandSetBlipName(Blips['annulermission'])
 
 	if MissionRegion == 1 then -- Los santos
-		exports['mythic_notify']:DoHudText('inform', _U('meet_ls'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+		exports['mythic_notify']:SendAlert('inform', _U('meet_ls'))
 	elseif MissionRegion == 2 then -- Blaine County
-		exports['mythic_notify']:DoHudText('inform', _U('meet_bc'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+		exports['mythic_notify']:SendAlert('inform', _U('meet_bc'))
 	elseif MissionRegion == 0 then -- au cas ou
-		exports['mythic_notify']:DoHudText('inform', _U('meet_del'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+		exports['mythic_notify']:SendAlert('inform', _U('meet_del'))
 	end
 
 	MissionLivraison = true
@@ -965,7 +965,7 @@ function MissionLivraisonStopRetourDepot()
 		Blips['annulermission'] = nil
 	end
 
-	exports['mythic_notify']:DoHudText('inform', _U('return_depot'), { ['background-color'] = '#009c10', ['color'] = '#fff' })
+	exports['mythic_notify']:SendAlert('inform', _U('return_depot'))
 	
 	MissionRegion = 0
 	MissionLivraison = false

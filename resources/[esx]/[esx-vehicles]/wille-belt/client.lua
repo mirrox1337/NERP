@@ -39,14 +39,14 @@ RegisterNetEvent('balte')
 			beltOn = not beltOn				  
 				if beltOn then  
 					--sendNotification('Du tog på dig <font color="green">Bältet</font>', 'success', 2000)
-					exports['mythic_notify']:DoHudText('inform', 'Du tog på dig bältet.', { ['background-color'] = '#009c10', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('success', 'Du tog PÅ dig bältet.')
 					SendNUIMessage({
 		            displayWindow = 'false'
 		            })
 		            isUiOpen = true
 		  else 
 					--sendNotification('Du tog av dig <font color="red">Bältet</font>', 'success', 2000)
-					exports['mythic_notify']:DoHudText('inform', 'Du tog av dig bältet.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+					exports['mythic_notify']:SendAlert('warning', 'Du tog AV dig bältet.')
                     SendNUIMessage({
 		            displayWindow = 'true'
 		            })
@@ -284,7 +284,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 		if IsDisabledControlJustReleased(0, 23) and beltOn == true then
 			--sendNotification('Bältet tog i <font color="red">Axeln</font>', 'error', 2000)
-			exports['mythic_notify']:DoHudText('inform', 'Bältet tog i axeln.', { ['background-color'] = '#b00000', ['color'] = '#fff' })
+			exports['mythic_notify']:SendAlert('error', 'Bältet tog i axeln.')
 		end
 	end
 end)

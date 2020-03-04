@@ -11,7 +11,7 @@ AddEventHandler('bank:deposit', function(amount)
 	
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	if amount == nil or amount <= 0 or amount > xPlayer.getMoney() then
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Invalid Amount', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('chatMessage', _source, "Invalid Amount")
 	else
 		xPlayer.removeMoney(amount)
 		xPlayer.addAccountMoney('bank', tonumber(amount))
@@ -27,7 +27,7 @@ AddEventHandler('bank:withdraw', function(amount)
 	amount = tonumber(amount)
 	base = xPlayer.getAccount('bank').money
 	if amount == nil or amount <= 0 or amount > base then
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'Invalid Amount', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('chatMessage', _source, "Invalid Amount")
 	else
 		xPlayer.removeAccountMoney('bank', amount)
 		xPlayer.addMoney(amount)
@@ -54,10 +54,10 @@ AddEventHandler('bank:transfer', function(to, amountt)
 	zbalance = zPlayer.getAccount('bank').money
 	
 	if tonumber(_source) == tonumber(to) then
-		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = 'You cannot transfer to your self', style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+		TriggerClientEvent('chatMessage', _source, "You cannot transfer to your self")
 	else
 		if balance <= 0 or balance < tonumber(amountt) or tonumber(amountt) <= 0 then
-			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = "You do not have enough money in the bank.", style = { ['background-color'] = '#b00000', ['color'] = '#fff' } })
+			TriggerClientEvent('chatMessage', _source, "You don't have enough money in the bank.")
 		else
 			xPlayer.removeAccountMoney('bank', amountt)
 			zPlayer.addAccountMoney('bank', amountt)

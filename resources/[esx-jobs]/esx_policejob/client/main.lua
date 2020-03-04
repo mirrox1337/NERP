@@ -1595,10 +1595,16 @@ function OpenPoliceActionsMenu()
         {label = _U('object_spawner'),      value = 'object_spawner'},
         {label = _U('Västar'),		          value = 'vestmenu'},
         {label = _U('larm'),		            value = 'larm'},
+        {label = ('Polisradar'),			value = 'radar_toggle'},
         --{label = _U('jail'),		            value = 'jail_menu'}
       },
     },
     function(data, menu)
+
+    if data.current.value == 'radar_toggle' then 
+		TriggerEvent( 'wk:radarRC' )
+		menu.close()
+	end
 
       if data.current.value == 'larm' then
         local x,y,z = table.unpack(GetEntityCoords(GetPlayerPed(-1), false))

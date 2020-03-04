@@ -14,6 +14,7 @@ Citizen.CreateThread( function()
     SendNUIMessage( { resourcename = resourceName } )
 end )
 
+SetNuiFocus(false)
 
 --[[------------------------------------------------------------------------
     Utils 
@@ -74,15 +75,17 @@ local radarInfo =
     fwdFastLocked = false, 
     fwdDir = nil, 
     fwdFastSpeed = 0,
+    fwdPlate = "",
 
     bwdPrevVeh = 0, 
     bwdXmit = false, 
     bwdMode = "none", 
-    bwdSpeed = "OFF", 
-    bwdFast = "OFF",
+    bwdSpeed = "AV", 
+    bwdFast = "AV",
     bwdFastLocked = false, 
     bwdDir = nil, 
     bwdFastSpeed = 0, 
+    bwdPlate = "",
 
     fastResetLimit = 150,
     fastLimit = 55, 
@@ -101,9 +104,11 @@ AddEventHandler( 'wk:toggleRadar', function()
             radarEnabled = not radarEnabled
 
             if ( radarEnabled ) then 
-                Notify( "~b~Radar enabled." )
+                --Notify( "~b~Radar startad." )
+                exports['mythic_notify']:SendAlert('inform', 'Radar startad.')
             else 
-                Notify( "~b~Radar disabled." )
+                --Notify( "~b~Radar avstängd." )
+                exports['mythic_notify']:SendAlert('inform', 'Radar avstängd.')
             end 
 
             ResetFrontAntenna()
@@ -117,10 +122,12 @@ AddEventHandler( 'wk:toggleRadar', function()
                 bwdmode = radarInfo.bwdMode
             })
         else 
-            Notify( "~r~You must be in a police vehicle." )
+            --Notify( "~r~Du måste vara i ett polisfordon." )
+            exports['mythic_notify']:SendAlert('error', 'Du måste vara i ett polisfordon.')
         end 
     else 
-        Notify( "~r~You must be in a vehicle." )
+        --Notify( "~r~You must be in a vehicle." )
+        exports['mythic_notify']:SendAlert('error', 'Du måste sitte i ett fordon.')
     end 
 end )
 
@@ -162,7 +169,7 @@ function ResetFrontAntenna()
         radarInfo.fwdSpeed = "000"
         radarInfo.fwdFast = "000"  
     else 
-        radarInfo.fwdSpeed = "OFF"
+        radarInfo.fwdSpeed = "AV"
         radarInfo.fwdFast = "   "  
     end 
 
@@ -176,7 +183,7 @@ function ResetRearAntenna()
         radarInfo.bwdSpeed = "000"
         radarInfo.bwdFast = "000"
     else 
-        radarInfo.bwdSpeed = "OFF"
+        radarInfo.bwdSpeed = "AV"
         radarInfo.bwdFast = "   "
     end 
 
@@ -218,10 +225,12 @@ end
 function ToggleSpeedType()
     if ( radarInfo.speedType == "kmh" ) then 
         radarInfo.speedType = "kmh"
-        Notify( "~b~Speed type set to Km/h." )
+        --Notify( "~b~Speed type set to Km/h." )
+        exports['mythic_notify']:SendAlert('inform', 'Speed type set to km/h.')
     else 
         radarInfo.speedType = "kmh"
-        Notify( "~b~Speed type set to MPH." )
+        --Notify( "~b~Speed type set to kmh." )
+        exports['mythic_notify']:SendAlert('inform', 'Speed type set to kmh.')
     end
 end 
 
@@ -265,10 +274,12 @@ function ManageVehicleRadar()
 
                     if ( DoesEntityExist( fwdVeh ) and IsEntityAVehicle( fwdVeh ) ) then 
                         local fwdVehSpeed = round( GetVehSpeed( fwdVeh ), 0 )
+                        local fwdPlate = tostring( GetVehicleNumberPlateText(fwdVeh) ) or ""
 
                         local fwdVehHeading = round( GetEntityHeading( fwdVeh ), 0 )
                         local dir = IsEntityInMyHeading( h, fwdVehHeading, 100 )
 
+                        radarInfo.fwdPlate = fwdPlate
                         radarInfo.fwdSpeed = FormatSpeed( fwdVehSpeed )
                         radarInfo.fwdDir = dir 
 
@@ -299,6 +310,7 @@ function ManageVehicleRadar()
 
                     local packedBwdPos = vector3( bwdPos.x, bwdPos.y, bwdPos.z )                
                     local bwdVeh = GetVehicleInDirectionSphere( vehicle, vehiclePos, packedBwdPos )
+                    local bwdPlate = tostring( GetVehicleNumberPlateText(bwdVeh) ) or ""
 
                     if ( DoesEntityExist( bwdVeh ) and IsEntityAVehicle( bwdVeh ) ) then
                         local bwdVehSpeed = round( GetVehSpeed( bwdVeh ), 0 )
@@ -306,6 +318,7 @@ function ManageVehicleRadar()
                         local bwdVehHeading = round( GetEntityHeading( bwdVeh ), 0 )
                         local dir = IsEntityInMyHeading( h, bwdVehHeading, 100 )
 
+                        radarInfo.bwdPlate = bwdPlate
                         radarInfo.bwdSpeed = FormatSpeed( bwdVehSpeed )
                         radarInfo.bwdDir = dir 
 
@@ -329,9 +342,11 @@ function ManageVehicleRadar()
                     fwdspeed = radarInfo.fwdSpeed, 
                     fwdfast = radarInfo.fwdFast, 
                     fwddir = radarInfo.fwdDir, 
+                    fwdPlate = radarInfo.fwdPlate,
                     bwdspeed = radarInfo.bwdSpeed, 
                     bwdfast = radarInfo.bwdFast, 
-                    bwddir = radarInfo.bwdDir 
+                    bwddir = radarInfo.bwdDir,
+                    bwdPlate = radarInfo.bwdPlate,
                 })
             end 
         end 
@@ -419,8 +434,8 @@ Citizen.CreateThread( function()
     while true do 
         ManageVehicleRadar()
 
-        -- Only run 10 times a second, more realistic, also prevents spam 
-        Citizen.Wait( 100 )
+        -- Only run 2 times a second, more realistic, also prevents spam 
+        Citizen.Wait( 500 )
     end
 end )
 
@@ -429,12 +444,12 @@ Citizen.CreateThread( function()
         -- These control pressed natives must be the disabled check ones. 
 
         -- LCtrl is pressed and M has just been pressed 
-        if ( IsDisabledControlPressed( 1, 36 ) and IsDisabledControlJustPressed( 1, 311 ) ) then 
-            TriggerEvent( 'wk:radarRC' )
+        if ( IsDisabledControlPressed( 1, 311 ) and IsDisabledControlJustPressed( 1, 311 ) ) then 
+            --TriggerEvent( 'wk:radarRC' )
         end 
 
         -- LCtrl is not being pressed and M has just been pressed 
-        if ( not IsDisabledControlPressed( 1, 36 ) and IsDisabledControlJustPressed( 1, 311 ) ) then 
+        if ( not IsDisabledControlPressed( 1, 311 ) and IsDisabledControlJustPressed( 1, 311 ) ) then 
             ResetFrontFast()
             ResetRearFast()
         end 

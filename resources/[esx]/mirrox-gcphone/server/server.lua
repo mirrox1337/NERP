@@ -162,32 +162,37 @@ AddEventHandler('qalle:jobS', function(phoneNumber, message, position, dipatch2)
                 TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
             end
         end
-        if phoneNumber == 'Polisen' then
+        if phoneNumber == 'police' then
             if xPlayer.job.name == 'police' then
                 TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
             end
         end
-        if phoneNumber == 'Akuten' then
+        if phoneNumber == 'ambulance' then
             if xPlayer.job.name == 'ambulance' then
                 TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
             end
         end
-        if phoneNumber == 'Mekonomen' then
+        if phoneNumber == 'mecano' then
             if xPlayer.job.name == 'mechanic' then
                 TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
             end
         end
-        if phoneNumber == 'Bilhandlaren' then
+        if phoneNumber == 'cardealer' then
             if xPlayer.job.name == 'cardealer' then
                 TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
             end
         end
-        if phoneNumber == 'Taxi' then
+        if phoneNumber == 'taxi' then
             if xPlayer.job.name == 'taxi' then
                 TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
             end
         end
-        if phoneNumber == 'Bennys' then
+        if phoneNumber == 'Securitas' then
+            if xPlayer.job.name == 'Securitas' then
+                TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
+            end
+        end
+        if phoneNumber == 'bennys' then
             if xPlayer.job.name == 'bennys' then
                 TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
             end

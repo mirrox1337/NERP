@@ -2,6 +2,7 @@ local ind = {l = false, r = false}
 
 Citizen.CreateThread(function()
 	while true do
+		Citizen.Wait(200)
 		local Ped = GetPlayerPed(-1)
 		if(IsPedInAnyVehicle(Ped)) then
 			local PedCar = GetVehiclePedIsIn(Ped, false)
@@ -38,14 +39,6 @@ Citizen.CreateThread(function()
 				-- Turn signal
 				-- SetVehicleIndicatorLights (1 left -- 0 right)
 				local VehIndicatorLight = GetVehicleIndicatorLights(GetVehiclePedIsUsing(PlayerPedId()))
-				if IsControlJustPressed(1, 175) then -- F10 is pressed
-					ind.l = not ind.l
-					SetVehicleIndicatorLights(GetVehiclePedIsUsing(GetPlayerPed(-1)), 0, ind.l)
-				end
-				if IsControlJustPressed(1, 174) then -- F9 is pressed
-					ind.r = not ind.r
-					SetVehicleIndicatorLights(GetVehiclePedIsUsing(GetPlayerPed(-1)), 1, ind.r)
-				end
 
 				if(VehIndicatorLight == 0) then
 					SendNUIMessage({
@@ -84,9 +77,22 @@ Citizen.CreateThread(function()
 	end
 end)
 
+if not cinema then
+	SendNUIMessage({
+		showhud = true,
+	})
+end
+
+if cinema then
+	SendNUIMessage({
+		showhud = false,
+	})
+end
+
 -- Consume fuel factor
---[[Citizen.CreateThread(function()
+Citizen.CreateThread(function()
 	while true do
+		Citizen.Wait(500)
 		local Ped = GetPlayerPed(-1)
 		if(IsPedInAnyVehicle(Ped)) then
 			local PedCar = GetVehiclePedIsIn(Ped, false)
@@ -96,36 +102,36 @@ end)
 				rpm = GetVehicleCurrentRpm(PedCar)
 				rpmfuel = 0
 
-				if rpm > 0.9 then
-					rpmfuel = fuel - rpm / 0.8
-					Citizen.Wait(1000)
-				elseif rpm > 0.8 then
-					rpmfuel = fuel - rpm / 1.1
-					Citizen.Wait(1500)
-				elseif rpm > 0.7 then
-					rpmfuel = fuel - rpm / 2.2
-					Citizen.Wait(2000)
-				elseif rpm > 0.6 then
-					rpmfuel = fuel - rpm / 4.1
-					Citizen.Wait(3000)
-				elseif rpm > 0.5 then
-					rpmfuel = fuel - rpm / 5.7
-					Citizen.Wait(4000)
-				elseif rpm > 0.4 then
-					rpmfuel = fuel - rpm / 6.4
-					Citizen.Wait(5000)
-				elseif rpm > 0.3 then
-					rpmfuel = fuel - rpm / 6.9
-					Citizen.Wait(6000)
-				elseif rpm > 0.2 then
-					rpmfuel = fuel - rpm / 7.3
-					Citizen.Wait(8000)
-				else
-					rpmfuel = fuel - rpm / 7.5
-					Citizen.Wait(15000)
-				end
+				--[[if rpm > 0.9 then
+				rpmfuel = fuel - rpm / 0.8
+				Citizen.Wait(1000)
+			elseif rpm > 0.8 then
+				rpmfuel = fuel - rpm / 1.1
+				Citizen.Wait(1500)
+			elseif rpm > 0.7 then
+				rpmfuel = fuel - rpm / 2.2
+				Citizen.Wait(2000)
+			elseif rpm > 0.6 then
+				rpmfuel = fuel - rpm / 4.1
+				Citizen.Wait(3000)
+			elseif rpm > 0.5 then
+				rpmfuel = fuel - rpm / 5.7
+				Citizen.Wait(4000)
+			elseif rpm > 0.4 then
+				rpmfuel = fuel - rpm / 6.4
+				Citizen.Wait(5000)
+			elseif rpm > 0.3 then
+				rpmfuel = fuel - rpm / 6.9
+				Citizen.Wait(6000)
+			elseif rpm > 0.2 then
+				rpmfuel = fuel - rpm / 7.3
+				Citizen.Wait(8000)
+			else
+				rpmfuel = fuel - rpm / 7.5
+				Citizen.Wait(15000)
+			end
 
-				carFuel = SetVehicleFuelLevel(PedCar, rpmfuel)
+			carFuel = SetVehicleFuelLevel(PedCar, rpmfuel)]]
 
 				SendNUIMessage({
 			showfuel = true,
@@ -136,4 +142,4 @@ end)
 
 		Citizen.Wait(1)
 	end
-end)]]
+end)

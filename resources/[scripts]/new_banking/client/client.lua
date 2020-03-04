@@ -19,7 +19,6 @@ local banks = {
 
 local atms = {
   {name="Bankomat", id=277, x=-386.733, y=6045.953, z=31.501},
-  {name="Bankomat", id=277, x= 315.15, y=-593.75, z=43.28},
   {name="Bankomat", id=277, x=-284.037, y=6224.385, z=31.187},
   {name="Bankomat", id=277, x=-284.037, y=6224.385, z=31.187},
   {name="Bankomat", id=277, x=-135.165, y=6365.738, z=31.101},
@@ -117,24 +116,44 @@ end)
 if bankMenu then
 	Citizen.CreateThread(function()
 	while true do
-		Wait(0)
+		Wait(10)
 	if nearBank() or nearATM() then
-			DisplayHelpText("~INPUT_PICKUP~ för att bli betjänad ~b~")
+			DisplayHelpText("~INPUT_PICKUP~ för att bli betjänad ~g~")
 
 		if IsControlJustPressed(1, 38) then
-			local dict = "mp_common"		
-			RequestAnimDict(dict)
-			while not HasAnimDictLoaded(dict) do
-				Citizen.Wait(0)
-			end
-			TaskPlayAnim(GetPlayerPed(-1), dict, "givetake1_a", 8.0, 8.0, -1, 48, 1, false, false, false)
-			exports['t0sic_loadingbar']:loadingbar ('Stoppar in kort...', 2000)
-			Citizen.Wait(2000)
-			inMenu = true
-			SetNuiFocus(true, true)
-			SendNUIMessage({type = 'openGeneral'})
-			TriggerServerEvent('bank:balance')
-			local ped = GetPlayerPed(-1)
+			
+			exports['mythic_progbar']:Progress({
+				name = "take",
+				duration = 1500,
+				label = "Stoppar in kortet...",
+				useWhileDead = false,
+				canCancel = true,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = false,
+					disableMouse = false,
+					disableCombat = true,
+				},
+				animation = {
+					animDict = "amb@prop_human_atm@female@enter",
+					anim = "enter",
+					flags = 49,
+				},
+				prop = {
+					model = "prop_cs_credit_card",
+					bone = 64113,
+					coords = { x = 0.0, y = 0.0, z = 0.0 },
+					rotation = { x = 270.0, y = 220.0, z = 22.0 },
+				},
+			}, function(cancelled)
+				if not cancelled then
+					inMenu = true
+					SetNuiFocus(true, true)
+					SendNUIMessage({type = 'openGeneral'})
+					TriggerServerEvent('bank:balance')
+					local ped = GetPlayerPed(-1)
+				end
+			end)
 		end
 	end
 
@@ -157,7 +176,7 @@ Citizen.CreateThread(function()
 		local blip = AddBlipForCoord(v.x, v.y, v.z)
 		SetBlipSprite(blip, v.id)
 		SetBlipDisplay(blip, 4)
-		SetBlipScale  (blip, 0.65)
+		SetBlipScale  (blip, 0.6)
 		SetBlipColour (blip, 2)
 		SetBlipAsShortRange(blip, true)
 		BeginTextCommandSetBlipName("STRING")
@@ -247,16 +266,34 @@ end)
 --==               NUIFocusoff                 ==
 --===============================================
 RegisterNUICallback('NUIFocusOff', function()
-	inMenu = false
-	SetNuiFocus(false, false)
-	SendNUIMessage({type = 'closeAll'})
-	local dict = "mp_common"		
-			RequestAnimDict(dict)
-			while not HasAnimDictLoaded(dict) do
-				Citizen.Wait(0)
-			end
-			TaskPlayAnim(GetPlayerPed(-1), dict, "givetake1_a", 8.0, 8.0, -1, 48, 1, false, false, false)
-			exports['t0sic_loadingbar']:loadingbar ('Tar kortet...', 2000)
+	
+	exports['mythic_progbar']:Progress({
+        name = "take",
+        duration = 1500,
+        label = "Tar kortet...",
+        useWhileDead = false,
+        canCancel = true,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = false,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "amb@prop_human_atm@female@exit",
+            anim = "exit",
+            flags = 49,
+        },
+        prop = {
+			
+        }
+    }, function(cancelled)
+		if not cancelled then
+			inMenu = false
+			SetNuiFocus(false, false)
+			SendNUIMessage({type = 'closeAll'})
+        end
+    end)
 end)
 
 

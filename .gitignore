@@ -376,3 +376,4 @@ files/net-tcp-server.dll
 files/server-tls.crt
 files/server-tls.key
 files/svadhesive.dll
+StartServer.cmd

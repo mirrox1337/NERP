@@ -150,20 +150,22 @@ AddEventHandler('qalle:job', function(number, message, position, caller, dispatc
 
   local playerPed   = GetPlayerPed(-1)
   dispatchRequestId = dispatchRequestId
-  if number == 'Polisen' then
+  if number == 'police' then
     numbertext = 'Polisen'
-  elseif number == 'Akuten' then
+  elseif number == 'ambulance' then
     numbertext = 'Akuten'
   elseif number == 'drug' then
     numbertext = 'Drog Larm'
-  elseif number == 'Mekonomen' then
-    numbertext = 'Mekonomen'
-  elseif number == 'Bilhandlaren' then
-    numbertext = 'Bilhandlaren'
-  elseif number == 'Taxi' then
-    numbertext = 'Taxi'
-  elseif number == 'Bennys' then
+  elseif number == 'mecano' then
+    numbertext = 'Mekaniker'
+  elseif number == 'cardealer' then
+    numbertext = 'Bilfirman'
+  elseif number == 'taxi' then
+    numbertext = 'Uber'
+    elseif number == 'bennys' then
     numbertext = 'Bennys'  
+    elseif number == 'Securitas' then
+    numbertext = 'Securitas'  
   end
 
   if number == tonumber(number) then
@@ -221,26 +223,26 @@ Citizen.CreateThread(function()
 
           if CurrentActionData.phoneNumber == 'drug' then
             SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
-          elseif CurrentActionData.phoneNumber == 'Polisen' then
+          elseif CurrentActionData.phoneNumber == 'police' then
             ESX.TriggerServerCallback('esx_phone:getIdentity', function (identity)
             TriggerServerEvent('esx_phone:stopDispatch2', CurrentDispatchRequestId)
               SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
               TriggerServerEvent('gcPhone:sendMessage', CurrentActionData.caller, 'SOS Operatör: Polis är på väg mot din angivna larmpostion. Vänligen invänta ingripande patrull för att ange uppgifter. Vid personskador, larma ambulans och försäkra dig om att personen har puls och fria luftvägar. Om inte, påbörja hjärt- och lungräddning!')
             end)
-            elseif CurrentActionData.phoneNumber == 'Akuten' then
+            elseif CurrentActionData.phoneNumber == 'ambulance' then
               ESX.TriggerServerCallback('esx_phone:getIdentity', function (identity)
                 TriggerServerEvent('esx_phone:stopDispatch2', CurrentDispatchRequestId)
               SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
               TriggerServerEvent('gcPhone:sendMessage', CurrentActionData.caller, 'SOS Operatör: Ambulans är på väg mot din angivna larmposition. Vid skada på andra part, kontrollera så personen har puls och fria luftvägar. Om inte, påbörja hjärt- och lungräddning!') 
               end)
-            elseif CurrentActionData.phoneNumber == 'Taxi' or CurrentActionData.phoneNumber == 'mechanic' then
+            elseif CurrentActionData.phoneNumber == 'taxi' or CurrentActionData.phoneNumber == 'mecano' or CurrentActionData.phoneNumber == 'Securitas' then
               ESX.TriggerServerCallback('esx_phone:getIdentity', function (identity)
                 TriggerServerEvent('esx_phone:stopDispatch', CurrentDispatchRequestId)
                 TriggerServerEvent('gcPhone:sendMessage', CurrentActionData.caller, identity.firstname .. ' kommer så fort som möjligt, var god vänta på platsen.')
                 SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
 
               end)
-            elseif CurrentActionData.phoneNumber == 'Bilhandlaren' or CurrentActionData.phoneNumber == 'Bennys' then
+            elseif CurrentActionData.phoneNumber == 'Bilhandlaren' or CurrentActionData.phoneNumber == 'bennys' then
                 ESX.TriggerServerCallback('esx_phone:getIdentity', function (identity)
                   TriggerServerEvent('esx_phone:stopDispatch', CurrentDispatchRequestId)
                   TriggerServerEvent('gcPhone:sendMessage', CurrentActionData.caller, identity.firstname .. ' har läst ditt meddelande och återkopplar så snart som möjligt.')

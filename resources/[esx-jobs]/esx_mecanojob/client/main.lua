@@ -485,34 +485,60 @@ function OpenMobileMecanoActionsMenu()
           end
 
           if DoesEntityExist(vehicle) then
-            RequestAnimDict("mini@repair")
-            while not HasAnimDictLoaded("mini@repair") do
-              Citizen.Wait(0)
-            end
-            TaskPlayAnim(GetPlayerPed(-1), "mini@repair" ,"fixing_a_ped" ,8.0, -8.0, -1, 1, 0, false, false, false )
-            local hp = GetEntityHealth(vehicle)
-            Citizen.CreateThread(function()
-              Citizen.Wait(20000)
-              SetVehicleFixed(vehicle)
-              SetVehicleDeformationFixed(vehicle)
-              SetVehicleUndriveable(vehicle, false)
-              SetVehicleEngineOn(vehicle,  true,  true)
-              ClearPedTasksImmediately(playerPed)
-              if hp then
-                if hp >= 0 and hp < 200 then
-                  local price = math.random(50, 150)
-                  ESX.ShowNotification('Fordonet är lagat och delarna ~r~kostade~s~ ' .. price .. ' ~g~SEK')
-                  TriggerServerEvent('qalleXD', price)
-                else
-                local price = math.floor(hp / 40)
-                ESX.ShowNotification('Fordonet är lagat och delarna ~r~kostade~s~ ' .. price .. ' ~g~SEK')
-                TriggerServerEvent('qalleXD', price)
-              end
-              end
-            end)
-          end
-        end
+            SetVehicleDoorOpen(vehicle,4,0,0)
+		exports['mythic_progbar']:Progress({
+			name = "mechanicRepair",
+			duration = 60000,
+			label = "Reparerar Fordon",
+			useWhileDead = false,
+			canCancel = true,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "mini@repair",
+				anim = "fixing_a_ped",
+			},
+			prop = {
+				model = "prop_tool_screwdvr03",
+				bone = 58870,
+				coords = { x = 0.00, y = 0.05, z = 0.15 },
+				rotation = { x = 180.0, y = 0.0, z = 0.0 },
+			}
+		}, function(status)
+			if not status then
+        SetVehicleFixed(vehicle)
+        SetVehicleDeformationFixed(vehicle)
+        SetVehicleUndriveable(vehicle, false)
+        SetVehicleEngineOn(vehicle,  true,  true)
+        ClearPedTasksImmediately(playerPed)
+				ClearPedTasks(playerPed)
+				SetVehicleDoorShut(vehicle,4,0)
+
+      exports['mythic_notify']:SendAlert('Success', ('Fordon är fixat'))
+
+      if hp then
+        if hp >= 0 and hp < 200 then
+          local price = math.random(50, 150)
+          ESX.ShowNotification('Fordonet är lagat och delarna ~r~kostade~s~ ' .. price .. ' ~g~SEK')
+          TriggerServerEvent('qalleXD', price)
+        else
+        local price = math.floor(hp / 40)
+        ESX.ShowNotification('Fordonet är lagat och delarna ~r~kostade~s~ ' .. price .. ' ~g~SEK')
+        TriggerServerEvent('qalleXD', price)
       end
+    end
+  end
+end)
+else
+  exports['mythic_notify']:SendAlert('error',('Inget fordon i närheten'))
+end
+end
+end
+
 
       if data.current.value == 'clean_vehicle' then
         cleanVehicle()
@@ -1267,33 +1293,50 @@ Citizen.CreateThread(function()
 end)
 
 function cleanVehicle()
+  local playerPed = PlayerPedId()
+	local vehicle   = ESX.Game.GetVehicleInDirection()
+	local coords    = GetEntityCoords(playerPed)
 
-  
-  local playerPed = GetPlayerPed(-1)
-  local coords    = GetEntityCoords(playerPed)
+		if IsPedSittingInAnyVehicle(playerPed) then
+			exports['mythic_notify']:SendAlert('error', (_U('inside_vehicle')))
+			return
+		end
 
-  if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
+		if DoesEntityExist(vehicle) then
+			exports['mythic_progbar']:Progress({
+				name = "mechanicWash",
+				duration = 60000,
+				label = "Tvättar",
+				useWhileDead = false,
+				canCancel = true,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = true,
+					disableMouse = false,
+					disableCombat = true,
+				},
+					animation = {
+						animDict = "amb@world_human_maid_clean@base",
+						anim = "base",
+					},
+					prop = {
+						model = "prop_cs_bandana",
+						bone = 58870,
+						coords = { x = 0.00, y = 0.05, z = 0.15 },
+						rotation = { x = 180.0, y = 0.0, z = 0.0 },
+					}
+				}, function(status)
+					if not status then
+						SetVehicleDirtLevel(vehicle, 0)
+					ClearPedTasksImmediately(playerPed)
 
-    local vehicle = nil
-
-    if IsPedInAnyVehicle(playerPed, false) then
-      vehicle = GetVehiclePedIsIn(playerPed, false)
-    else
-      vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
-    end
-
-    if DoesEntityExist(vehicle) then
-      TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_MAID_CLEAN", 0, true)
-      Citizen.CreateThread(function()
-        Citizen.Wait(10000)
-        SetVehicleDirtLevel(vehicle, 0)
-        ClearPedTasksImmediately(playerPed)
-        ESX.ShowNotification(_U('vehicle_cleaned'))
-      end)
-    end
-  end
-
-end
+					exports['mythic_notify']:SendAlert('success', ('Fordonet är nu rent'))
+					end
+				end)
+			else
+				exports['mythic_notify']:SendAlert('error', ('Inget fordon i närheten'))
+			end
+		end
 
 function openMechanic()
   if PlayerData.job ~= nil and PlayerData.job.name == 'mecano' then

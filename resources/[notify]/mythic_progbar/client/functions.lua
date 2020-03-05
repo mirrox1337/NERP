@@ -60,6 +60,7 @@ end
 
 function Process(action, start, tick, finish)
 	ActionStart()
+    exports['mythic_notify']:SendAlert('inform', ('[DEL] för att avbryta'))
     mythic_action = action
 
     if not IsEntityDead(PlayerPedId()) or mythic_action.useWhileDead then

@@ -8,7 +8,7 @@ $('document').ready(function() {
         $("#progress-label").text(data.label + '...');
 
         $(".progress-container").fadeIn('fast', function() {
-            $("#progress-bar").stop().css({"width": 0, "background-color": "rgba(64, 224, 208, 0.9)"}).animate({
+            $("#progress-bar").stop().css({"width": 0, "background-color": "rgba(119, 18, 130, 0.9)"}).animate({
               width: '100%'
             }, {
               duration: parseInt(data.duration),

@@ -286,21 +286,39 @@ end
 
 function SlaughterAnimal(AnimalId)
 
-	TaskPlayAnim(PlayerPedId(), "amb@medic@standing@kneel@base" ,"base" ,8.0, -8.0, -1, 1, 0, false, false, false )
-	TaskPlayAnim(PlayerPedId(), "anim@gangops@facility@servers@bodysearch@" ,"player_search" ,8.0, -8.0, -1, 48, 0, false, false, false )
+	exports['mythic_progbar']:Progress({
+			name = "SlaughterAnimal",
+			duration = 5000,
+			label = "Slacktar Djuret",
+			useWhileDead = false,
+			canCancel = true,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "anim@gangops@facility@servers@bodysearch@",
+				anim = "player_search",
+			},
+			prop = {
+				
+			}
+		}, function(cancelled)
+			if not cancelled then
 
-	Citizen.Wait(5000)
+				ClearPedTasksImmediately(PlayerPedId())
+				local AnimalWeight = math.random(10, 160) / 10
 
-	ClearPedTasksImmediately(PlayerPedId())
+				exports['mythic_notify']:SendAlert('success', 'Du har slaktat djuret och fått en köttmängd på ' ..AnimalWeight.. 'kg')
 
-	local AnimalWeight = math.random(10, 160) / 10
+				TriggerServerEvent('esx-qalle-hunting:reward', AnimalWeight)
 
-	exports['mythic_notify']:SendAlert('success', 'Du har slaktat djuret och fått en köttmängd på ' ..AnimalWeight.. 'kg')
-
-	TriggerServerEvent('esx-qalle-hunting:reward', AnimalWeight)
-
-	DeleteEntity(AnimalId)
-end
+				DeleteEntity(AnimalId)
+			end
+		end)
+	end
 
 function SellItems()
 	TriggerServerEvent('esx-qalle-hunting:sell')

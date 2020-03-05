@@ -188,7 +188,7 @@ AddEventHandler('qalle:job', function(number, message, position, caller, dispatc
   if (dispatchRequestId) then
 
     CurrentAction            = 'dispatch'
-    CurrentActionMsg         = exports['mythic_notify']:SendAlert('warning', numbertext .. ' - Tryck [Y] för svara på samtalet', 8000)
+    CurrentActionMsg         = exports['mythic_notify']:SendAlert('warning', numbertext .. ' - Tryck [Y] för svara på samtalet', 10000)
     CurrentDispatchRequestId = dispatchRequestId
 
     CurrentActionData = {
@@ -224,27 +224,27 @@ Citizen.CreateThread(function()
           if CurrentActionData.phoneNumber == 'drug' then
             SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
           elseif CurrentActionData.phoneNumber == 'police' then
-            ESX.TriggerServerCallback('esx_phone:getIdentity', function (identity)
-            TriggerServerEvent('esx_phone:stopDispatch2', CurrentDispatchRequestId)
+            ESX.TriggerServerCallback('gcPhone:getIdentity', function (identity)
+            TriggerServerEvent('gcPhone:stopDispatch2', CurrentDispatchRequestId)
               SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
               TriggerServerEvent('gcPhone:sendMessage', CurrentActionData.caller, 'SOS Operatör: Polis är på väg mot din angivna larmpostion. Vänligen invänta ingripande patrull för att ange uppgifter. Vid personskador, larma ambulans och försäkra dig om att personen har puls och fria luftvägar. Om inte, påbörja hjärt- och lungräddning!')
             end)
             elseif CurrentActionData.phoneNumber == 'ambulance' then
-              ESX.TriggerServerCallback('esx_phone:getIdentity', function (identity)
-                TriggerServerEvent('esx_phone:stopDispatch2', CurrentDispatchRequestId)
+              ESX.TriggerServerCallback('gcPhone:getIdentity', function (identity)
+                TriggerServerEvent('gcPhone:stopDispatch2', CurrentDispatchRequestId)
               SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
               TriggerServerEvent('gcPhone:sendMessage', CurrentActionData.caller, 'SOS Operatör: Ambulans är på väg mot din angivna larmposition. Vid skada på andra part, kontrollera så personen har puls och fria luftvägar. Om inte, påbörja hjärt- och lungräddning!') 
               end)
             elseif CurrentActionData.phoneNumber == 'taxi' or CurrentActionData.phoneNumber == 'mecano' or CurrentActionData.phoneNumber == 'Securitas' then
-              ESX.TriggerServerCallback('esx_phone:getIdentity', function (identity)
-                TriggerServerEvent('esx_phone:stopDispatch', CurrentDispatchRequestId)
+              ESX.TriggerServerCallback('gcPhone:getIdentity', function (identity)
+                TriggerServerEvent('gcPhone:stopDispatch', CurrentDispatchRequestId)
                 TriggerServerEvent('gcPhone:sendMessage', CurrentActionData.caller, identity.firstname .. ' kommer så fort som möjligt, var god vänta på platsen.')
                 SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
 
               end)
-            elseif CurrentActionData.phoneNumber == 'Bilhandlaren' or CurrentActionData.phoneNumber == 'bennys' then
-                ESX.TriggerServerCallback('esx_phone:getIdentity', function (identity)
-                  TriggerServerEvent('esx_phone:stopDispatch', CurrentDispatchRequestId)
+            elseif CurrentActionData.phoneNumber == 'cardealer' or CurrentActionData.phoneNumber == 'bennys' then
+                ESX.TriggerServerCallback('gcPhone:getIdentity', function (identity)
+                  TriggerServerEvent('gcPhone:stopDispatch', CurrentDispatchRequestId)
                   TriggerServerEvent('gcPhone:sendMessage', CurrentActionData.caller, identity.firstname .. ' har läst ditt meddelande och återkopplar så snart som möjligt.')
                   SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
             end)
@@ -769,15 +769,15 @@ RegisterNUICallback('closePhone', function(data, cb)
   cb()
 end)
 
-RegisterNetEvent('esx_phone:stopDispatch')
-AddEventHandler('esx_phone:stopDispatch', function(dispatchRequestId, playerName, policeDispatch)
+RegisterNetEvent('gcPhone:stopDispatch')
+AddEventHandler('gcPhone:stopDispatch', function(dispatchRequestId, playerName, policeDispatch)
   if CurrentDispatchRequestId == dispatchRequestId then
     CurrentAction = nil
     exports['mythic_notify']:SendAlert('inform', playerName.firstname .. " tar det samtalet. ")
   end
 end)
-RegisterNetEvent('esx_phone:stopDispatch2')
-AddEventHandler('esx_phone:stopDispatch2', function(dispatchRequestId, playerName, policeDispatch)
+RegisterNetEvent('gcPhone:stopDispatch2')
+AddEventHandler('gcPhone:stopDispatch2', function(dispatchRequestId, playerName, policeDispatch)
   if CurrentDispatchRequestId == dispatchRequestId then
     exports['mythic_notify']:SendAlert('inform', playerName.firstname .. " åker på det larmet. ")
   end

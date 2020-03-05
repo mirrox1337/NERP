@@ -90,7 +90,7 @@ function getIdentifierByPhoneNumber(phone_number)
     return nil
 end
 
-ESX.RegisterServerCallback('esx_phone:getIdentity', function(source, cb)		
+ESX.RegisterServerCallback('gcPhone:getIdentity', function(source, cb)		
     local identity = getIdentity(source)		
     cb(identity)		
 end)		
@@ -173,7 +173,7 @@ AddEventHandler('qalle:jobS', function(phoneNumber, message, position, dipatch2)
             end
         end
         if phoneNumber == 'mecano' then
-            if xPlayer.job.name == 'mechanic' then
+            if xPlayer.job.name == 'mecano' then
                 TriggerClientEvent('qalle:job', xPlayer.source, phoneNumber, message, position, xPlayer1.get('phoneNumber'), dispatch)
             end
         end
@@ -200,14 +200,14 @@ AddEventHandler('qalle:jobS', function(phoneNumber, message, position, dipatch2)
     end
 end)
 
-RegisterServerEvent('esx_phone:stopDispatch')
-AddEventHandler('esx_phone:stopDispatch', function(dispatchRequestId, policeDispatch)
-  TriggerClientEvent('esx_phone:stopDispatch', -1, dispatchRequestId, getIdentity(source), policeDispatch)
+RegisterServerEvent('gcPhone:stopDispatch')
+AddEventHandler('gcPhone:stopDispatch', function(dispatchRequestId, policeDispatch)
+  TriggerClientEvent('gcPhone:stopDispatch', -1, dispatchRequestId, getIdentity(source), policeDispatch)
 end)	
 
-RegisterServerEvent('esx_phone:stopDispatch2')
-AddEventHandler('esx_phone:stopDispatch2', function(dispatchRequestId, policeDispatch)
-  TriggerClientEvent('esx_phone:stopDispatch2', -1, dispatchRequestId, getIdentity(source), policeDispatch)
+RegisterServerEvent('gcPhone:stopDispatch2')
+AddEventHandler('gcPhone:stopDispatch2', function(dispatchRequestId, policeDispatch)
+  TriggerClientEvent('gcPhone:stopDispatch2', -1, dispatchRequestId, getIdentity(source), policeDispatch)
 end)	
 
 
@@ -701,7 +701,7 @@ end)
 
 
 AddEventHandler('onMySQLReady', function ()
-    MySQL.Async.fetchAll("DELETE FROM phone_messages WHERE (DATEDIFF(CURRENT_DATE,time) > 10)")
+    --MySQL.Async.fetchAll("DELETE FROM phone_messages WHERE (DATEDIFF(CURRENT_DATE,time) > 10)")
 end)
 
 --====================================================================================

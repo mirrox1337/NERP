@@ -2,38 +2,6 @@ Config                            = {}
 
 Config.Teleporters = {
 
-	['Sjukhus taket'] = {
-		['Job'] = 'none',
-		['Enter'] = { 
-			['x'] = 330.43,
-			['y'] = -600.86, 
-			['z'] = 42.28,
-			['Information'] = '[~g~E~w~] Ta hissen upp till taket', 
-		},
-		['Exit'] = {
-			['x'] = 339.07,
-			['y'] =-584.02,
-			['z'] = 73.16, 
-			['Information'] = '[~g~E~w~] Ta hissen ner till hisshallen' 
-		}
-	},
-
-	['Garage-Sjukhus'] = {
-		['Job'] = 'ambulance', 
-		['Enter'] = { 
-			['x'] = 332.37,
-			['y'] = -595.53, 
-			['z'] = 42.27,
-			['Information'] = '[~g~E~w~] Ta hissen ner till Garaget', 
-		},
-		['Exit'] = {
-			['x'] = 319.62,
-			['y'] = -560.14,
-			['z'] = 27.73,
-			['Information'] = '[~g~E~w~] Ta hissen upp till hisshallen', 
-		}
-	},
-
 	['GaragePolis'] = {
 		['Job'] = 'police',  
 		['Enter'] = { 

@@ -1,55 +1,53 @@
-# fxserver-esx_ambulancejob
-FXServer ESX Ambulance Job
+# esx_ambulancejob
 
+ESX Ambulance Job is an plugin for ESX with features:
 
-[UPDATE]
-insert this into your database and download the new esx_ambulancejob(from TanguyOrtegat github)
+- Adds death screen, with early respawn timer and bleed out timer
+- Vehicle garages, revive menu and more for on duty EMS
 
-```
-CREATE TABLE `fine_types_ambulance` (
-  `id` int(11) NOT NULL,
-  `label` varchar(255) DEFAULT NULL,
-  `amount` int(11) DEFAULT NULL,
-  `category` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-INSERT INTO `fine_types_ambulance` (`id`, `label`, `amount`, `category`) VALUES
-(1, 'Soin pour membre de la police', 400, 0),
-(2, ' Soin de base', 500, 0),
-(3, 'Soin longue distance', 750, 0),
-(4, 'Soin patient inconscient', 800, 0);
-
-INSERT INTO `addon_inventory` (`id`, `name`, `label`, `shared`) VALUES
-(6, 'society_ambulance', 'Ambulance', 1);
-
-ALTER TABLE `fine_types_ambulance`
-  ADD PRIMARY KEY (`id`);
-```
-
-
-[REQUIREMENTS]
+## Requirements
 
 * Auto mode
-   - esx_skin => https://github.com/FXServer-ESX/fxserver-esx_skin
-  
-* Player management (boss actions **There is no way to earn money for now**)
-  * esx_society => https://github.com/FXServer-ESX/fxserver-esx_society
+   - [esx_skin](https://github.com/ESX-Org/esx_skin)
+   - [esx_vehicleshop](https://github.com/ESX-Org/esx_vehicleshop)
 
-[INSTALLATION]
+* Player management (boss actions)
+   - [esx_society](https://github.com/ESX-Org/esx_society)
 
-1) CD in your resources/[esx] folder
-2) Clone the repository
+## Download & Installation
+
+### Using [fvm](https://github.com/qlaffont/fvm-installer)
 ```
-git clone https://github.com/TanguyOrtegat/esx_ambulancejob.git esx_ambulancejob
+fvm install --save --folder=esx esx-org/esx_ambulancejob
 ```
-3) Import esx_ambulancejob.sql in your database
 
-4) Add this in your server.cfg :
+### Using Git
+```
+cd resources
+git clone https://github.com/ESX-Org/esx_ambulancejob [esx]/esx_ambulancejob
+```
+
+### Manually
+- Download https://github.com/ESX-Org/esx_ambulancejob/archive/master.zip
+- Put it in the `[esx]` directory
+
+## Installation
+- Import `esx_ambulancejob.sql` in your database
+- If you want player management you have to set `Config.EnablePlayerManagement` to `true` in `config.lua`
+- Add this in your `server.cfg`:
 
 ```
-start baseevents
 start esx_ambulancejob
 ```
-5) * If you want player management you have to set Config.EnablePlayerManagement to true in config.lua
 
+# Legal
+### License
+esx_ambulancejob - ambulance script for fivem
+
+Copyright (C) 2015-2020 Jérémie N'gadi
+
+This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
+
+This program Is distributed In the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty Of MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License For more details.
+
+You should have received a copy Of the GNU General Public License along with this program. If Not, see http://www.gnu.org/licenses/.

@@ -951,7 +951,7 @@ function SendDistressSignal()
 			local x, y, z  = table.unpack(GetEntityCoords(GetPlayerPed(-1), false))
 			local PlayerCoords = GetEntityCoords(GetPlayerPed(-1),  true)
 			--TriggerServerEvent('esx_addons_gcphone:startCall', 'police', _U('distress_message'), PlayerCoords)
-			TriggerServerEvent('esx_addons_chrono:startCall', 'police', 'En Securitasvakt har aktiverat sitt överfallslarm! ', {x = plyPos.x, y = plyPos.y, z = plyPos.z}, dispatch)
+			TriggerServerEvent('esx_addons_gcphone:startCall', 'police', 'En Securitasvakt har aktiverat sitt överfallslarm! ', {x = plyPos.x, y = plyPos.y, z = plyPos.z}, dispatch)
 		  end	
 		  
 		  if data.current.value == 'jail_menu' then

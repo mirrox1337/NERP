@@ -98,7 +98,7 @@
       "backgroundColor": "silver",
       "subMenu": [{
         "title": "Skicka ett meddelande",
-        "eventName": "esx_addons_chrono:call",
+        "eventName": "esx_addons_gcphone:call",
         "type": {
           "number": "Securitas"
         }

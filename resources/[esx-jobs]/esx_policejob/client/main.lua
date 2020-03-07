@@ -1609,7 +1609,7 @@ function OpenPoliceActionsMenu()
       if data.current.value == 'larm' then
         local x,y,z = table.unpack(GetEntityCoords(GetPlayerPed(-1), false))
         local plyPos = GetEntityCoords(GetPlayerPed(-1),  true)
-        TriggerServerEvent('esx_addons_chrono:startCall', 'police', 'En kollega har aktiverat sitt överfallslarm! ', {x = plyPos.x, y = plyPos.y, z = plyPos.z}, dispatch)
+        TriggerServerEvent('esx_addons_gcphone:startCall', 'police', 'En kollega har aktiverat sitt överfallslarm! ', {x = plyPos.x, y = plyPos.y, z = plyPos.z}, dispatch)
         --TriggerServerEvent('esx_phone:send', 'police', 'En polis har aktiverat sitt överfallslarm! ', true, {x = plyPos.x, y = plyPos.y, z = plyPos.z})
      end
 

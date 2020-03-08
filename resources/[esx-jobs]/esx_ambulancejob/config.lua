@@ -156,31 +156,31 @@ Config.Hospitals = {
 Config.AuthorizedVehicles = {
 	car = {
 		ambulance = {
-			{model = 'ambulance', price = 100},
-			{model = 'ambulance2', price = 100},
-			{model = 'xc90n', price = 100},
-			{model = 'policeold2', price = 100}
+			{label = 'Ambulans - Volvo XC70', model = 'ambulance', price = 100},
+          	{label = 'Ambulans - Volkswagen Amarok', model = 'ambulance2', price = 100},
+          	{label = 'Ambulans - Volvo XC90 Nilsson', model = 'xc90n', price = 100},
+          	{label = 'Akutbil', model = 'policeold2', price = 100},  
 		},
 
 		doctor = {
-			{model = 'ambulance', price = 100},
-			{model = 'ambulance2', price = 100},
-			{model = 'xc90n', price = 100},
-			{model = 'policeold2', price = 100}
+			{label = 'Ambulans - Volvo XC70', model = 'ambulance', price = 100},
+          	{label = 'Ambulans - Volkswagen Amarok', model = 'ambulance2', price = 100},
+          	{label = 'Ambulans - Volvo XC90 Nilsson', model = 'xc90n', price = 100},
+          	{label = 'Akutbil', model = 'policeold2', price = 100},  
 		},
 
 		chief_doctor = {
-			{model = 'ambulance', price = 100},
-			{model = 'ambulance2', price = 100},
-			{model = 'xc90n', price = 100},
-			{model = 'policeold2', price = 100}
+			{label = 'Ambulans - Volvo XC70', model = 'ambulance', price = 100},
+          	{label = 'Ambulans - Volkswagen Amarok', model = 'ambulance2', price = 100},
+          	{label = 'Ambulans - Volvo XC90 Nilsson', model = 'xc90n', price = 100},
+          	{label = 'Akutbil', model = 'policeold2', price = 100},  
 		},
 
 		boss = {
-			{model = 'ambulance', price = 100},
-			{model = 'ambulance2', price = 100},
-			{model = 'xc90n', price = 100},
-			{model = 'policeold2', price = 100}
+			{label = 'Ambulans - Volvo XC70', model = 'ambulance', price = 100},
+          	{label = 'Ambulans - Volkswagen Amarok', model = 'ambulance2', price = 100},
+          	{label = 'Ambulans - Volvo XC90 Nilsson', model = 'xc90n', price = 100},
+          	{label = 'Akutbil', model = 'policeold2', price = 100},  
 		}
 	},
 

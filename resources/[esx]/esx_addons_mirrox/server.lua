@@ -44,12 +44,12 @@ function notifyAlertSMS (number, alert)
   if PhoneNumbers[number] ~= nil then
     for k,v in pairs(PhoneNumbers[number].sources) do
       getPhoneNumber(tonumber(k), function (n)
-        TriggerEvent('gcPhone:_internalAddMessage', number, n, 'Larm: ' .. alert.message, 0, function (smsMess)
-          TriggerClientEvent("gcPhone:receiveMessage", tonumber(k), smsMess)
+        TriggerEvent('esx_addons_gcphone:_internalAddMessage', number, n, 'Larm: ' .. alert.message, 0, function (smsMess)
+          TriggerClientEvent("esx_addons_gcphone:receiveMessage", tonumber(k), smsMess)
         end)
         if alert.coords ~= nil then
-          TriggerEvent('gcPhone:_internalAddMessage', number, n, 'GPS: ' .. alert.coords.x .. ', ' .. alert.coords.y, 0, function (smsMess)
-            TriggerClientEvent("gcPhone:receiveMessage", tonumber(k), smsMess)
+          TriggerEvent('esx_addons_gcphone:_internalAddMessage', number, n, 'GPS: ' .. alert.coords.x .. ', ' .. alert.coords.y, 0, function (smsMess)
+            TriggerClientEvent("esx_addons_gcphone:receiveMessage", tonumber(k), smsMess)
           end)
         end
       end)

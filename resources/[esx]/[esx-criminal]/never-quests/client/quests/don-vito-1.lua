@@ -24,7 +24,7 @@ Quest.AddQuest('donvito', 1, function()
 							
 							TaskWarpPedIntoVehicle(ped, callbackVehicle, -1)
 
-							--TriggerServerEvent('esx_addons_chrono:startCall', 'police', 'Ett elektroniskt billarm har gått igång i en Pegassi Reaper strax norr av Union Road,', {x = 2217.8449707031, y = 5621.2065429688, z = 53.485443115234}, dispatch)
+							--TriggerServerEvent('esx_addons_gcphone:startCall', 'police', 'Ett elektroniskt billarm har gått igång i en Pegassi Reaper strax norr av Union Road,', {x = 2217.8449707031, y = 5621.2065429688, z = 53.485443115234}, dispatch)
 							GlobalEvent('never-quests:alarm', 'theft', GetEntityCoords(ped)["x"], GetEntityCoords(ped)["y"], GetEntityCoords(ped)["z"], 'Det har varit en bilstöld på en ~b~ Pegassi Reaper ~w~ på den markerade GPS-platsen. ', 300000)
 
 							cartheft = true

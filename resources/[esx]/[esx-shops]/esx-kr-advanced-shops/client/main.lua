@@ -848,7 +848,7 @@ function Robbery(id)
                         y = coords1[id].y,
                         z = coords1[id].z - 0.9,
 					}
-					TriggerServerEvent('esx_addons_chrono:startCall', 'police', 'Någon rånar en butik vid namnet ' .. result.name, {x = coords.x, y = coords.y, z = coords.z}, dispatch)
+					TriggerServerEvent('esx_addons_gcphone:startCall', 'police', 'Någon rånar en butik vid namnet ' .. result.name, {x = coords.x, y = coords.y, z = coords.z}, dispatch)
 					--TriggerServerEvent('esx_phone:send', "police", "Butik rån på " .. result.name .. '\' Butik', true, coords)
 						TriggerServerEvent('esx_kr_shops-robbery:NotifyOwner', "Din butik (" .. result.name .. ') är under rån', id)
 						

@@ -305,7 +305,7 @@ AddEventHandler('esx_addons_gcphone:call', function(data)
   end
   local dispatch = math.random(200, 1000)
   if message ~= nil and message ~= "" then
-    TriggerServerEvent('gcPhone:sendMessage2', number, message)
+    TriggerServerEvent('gcPhone:sendMessage', number, message)
     Wait(20)
     TriggerServerEvent('qalle:jobS', number, message, {x = coords.x, y = coords.y, z = coords.z}, dispatch)
   end

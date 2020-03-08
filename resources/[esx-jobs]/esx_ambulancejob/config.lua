@@ -1,236 +1,202 @@
 Config                            = {}
+
 Config.DrawDistance               = 20.0
-Config.MarkerColor                = { r = 0, g = 255, b = 0 }
 
-local second = 1000
-local minute = 60 * second
+Config.Marker                     = {type = 27, x = 1.2, y = 1.2, z = 0.1, r = 119, g = 18, b = 130, a = 100, rotate = true }
 
--- Hur mycket tid innan auto respawn på sjukhus
-Config.RespawnDelayAfterRPDeath   = 1800 * second
-
---- Combatlog # KOCKEN
 Config.ReviveReward               = 700  -- revive reward, set to 0 if you don't want it enabled
 Config.AntiCombatLog              = true -- enable anti-combat logging?
-Config.LoadIpl                    = true -- disable if you're using fivem-ipl or other IPL loaders
+Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
--- Hur lång tid det är kvar tills den frågar en spelare när man vill spawna på sjukhuset
-Config.RespawnToHospitalMenuTimer = true
-Config.MenuRespawnToHospitalDelay = 500 * second
+Config.Locale                     = 'sv'
+
+Config.EarlyRespawnTimer          = 60000 * 1  -- time til respawn is available
+Config.BleedoutTimer              = 60000 * 10 -- time til the player bleeds out
 
 Config.EnablePlayerManagement     = true
-Config.EnableSocietyOwnedVehicles = false
+
 Config.RemoveWeaponsAfterRPDeath  = true
 Config.RemoveCashAfterRPDeath     = true
 Config.RemoveItemsAfterRPDeath    = true
 
--- Visar hur lång tid det är kvar tills man dör
-Config.ShowDeathTimer             = true
+-- Let the player pay for respawning early, only if he can afford it.
+Config.EarlyRespawnFine           = false
+Config.EarlyRespawnFineAmount     = 5000
 
-Config.EarlyRespawn               = false
--- The player can have a fine (on bank account)
-Config.RespawnFine           = false
-Config.RespawnFineAmount     = 50000
+Config.RespawnPoint = {coords = vector3(358.98, -588.91, 28.8), heading = 254.16}
 
-Config.Locale                     = 'en'
+Config.Hospitals = {
 
-Config.VirusWear = {
-  male = {
-      ['tshirt_1'] = 62,  ['tshirt_2'] = 3,
-      ['torso_1'] = 67,   ['torso_2'] = 3,
-      ['decals_1'] = 0,   ['decals_2'] = 0,
-      ['arms'] = 86,
-      ['pants_1'] = 40,   ['pants_2'] = 3,
-      ['shoes_1'] = 62,   ['shoes_2'] = 4,
-      ['helmet_1'] = -1,  ['helmet_2'] = 0,
-      ['chain_1'] = 0,    ['chain_2'] = 0,
-      ['glasses_1'] = 0,  ['glasses_2'] = 0,
-      ['bproof_1'] = 0,   ['bproof_2'] = 0,
-      ['bags_1'] = 36,    ['bags_2'] = 0,
-      ['mask_1'] = 46,    ['mask_2'] = 0,
-      ['ears_1'] = 0,     ['ears_2'] = 0
-  },
-  female = {
-      ['tshirt_1'] = 43,  ['tshirt_2'] = 3,
-      ['torso_1'] = 61,   ['torso_2'] = 3,
-      ['decals_1'] = 0,   ['decals_2'] = 0,
-      ['arms'] = 101,
-      ['pants_1'] = 40,   ['pants_2'] = 3,
-      ['shoes_1'] = 65,   ['shoes_2'] = 4,
-      ['helmet_1'] = -1,  ['helmet_2'] = 0,
-      ['chain_1'] = 0,    ['chain_2'] = 0,
-      ['glasses_1'] = 5,  ['glasses_2'] = 0,
-      ['bproof_1'] = 0,   ['bproof_2'] = 0,
-      ['bags_1'] = 36,    ['bags_2'] = 0,
-      ['mask_1'] = 46,    ['mask_2'] = 0,
-      ['ears_1'] = 0,     ['ears_2'] = 0
-  }
+	CentralLosSantos = {
+
+		Blip = {
+			coords = vector3(299.29, -584.74, 48.26),
+			sprite = 61,
+			scale  = 0.8,
+			color  = 2
+		},
+
+		AmbulanceActions = {
+			vector3(299.01, -598.27, 42.31)
+		},
+
+		Pharmacies = {
+			vector3(311.88, -597.51, 42.31)
+		},
+
+		Vehicles = {
+			{
+				Spawner = vector3(321.56, -557.99, 28.75),
+				InsideShop = vector3(446.7, -1355.6, 43.5),
+				Marker = { type = 36, x = 1.0, y = 1.0, z = 1.0, r = 119, g = 18, b = 130, a = 100, rotate = true },
+				SpawnPoints = {
+					{ coords = vector3(317.08, -556.25, 27.8), heading = 270.0, radius = 1.5 },
+					{ coords = vector3(317.08, -553.46, 27.8), heading = 270.0, radius = 1.5 },
+					{ coords = vector3(317.08, -550.66, 27.8), heading = 270.0, radius = 1.5 },
+					{ coords = vector3(317.08, -547.83, 27.8), heading = 270.0, radius = 1.5 },
+					{ coords = vector3(317.08, -544.97, 27.8), heading = 270.0, radius = 1.5 },
+					{ coords = vector3(320.97, -541.74, 27.8), heading = 180.0, radius = 1.5 },
+					{ coords = vector3(323.77, -541.74, 27.8), heading = 180.0, radius = 1.5 },
+					{ coords = vector3(326.66, -541.74, 27.8), heading = 180.0, radius = 1.5 },
+					{ coords = vector3(329.41, -541.74, 27.8), heading = 180.0, radius = 1.5 },
+					{ coords = vector3(332.27, -541.74, 27.8), heading = 180.0, radius = 1.5 },
+					{ coords = vector3(335.1,  -541.74, 27.8), heading = 180.0, radius = 1.5 }
+				}
+			}
+		},
+
+		Helicopters = {
+			{
+				Spawner = vector3(338.53, -586.84, 74.2),
+				InsideShop = vector3(305.6, -1419.7, 41.5),
+				Marker = { type = 34, x = 1.5, y = 1.5, z = 1.5, r = 119, g = 18, b = 130, a = 100, rotate = true },
+				SpawnPoints = {
+					{ coords = vector3(351.98, -588.05, 74.2), heading = 307.46, radius = 10.0 }
+				}
+			}
+		},
+
+		FastTravels = {
+			--[[
+			{
+				From = vector3(294.7, -1448.1, 29.0),
+				To = {coords = vector3(272.8, -1358.8, 23.5), heading = 0.0},
+				Marker = {type = 1, x = 2.0, y = 2.0, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false}
+			},
+
+			{
+				From = vector3(275.3, -1361, 23.5),
+				To = {coords = vector3(295.8, -1446.5, 28.9), heading = 0.0},
+				Marker = {type = 1, x = 2.0, y = 2.0, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false}
+			},
+
+			{
+				From = vector3(247.3, -1371.5, 23.5),
+				To = {coords = vector3(333.1, -1434.9, 45.5), heading = 138.6},
+				Marker = {type = 1, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false}
+			},
+
+			{
+				From = vector3(335.5, -1432.0, 45.50),
+				To = {coords = vector3(249.1, -1369.6, 23.5), heading = 0.0},
+				Marker = {type = 1, x = 2.0, y = 2.0, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false}
+			},
+
+			{
+				From = vector3(234.5, -1373.7, 20.9),
+				To = {coords = vector3(320.9, -1478.6, 28.8), heading = 0.0},
+				Marker = {type = 1, x = 1.5, y = 1.5, z = 1.0, r = 102, g = 0, b = 102, a = 100, rotate = false}
+			},
+
+			{
+				From = vector3(317.9, -1476.1, 28.9),
+				To = {coords = vector3(238.6, -1368.4, 23.5), heading = 0.0},
+				Marker = {type = 1, x = 1.5, y = 1.5, z = 1.0, r = 102, g = 0, b = 102, a = 100, rotate = false}
+			}
+			--]]
+		},
+
+		FastTravelsPrompt = {
+			--Hissen till taket
+			{
+				From = vector3(330.11, -601.15, 43.28),
+				To = {coords = vector3(339.07, -584.02, 74.16), heading = 0.0},
+				Marker = {type = 20, x = 0.5, y = 0.1, z = 0.5, r = 119, g = 18, b = 130, a = 100, bob = true, face = true, rotate = false},
+				Prompt = ('Tryck på ~INPUT_CONTEXT~ ta hissen upp till ~p~Taket')
+			},
+
+			--Hissen från taket
+			{
+				From = vector3(339.07, -584.02, 74.16),
+				To = {coords = vector3(330.11, -601.15, 43.28), heading = 0.0},
+				Marker = {type = 20, x = 0.5, y = 0.1, z = -0.5, r = 119, g = 18, b = 130, a = 100, bob = true, face = true, rotate = false},
+				Prompt = ('Tryck på ~INPUT_CONTEXT~ ta hissen ner till ~p~Hisshallen')
+			},
+
+			--Hissen till garaget
+			{
+				From = vector3(332.26, -595.68, 43.28),
+				To = {coords = vector3(319.62, -560.14, 28.73), heading = 0.0},
+				Marker = {type = 20, x = 0.5, y = 0.1, z = -0.5, r = 119, g = 18, b = 130, a = 100, bob = true, face = true, rotate = false},
+				Prompt = ('Tryck på ~INPUT_CONTEXT~ ta hissen ner till ~p~Garaget')
+			},
+
+			--Hissen från garaget
+			{
+				From = vector3(319.62, -560.14, 28.73),
+				To = {coords = vector3(332.37, -595.53, 43.27), heading = 0.0},
+				Marker = {type = 20, x = 0.5, y = 0.1, z = 0.5, r = 119, g = 18, b = 130, a = 100, bob = true, face = true, rotate = false},
+				Prompt = ('Tryck på ~INPUT_CONTEXT~ ta hissen upp till ~p~Hisshallen')
+			}
+		}
+
+	}
 }
 
-Config.Blip = {
-  Pos     = { x = 299.29, y = -584.74, z = 48.26 },
-  Sprite  = 61,
-  Display = 4,
-  Scale   = 0.8,
+Config.AuthorizedVehicles = {
+	car = {
+		ambulance = {
+			{label = 'Ambulans - Volvo XC70', model = 'ambulance', price = 100},
+          	{label = 'Ambulans - Volkswagen Amarok', model = 'ambulance2', price = 100},
+          	{label = 'Ambulans - Volvo XC90 Nilsson', model = 'xc90n', price = 100},
+          	{label = 'Akutbil', model = 'policeold2', price = 100},  
+		},
+
+		doctor = {
+			{label = 'Ambulans - Volvo XC70', model = 'ambulance', price = 100},
+          	{label = 'Ambulans - Volkswagen Amarok', model = 'ambulance2', price = 100},
+          	{label = 'Ambulans - Volvo XC90 Nilsson', model = 'xc90n', price = 100},
+          	{label = 'Akutbil', model = 'policeold2', price = 100},  
+		},
+
+		chief_doctor = {
+			{label = 'Ambulans - Volvo XC70', model = 'ambulance', price = 100},
+          	{label = 'Ambulans - Volkswagen Amarok', model = 'ambulance2', price = 100},
+          	{label = 'Ambulans - Volvo XC90 Nilsson', model = 'xc90n', price = 100},
+          	{label = 'Akutbil', model = 'policeold2', price = 100},  
+		},
+
+		boss = {
+			{label = 'Ambulans - Volvo XC70', model = 'ambulance', price = 100},
+          	{label = 'Ambulans - Volkswagen Amarok', model = 'ambulance2', price = 100},
+          	{label = 'Ambulans - Volvo XC90 Nilsson', model = 'xc90n', price = 100},
+          	{label = 'Akutbil', model = 'policeold2', price = 100},  
+		}
+	},
+
+	helicopter = {
+		ambulance = {},
+
+		doctor = {
+			{model = 'frogger', price = 100}
+		},
+
+		chief_doctor = {
+			{model = 'frogger', price = 100},
+		},
+
+		boss = {
+			{model = 'frogger', price = 100},
+		}
+	}
 }
-
-Config.HelicopterSpawner = {
-    SpawnPoint  = { x = 351.9, y = -587.8, z = 74.17 },
-    Heading     = 170.58
-}
-
-Config.Zones = {
---[[
-  HospitalInteriorEntering1 = { -- ok
-    Pos  = { x = 299.65, y = -579.1, z = 44.26 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  HospitalInteriorInside1 = { -- ok
-    Pos  = { x = 299.65, y = -579.1, z = 44.26 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  HospitalInteriorOutside1 = { -- ok
-    Pos  = { x = 299.65, y = -579.1, z = 44.26 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  HospitalInteriorExit1 = { -- ok
-    Pos  = { x = 299.65, y = -579.1, z = 44.26 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  HospitalInteriorEntering2 = { -- Heli tp / spawn trigger - interior
-    Pos  = { x = 299.65, y = -579.1, z = 44.26 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  HospitalInteriorInside2 = { -- Heli tp / spawn trigger - på taket
-    Pos  = { x = 299.65, y = -579.1, z = 44.26 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  HospitalInteriorOutside2 = { -- Ascenseur retour depuis toit
-    Pos  = { x = 299.65, y = -579.1, z = 44.26 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  HospitalInteriorExit2 = { -- Toit entré
-    Pos  = { x = 299.65, y = -579.1, z = 44.26 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-]]
-  AmbulanceActions = { -- CLOACKROOM 
-  	Pos  = {x = 299.01, y = -598.27,z = 42.31 },
-    Size = { x = 1.5, y = 1.5, z = 0.4 },
-    Type = 27
-  },
-
-  VehicleSpawner = {
-    Pos  = { x = 323.78, y = -556.53, z = 27.75 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = 27
-  },
-
-  VehicleSpawnPoint = {
-    Pos  = { x = 329.34, y = -556.11, z = 27.75 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-	
-  },
-
-  VehicleDeleter = {
-    Pos  = { x = 341.29, y = -560.73, z = 27.75 },
-    Size = { x = 3.0, y = 3.0, z = 1.0 },
-    Type = 27
-  },
-
-  VehicleSpawner2 = { -- HELI
-    Pos  = { x = 340.29, y = -589.1, z = 73.20 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = 27
-  },
-
-  VehicleSpawnPoint2 = { -- HELI
-    Pos  = { x = 351.29, y = -587.91, z = 73.20 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-	
-  },
-
-  VehicleDeleter2 = { -- HELI
-    Pos  = { x = 351.29, y = -587.91, z = 73.20 },
-    Size = { x = 3.0, y = 3.0, z = 1.0 },
-    Type = -1
-  },
-  
-  Pharmacy = {
-    Pos  = { x = 311.88, y = -597.51, z = 42.31 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = 27
-  },
-
-  ParkingDoorGoOutInside = {
-    Pos  = { x = 322.59, y = -1401.23, z = 76.17 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  ParkingDoorGoOutOutside = {
-    Pos  = { x = 322.59, y = -1401.23, z = 76.17 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  ParkingDoorGoInInside = {
-    Pos  = { x = 322.59, y = -1401.23, z = 76.17 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  ParkingDoorGoInOutside = {
-    Pos  = { x = 322.59, y = -1401.23, z = 76.17 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-  
-  StairsGoTopTop = {
-    Pos  = { x = 322.59, y = -1401.23, z = 76.17 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-  
-  StairsGoTopBottom = {
-    Pos  = { x = 322.59, y = -1401.23, z = 76.17 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-  
-  StairsGoBottomTop = {
-    Pos  = { x = 322.59, y = -1401.23, z = 76.17 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  StairsGoBottomBottom = {
-    Pos  = { x = 322.59, y = -1401.23, z = 76.17 },
-    Size = { x = 1.5, y = 1.5, z = 1.0 },
-    Type = -1
-  },
-
-  SjukhusCard = {
-    Pos   = { x = 310.47, y = -597.94, z = 42.39 },
-    Size  = { x = 1.0, y = 1.0, z = 1.0 },
-    Color = { r = 0, g = 0, b = 255 },
-    Type  = 27
-  },
-}
-

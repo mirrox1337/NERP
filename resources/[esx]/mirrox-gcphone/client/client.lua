@@ -849,7 +849,7 @@ RegisterNUICallback('takePhoto', function(data, cb)
       takePhoto = false
       break
     elseif IsControlJustPressed(1, 176) then -- TAKE.. PIC
-			exports['screenshot-basic']:requestScreenshotUpload('http://127.0.0.1/up.php', 'files', function(data)
+			exports['screenshot-basic']:requestScreenshotUpload('http://5.189.129.127/up.php', 'files', function(data)
         local response = data
         DestroyMobilePhone()
         CellCamActivate(false, false)

@@ -50,7 +50,8 @@ function setUniform(uniform, playerPed)
 				SetPedArmour(playerPed, 100)
 			end
 		else
-			ESX.ShowNotification(_U('no_outfit'))
+			--ESX.ShowNotification(_U('no_outfit'))
+			exports['mythic_notify']:SendAlert('error', (_U('no_outfit')))
 		end
 	end)
 end

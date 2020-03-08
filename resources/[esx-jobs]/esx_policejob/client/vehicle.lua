@@ -37,13 +37,16 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 					if #shopElements > 0 then
 						OpenShopMenu(shopElements, playerCoords, shopCoords)
 					else
-						ESX.ShowNotification(_U('garage_notauthorized'))
+						--ESX.ShowNotification(_U('garage_notauthorized'))
+						exports['mythic_notify']:SendAlert('error', (_U('garage_notauthorized')))
 					end
 				else
-					ESX.ShowNotification(_U('garage_notauthorized'))
+					--ESX.ShowNotification(_U('garage_notauthorized'))
+					exports['mythic_notify']:SendAlert('error', (_U('garage_notauthorized')))
 				end
 			else
-				ESX.ShowNotification(_U('garage_notauthorized'))
+				--ESX.ShowNotification(_U('garage_notauthorized'))
+				exports['mythic_notify']:SendAlert('error', (_U('garage_notauthorized')))
 			end
 		elseif data.current.action == 'garage' then
 			local garage = {}
@@ -93,20 +96,24 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 										ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
 
 										TriggerServerEvent('esx_vehicleshop:setJobVehicleState', data2.current.plate, false)
-										ESX.ShowNotification(_U('garage_released'))
+										--ESX.ShowNotification(_U('garage_released'))
+										exports['mythic_notify']:SendAlert('inform', (_U('garage_released')))
 									end)
 								end
 							else
-								ESX.ShowNotification(_U('garage_notavailable'))
+								--ESX.ShowNotification(_U('garage_notavailable'))
+								exports['mythic_notify']:SendAlert('error', (_U('garage_notavailable')))
 							end
 						end, function(data2, menu2)
 							menu2.close()
 						end)
 					else
-						ESX.ShowNotification(_U('garage_empty'))
+						---ESX.ShowNotification(_U('garage_empty'))
+						exports['mythic_notify']:SendAlert('error', (_U('garage_empty')))
 					end
 				else
-					ESX.ShowNotification(_U('garage_empty'))
+					--ESX.ShowNotification(_U('garage_empty'))
+					exports['mythic_notify']:SendAlert('error', (_U('garage_empty')))
 				end
 			end, type)
 		elseif data.current.action == 'store_garage' then
@@ -132,7 +139,8 @@ function StoreNearbyVehicle(playerCoords)
 			end
 		end
 	else
-		ESX.ShowNotification(_U('garage_store_nearby'))
+		--ESX.ShowNotification(_U('garage_store_nearby'))
+		exports['mythic_notify']:SendAlert('inform', (_U('garage_store_nearby')))
 		return
 	end
 
@@ -177,9 +185,11 @@ function StoreNearbyVehicle(playerCoords)
 			end
 
 			IsBusy = false
-			ESX.ShowNotification(_U('garage_has_stored'))
+			--ESX.ShowNotification(_U('garage_has_stored'))
+			exports['mythic_notify']:SendAlert('inform', (_U('garage_has_stored')))
 		else
-			ESX.ShowNotification(_U('garage_has_notstored'))
+			--ESX.ShowNotification(_U('garage_has_notstored'))
+			exports['mythic_notify']:SendAlert('error', (_U('garage_has_notstored')))
 		end
 	end, vehiclePlates)
 end
@@ -198,7 +208,8 @@ function GetAvailableVehicleSpawnPoint(station, part, partNum)
 	if found then
 		return true, foundSpawnPoint
 	else
-		ESX.ShowNotification(_U('vehicle_blocked'))
+		--ESX.ShowNotification(_U('vehicle_blocked'))
+		exports['mythic_notify']:SendAlert('error', (_U('vehicle_blocked')))
 		return false
 	end
 end
@@ -227,7 +238,8 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 
 				ESX.TriggerServerCallback('esx_policejob:buyJobVehicle', function (bought)
 					if bought then
-						ESX.ShowNotification(_U('vehicleshop_bought', data.current.name, ESX.Math.GroupDigits(data.current.price)))
+						--ESX.ShowNotification(_U('vehicleshop_bought', data.current.name, ESX.Math.GroupDigits(data.current.price)))
+						exports['mythic_notify']:SendAlert('success', (_U('vehicleshop_bought')), data.current.name, ESX.Math.GroupDigits(data.current.price))
 
 						isInShopMenu = false
 						ESX.UI.Menu.CloseAll()
@@ -237,7 +249,8 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 
 						ESX.Game.Teleport(playerPed, restoreCoords)
 					else
-						ESX.ShowNotification(_U('vehicleshop_money'))
+						--ESX.ShowNotification(_U('vehicleshop_money'))
+						exports['mythic_notify']:SendAlert('error', (_U('vehicleshop_money')))
 						menu2.close()
 					end
 				end, props, data.current.type)

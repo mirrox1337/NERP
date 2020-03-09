@@ -28,7 +28,7 @@ AddEventHandler('esx:setJob', function(job)
 	ESX.PlayerData.job = job
 end)
 
---[[
+
 AddEventHandler('playerSpawned', function()
 	isDead = false
 	TriggerServerEvent('esx_ambulancejob:onPlayerSpawn')
@@ -51,7 +51,6 @@ AddEventHandler('playerSpawned', function()
 		end
 	end
 end)
---]]
 
 RegisterNetEvent('esx_ambulancejob:multicharacter')
 AddEventHandler('esx_ambulancejob:multicharacter', function()
@@ -357,7 +356,7 @@ function RespawnPed(ped, coords, heading)
 	SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false, true)
 	NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
 	SetPlayerInvincible(ped, false)
-	TriggerEvent('esx_ambulancejob:multicharacter', coords.x, coords.y, coords.z)
+	TriggerEvent('playerSpawned', coords.x, coords.y, coords.z)
 	ClearPedBloodDamage(ped)
 
 	ESX.UI.Menu.CloseAll()

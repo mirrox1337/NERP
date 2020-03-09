@@ -286,27 +286,30 @@ ESX.RegisterUsableItem('bandage', function(source)
 end)
 
 ESX.RegisterServerCallback('esx_ambulancejob:getDeathStatus', function(source, cb)
-	local xPlayer = ESX.GetPlayerFromId(source)
+	local identifier = GetPlayerIdentifiers(source)[1]
 
 	MySQL.Async.fetchScalar('SELECT is_dead FROM users WHERE identifier = @identifier', {
-		['@identifier'] = xPlayer.identifier
+		['@identifier'] = identifier
 	}, function(isDead)
 		if isDead then
-			print(('[esx_ambulancejob] [^2INFO^7] "%s" attempted combat logging'):format(xPlayer.identifier))
+			print(('esx_ambulancejob: %s attempted combat logging!'):format(identifier))
 		end
 
 		cb(isDead)
 	end)
 end)
 
-RegisterNetEvent('esx_ambulancejob:setDeathStatus')
+RegisterServerEvent('esx_ambulancejob:setDeathStatus')
 AddEventHandler('esx_ambulancejob:setDeathStatus', function(isDead)
-	local xPlayer = ESX.GetPlayerFromId(source)
+	local identifier = GetPlayerIdentifiers(source)[1]
 
-	if type(isDead) == 'boolean' then
-		MySQL.Sync.execute('UPDATE users SET is_dead = @isDead WHERE identifier = @identifier', {
-			['@identifier'] = xPlayer.identifier,
-			['@isDead'] = isDead
-		})
+	if type(isDead) ~= 'boolean' then
+		print(('esx_ambulancejob: %s attempted to parse something else than a boolean to setDeathStatus!'):format(identifier))
+		return
 	end
+
+	MySQL.Sync.execute('UPDATE users SET is_dead = @isDead WHERE identifier = @identifier', {
+		['@identifier'] = identifier,
+		['@isDead'] = isDead
+	})
 end)

@@ -1,35 +1,35 @@
 # es_extended
 
-es_extended is a roleplay framework for FiveM. It is developed on top of EssentialMode (aka ES), thus commonly named ESX - the **Es**sentialMode E**x**tended framework for FiveM.
+es_extended is a roleplay framework for FiveM. ESX is short for EssentialMode Extended. The to-go framework for creating an economy based roleplay server on FiveM and most popular on the platform, too!
+
+Featuring many extra resources to fit roleplaying servers, here's a taste of what's available:
+
+- esx_ambulancejob: play as a medic to revive players who are bleeding out. Complete with garages and respawn & bleedout system
+- esx_policejob: patrol the city and arrest players commiting crime, with armory, outfit room and garages
+- esx_vehicleshop: roleplay working in an vehicle dealership where you sell cars to players
+
+ESX was initially developed by Gizz back in 2017 for his friend as the were creating an FiveM server and there wasn't any economy roleplaying frameworks available. The original code was written within a week or two and later open sourced, it has ever since been improved and parts been rewritten to further improve on it.
 
 ## Links & Read more
 
 - [ESX Documentation](https://esx-org.github.io/)
-- [ESX Discord Community](https://discord.gg/MsWzPqE)
-- [FiveM Forum Thread](https://forum.fivem.net/t/release-esx-base/39881)
+- [ESX Development Discord](https://discord.gg/MsWzPqE)
 - [FiveM Native Reference](https://runtime.fivem.net/doc/reference.html)
-
-### Screenshot preview (todo)
-
-![screenshot](http://i.imgur.com/aPFdJl3.jpg)
 
 ## Features
 
-- Accounts (comes with bank / black money), you can add more accounts
-- Advanced inventory system (press `F2` ingame)
-- Job system
-- Loadouts and position synced in database
-- The best framework out there for RP servers
-- i18n (locale) system
-- Plenty of plugins available
+- Weight based inventory system
+- Weapons support, including support for attachments and tints
+- Supports different money accounts (defaulted with cash, bank and black money)
+- Many official resources available in our GitHub
+- Job system, with grades and clothes support
+- Supports multiple languages, most strings are localized
+- Easy to use API for developers to easily integrate ESX to their projects
+- Register your own commands easily, with argument validation, chat suggestion and using FXServer ACL
 
 ## Requirements
 
-This order also applies in the startup order.
-
 - [mysql-async](https://github.com/brouznouf/fivem-mysql-async)
-- [essentialmode](https://github.com/kanersps/essentialmode)
-- [esplugin_mysql](https://github.com/kanersps/esplugin_mysql)
 - [async](https://github.com/ESX-Org/async)
 
 ## Download & Installation
@@ -70,10 +70,12 @@ git clone https://github.com/ESX-Org/esx_menu_list [esx]/[ui]/esx_menu_list
 - Configure your `server.cfg` to look like this
 
 ```
-start mysql-async
-start essentialmode
-start esplugin_mysql
+add_principal group.admin group.user
+add_ace resource.es_extended command.add_ace allow
+add_ace resource.es_extended command.add_principal allow
+add_ace resource.es_extended command.remove_principal allow
 
+start mysql-async
 start es_extended
 
 start esx_menu_default
@@ -87,7 +89,7 @@ start esx_menu_dialog
 
 es_extended - EssentialMode Extended framework for FiveM
 
-Copyright (C) 2015-2019 Jérémie N'gadi
+Copyright (C) 2015-2020 Jérémie N'gadi
 
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
 

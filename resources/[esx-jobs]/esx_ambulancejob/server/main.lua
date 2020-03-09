@@ -250,11 +250,14 @@ AddEventHandler('esx_ambulancejob:giveItem', function(itemName, amount)
 	end
 end)
 
-ESX.RegisterCommand('revive', 'admin', function(xPlayer, args, showError)
-	args.playerId.triggerEvent('esx_ambulancejob:revive')
-end, true, {help = _U('revive_help'), validate = true, arguments = {
-	{name = 'playerId', help = 'The player id', type = 'player'}
-}})
+TriggerEvent('es:addGroupCommand', 'revive', 'admin', function(source, args, user)
+
+  if args[2] ~= nil then
+    TriggerClientEvent('esx_ambulancejob:revive', tonumber(args[2]))
+  else
+    TriggerClientEvent('esx_ambulancejob:revive', source)
+  end
+end)
 
 ESX.RegisterUsableItem('medikit', function(source)
 	if not playersHealing[source] then

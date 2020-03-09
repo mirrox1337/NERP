@@ -357,7 +357,7 @@ function RespawnPed(ped, coords, heading)
 	SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false, true)
 	NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
 	SetPlayerInvincible(ped, false)
-	TriggerEvent('playerSpawned', coords.x, coords.y, coords.z)
+	TriggerEvent('esx_ambulancejob:multicharacter', coords.x, coords.y, coords.z)
 	ClearPedBloodDamage(ped)
 
 	ESX.UI.Menu.CloseAll()

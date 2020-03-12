@@ -126,18 +126,17 @@ Citizen.CreateThread(function()
         local HP = GetEntityHealth(PlayerPedId()) / 200.0
         local Armor = GetPedArmour(PlayerPedId()) / 100.0
         local Breath = GetPlayerUnderwaterTimeRemaining(PlayerId()) / 10.0
+        local thirst, hunger = 0.1, 0.1
  
         if Armor > 1.0 then Armor = 1.0 end
  
         drawRct(UI.Left_x, UI.Bottom_y - 0.017, UI.Width, 0.028, 0, 0, 0, 255) -- Black background
-        drawRct(UI.Left_x + 0.001 , UI.Bottom_y - 0.015, UI.Width - 0.002 , 0.009, 88, 88, 88, 200) -- HP background
-        drawRct(UI.Left_x + 0.001 , UI.Bottom_y - 0.015, (UI.Width -0.002) * HP , 0.009, 88, 155, 0, 200) -- HP bar
-        drawRct(UI.Left_x + 0.001 , UI.Bottom_y - 0.002, UI.Width - 0.002 , 0.009, 88, 88, 88, 200) -- Armor background
+        drawRct(UI.Left_x + 0.001 , UI.Bottom_y - 0.015, UI.Width - 0.072 , 0.009, 88, 88, 88, 200) -- HP background
+        drawRct(UI.Left_x + 0.001 , UI.Bottom_y - 0.015, (UI.Width -0.072) * HP , 0.009, 48, 209, 88, 255) -- HP bar
+        drawRct(UI.Left_x + 0.071 , UI.Bottom_y - 0.015, UI.Width - 0.072 , 0.009, 88, 88, 88, 200) -- Armor background
            
-        if IsPedSwimmingUnderWater(PlayerPedId()) and Breath >= 0.0 then
-            drawRct(UI.Left_x + 0.001 , UI.Bottom_y - 0.002, (UI.Width - 0.002) * Breath , 0.009, 243, 214, 102, 200)
-        elseif Armor > 0.0 then
-            drawRct(UI.Left_x + 0.001 , UI.Bottom_y - 0.002, (UI.Width - 0.002) * Armor , 0.009, 51, 171, 249, 200) -- Armor bar
+        if Armor > 0.0 then
+            drawRct(UI.Left_x + 0.071 , UI.Bottom_y - 0.015, (UI.Width - 0.072) * Armor , 0.009, 10, 132, 255, 255) -- Armor bar
         end
  
         if IsPedInAnyVehicle(PlayerPedId(), false) then
@@ -145,7 +144,7 @@ Citizen.CreateThread(function()
             DisplayRadar(true) -- Activates minimap
             drawRct(UI.Left_x, UI.Bottom_y - 0.248 , UI.Width, 0.073, 0, 0, 0, 55)
             drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.249, 0.55, Hours .. ":" .. Minutes .. " ", 255, 255, 255, 255, 8) -- Clock
-            drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.217 , 0.58, heading, 119, 18, 130, 255, 8) -- Heading
+            drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.217 , 0.58, heading, 255, 55, 95, 255, 8) -- Heading
             drawTxt(UI.Left_x + 0.023 , UI.Bottom_y - 0.216 , 0.3, GetStreetNameFromHashKey(rua), 255, 255, 255, 255, 8) -- Street
             drawTxt(UI.Left_x + 0.023 , UI.Bottom_y - 0.199 , 0.25, Zone, 255, 255, 255, 255, 8) -- Area
            
@@ -160,7 +159,7 @@ Citizen.CreateThread(function()
             DisplayRadar(false) -- Deactivates minimap
             drawRct(UI.Left_x, UI.Bottom_y - 0.088 , UI.Width, 0.073, 0, 0, 0, 55) -- Background
             drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.09 , 0.55, Hours .. ":" .. Minutes .. " ", 255, 255, 255, 255, 8) -- Clock
-            drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.058 , 0.58, heading, 119, 18, 130, 255, 8) -- Heading
+            drawTxt(UI.Left_x + 0.001 , UI.Bottom_y - 0.058 , 0.58, heading, 255, 55, 95, 255, 8) -- Heading
             drawTxt(UI.Left_x + 0.023 , UI.Bottom_y - 0.057 , 0.3, GetStreetNameFromHashKey(rua), 255, 255, 255, 255, 8) -- Street
             drawTxt(UI.Left_x + 0.023 , UI.Bottom_y - 0.04 , 0.25, Zone, 255, 255, 255, 255, 8) -- Area
 		end
@@ -254,19 +253,19 @@ end
 
 
 --Hunger/Thirst
-Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(1)
-    if IsPauseMenuActive() and not IsPaused then
-	  IsPaused = true
-    SendNUIMessage({action = "toggle", show = false})
-    elseif not IsPauseMenuActive() and IsPaused then
-    IsPaused = false
-    SendNUIMessage({action = "toggle", show = true})
-    end
-  end
-end)
+--Citizen.CreateThread(function()
+--  while true do
+--    Citizen.Wait(1)
+--    if IsPauseMenuActive() and not IsPaused then
+--	  IsPaused = true
+--    SendNUIMessage({action = "toggle", show = false})
+--    elseif not IsPauseMenuActive() and IsPaused then
+--    IsPaused = false
+--    SendNUIMessage({action = "toggle", show = true})
+--    end
+--  end
+--end)
 
-AddEventHandler('ui:updateStatus', function(status)
-  SendNUIMessage({action = "updateStatus", status = status})
-end)
+--AddEventHandler('ui:updateStatus', function(status)
+--  SendNUIMessage({action = "updateStatus", status = status})
+--end)

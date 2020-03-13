@@ -1,15 +1,5 @@
-@font-face {
-  font-family: bankgothic;
-  src: url('../fonts/bankgothic.ttf');
-}
-
-@font-face {
-  font-family: pcdown;
-  src: url('../fonts/pdown.ttf');
-}
-
 .menu {
-  font-family: bankgothic;
+  font-family: 'Bebas Neue', cursive;
   position   : absolute;
   left       : 50%;
   top        : 50%;
@@ -17,10 +7,33 @@
   box-shadow : 0px 0px 50px 0px #000;
   overflow-y : auto;
   max-height : 90%; 
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 9px 42px -5px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 10px 9px 42px -5px rgba(0, 0, 0, 0.52);
+  box-shadow: 10px 9px 42px -5px rgba(0, 0, 0, 0.52);
 }
 
 .menu button {
-  font-family: bankgothic; 
+  border: 1px solid #771282;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-weight: 200;
+  color: #771282;
+  outline: 0;
+  background: 0;
+  transition: all 0.1s ease-in-out;
+}
+
+.menu button:hover{
+  border: 1px solid #771282;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-weight: 200;
+  color: #fff;
+  outline: 0;
+  background: 0;
+  transition: all 0.1s ease-in-out;
+  background-color: #771282;
 }
 
 .menu > table {
@@ -31,7 +44,7 @@
 }
 
 .menu > table > thead {
-  background-color: #506be6;
+  background-color: #771282;
   text-align      : center;
   height          : 40px;
   line-height     : 40px;
@@ -44,9 +57,11 @@
 }
 
 .menu tbody tr:nth-child(even) {
-  background: #CCC
+  background      : rgba(28, 28, 30, 255);
+  color           : #771282;
 }
 
 .menu tbody tr:nth-child(odd) {
-  background: #FFF
+  background      : rgba(28, 28, 30, 255);
+  color           : #771282;
 }
